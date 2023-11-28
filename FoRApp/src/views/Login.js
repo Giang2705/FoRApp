@@ -1,0 +1,30 @@
+import { StyleSheet, Text, View, TextInput } from 'react-native'
+import React from 'react'
+
+const Login = () => {
+  return (
+    <View style={styles.container}>
+        <View>
+            <Text>Email</Text>
+            <TextInput placeholder="Enter your email"/>
+        </View>
+        <View>
+            <Text>Password</Text>
+            <TextInput placeholder="Enter password"/>
+        </View>
+        <View>
+            <Text>Forgot password?</Text>
+        </View>
+        <View>
+            <Text>Login</Text>
+        </View>
+        <View>
+            <Text>Signup</Text>
+        </View>
+    </View>
+  )
+}
+
+export default Login
+
+const styles = StyleSheet.create({})

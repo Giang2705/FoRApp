@@ -1,20 +1,11 @@
 import React from 'react';
-import { Text, Stack } from 'react-native';
-import { useTheme } from '@react-navigation/native';
+import { Text, View } from 'react-native';
 
 const HomepageCustomer = () => {
-    const {colors} = useTheme();
     return (
-        <Stack
-            backgroundColor={colors.background}
-            h="100%"
-            w="100%"
-            items="center"
-            paddingTop={45}
-            spacing={20}
-        >
-
-        </Stack>
+        <View>
+            <Text>Hello from HomepageCustomer</Text>
+        </View>
     );
 }
 

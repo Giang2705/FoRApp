@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 	},
     cardContainer: {
 		width: "100%",
-		borderRadius: 15,
+		borderRadius: 20,
 		shadowOffset: {
 			width: 0,
 			height: 4,
@@ -43,5 +43,38 @@ const styles = StyleSheet.create({
 		padding: 17,
 		backgroundColor: "white",
 		elevation: 4,
+	},
+	groupCardContainer:{
+		width: "100%",
+		borderRadius: 20,
+		shadowOffset: {
+			width: 0,
+			height: 4,
+		},
+		shadowOpacity: 0.25,
+		shadowColor: "black",
+		padding: 12,
+		backgroundColor: "white",
+		elevation: 4,
+	},
+	image: {
+		width: 50,
+		height: 200,
+		resizeMode: 'stretch',
+	
+	},
+	bottomContainer: {
+		width: "100%",
+		position: "absolute",
+		bottom: "5%",
+		backgroundColor: "transparent",
+	},
+	bottomNav: {
+	width: "100%",
+	backgroundColor: "transparent",
+	borderRadius: 8,
+	justifyContent: "center",
+	alignItems: "center",
+	flexDirection: "row",
 	},
 })

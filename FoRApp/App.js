@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 import SignupPage from './src/customers/signupScreen';
 
+
 const StackNavigator = createStackNavigator()
 
 const AppInner = () => {

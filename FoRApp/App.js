@@ -1,15 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Signup from './src/views/Signup';
-import Login from './src/views/Login';
-import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import Homepage from './src/views/Homepage';
+import HomepageCustomer from './src/customers/homepageCustomer';
+import LoginPage from './src/customers/loginScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import 'react-native-gesture-handler';
+import SignupPage from './src/customers/signupScreen';
 
-export default function App() {
+
+const StackNavigator = createStackNavigator()
+
+const AppInner = () => {
   return (
-        <NavigationContainer>
-          
-        </NavigationContainer>
+    <NavigationContainer>
+      <StackNavigator.Navigator initialRouteName="LoginPage">
+        <StackNavigator.Screen name="LoginPage" component={LoginPage} options={{headerShown: false}}/>
+        <StackNavigator.Screen name="SignupPage" component={SignupPage} options={{headerShown: false}}/>
+
+      </StackNavigator.Navigator>
+    </NavigationContainer>
   );
 }
+
+export default AppInner;

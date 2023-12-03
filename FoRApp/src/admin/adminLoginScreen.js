@@ -1,26 +1,15 @@
 import React, { useState } from "react";
 import {StyleSheet, Text, View, Image, TouchableOpacity, TextInput} from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { useNavigation } from '@react-navigation/native';
 
-export default function SignupPage({ navigation }) {
-  const [userProfile, setUserProfile] = useState('');
-  const [phoneNumber, setPhoneNum] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+
+export default function AdminLoginPage({ navigation }) {
+  const [adminAccount, setAdminAccount] = useState('');
+  const [adminPassword, setAdminPassword] = useState('');
+  
   const handleLogin = () => {
-    console.log('Username:', username);
-    console.log('Password:', password);
-  };
-
-  const signupBtnPress = () => {
-    // Logic for button press
-    console.log('Signup button pressed');
-  };
-
-  const loginBtnPress = () => {
-    // Logic for button press
-    navigation.navigate('LoginPage');
+    // Perform login logic
+    navigation.navigate('Dashbroad'); // Just for testing
   };
 
   return (
@@ -32,37 +21,16 @@ export default function SignupPage({ navigation }) {
         <Text style={styles.subtitle}>Fine words butter no parsnips</Text>
         <View style={styles.anothercontainer}>
           <View style={styles.buttonnContainer}>
-          <TouchableOpacity style={styles.buttonSignUp} onPress={loginBtnPress}>
-              <Text style={styles.loginText}>Log in</Text>
-            </TouchableOpacity>
-            <Text style={styles.signupText}>Sign up</Text>
+            <Text style={styles.loginText}>Log in</Text>
           </View>
-
-          <View style={styles.nameContainer}>
-            <Icon name="id-card" size={23} style={styles.icon} />
-            <TextInput
-              style={styles.input}
-              placeholder="Full name"
-              onChangeText={text => setUserProfile(text)}
-              value={userProfile}
-            />
-          </View>
-          <View style={styles.phoneNumContainer}>
-            <Icon name="phone" size={25} style={styles.icon} />
-            <TextInput
-              style={styles.input}
-              placeholder="Phone number"
-              onChangeText={text => setPhoneNum(text)}
-              value={phoneNumber}
-            />
-          </View>
+          
           <View style={styles.accountContainer}>
             <Icon name="user" size={25} style={styles.icon} />
             <TextInput
               style={styles.input}
-              placeholder="Email@rmit.edu.vn"
-              onChangeText={text => setUsername(text)}
-              value={username}
+              placeholder="Admin"
+              onChangeText={text => setAdminAccount(text)}
+              value={adminAccount}
             />
           </View>
           <View style={styles.passwordContainer}>
@@ -71,14 +39,14 @@ export default function SignupPage({ navigation }) {
               style={styles.input}
               placeholder="Password"
               secureTextEntry
-              onChangeText={text => setPassword(text)}
-              value={password}
+              onChangeText={text => setAdminPassword(text)}
+              value={adminPassword}
             />
           </View>
         </View>
 
-        <TouchableOpacity style={styles.loginBtn} onPress={signupBtnPress}>
-          <Text style={styles.loginBtnText}>Sign up</Text>
+        <TouchableOpacity style={styles.loginBtn} onPress={handleLogin}>
+          <Text style={styles.loginBtnText}>Log in</Text>
         </TouchableOpacity>
 
       </View>
@@ -116,7 +84,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     padding: 20,
     width: 300,
-    height: 340,
+    height: 300,
     backgroundColor:"#FFFFFF",
     borderRadius: 20,
   },
@@ -124,19 +92,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   loginText: {
-    fontSize: 20,
-    color: "#61481C",
-    marginLeft:15,
-  },
-  signupText: {
     fontSize: 24,
     color: "#61481C",
-    marginLeft: 45,
     fontWeight: 'bold',
-    borderBottomColor: '#61481C',
-    borderBottomWidth: 1,      
+    borderBottomColor: '#61481C',  // Set the border color here
+    borderBottomWidth: 1,      // Set the border width
     paddingHorizontal: 25,
-    paddingBottom:15,
+    paddingBottom:10,
   },
   loginBtn: {
     marginTop: 50,
@@ -150,21 +112,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#C51605",
     borderRadius: 18,
   },
-  nameContainer:{
-    flexDirection: 'row',
-    marginTop:30,
-  },
-  phoneNumContainer:{
-    flexDirection: 'row',
-    padding:10,
-  },
   accountContainer:{
     flexDirection: 'row',
-    padding:10,
+    padding:25,
+    marginTop:30,
   },
   passwordContainer:{
     flexDirection: 'row',
-    padding:10,
+    padding:5,
   },
   icon:{
     color:"#860A35",

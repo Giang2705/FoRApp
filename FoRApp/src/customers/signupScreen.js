@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 
 export default function SignupPage({ navigation }) {
+
   // const [phoneNumber, setPhoneNum] = useState('');
   // const [username, setUsername] = useState('');
   // const [password, setPassword] = useState('');
@@ -19,6 +20,11 @@ export default function SignupPage({ navigation }) {
     phoneNumber: "",
   });
   const [err, errMessage] = useState(null);
+  
+  // const handleLogin = () => {
+  //   console.log('Username:', username);
+  //   console.log('Password:', password);
+  // };
 
   const signupBtnPress = () => {
     if (inputData.email == "" || inputData.name == "" || inputData.password == "" || inputData.phoneNumber == "") {
@@ -63,11 +69,11 @@ export default function SignupPage({ navigation }) {
             <Text style={styles.signupText}>Sign up</Text>
           </View>
           
-          <View>
-            <Icon name="name" size={25} style={styles.icon} />
+          <View style={styles.nameContainer}>
+            <Icon name="id-card" size={23} style={styles.icon} />
             <TextInput
               style={styles.input}
-              placeholder="Name"
+              placeholder="Fullname"
               onChangeText={text => setInputData({...inputData, name: text})}
             />
           </View>
@@ -137,7 +143,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     padding: 20,
     width: 300,
-    height: 300,
+    height: 340,
     backgroundColor:"#FFFFFF",
     borderRadius: 20,
   },
@@ -171,18 +177,21 @@ const styles = StyleSheet.create({
     backgroundColor: "#C51605",
     borderRadius: 18,
   },
+  nameContainer:{
+    flexDirection: 'row',
+    marginTop:30,
+  },
   phoneNumContainer:{
     flexDirection: 'row',
-    padding:15,
-    marginTop:20,
+    padding:10,
   },
   accountContainer:{
     flexDirection: 'row',
-    paddingBottom:10,
+    padding:10,
   },
   passwordContainer:{
     flexDirection: 'row',
-    padding:5,
+    padding:10,
   },
   icon:{
     color:"#860A35",

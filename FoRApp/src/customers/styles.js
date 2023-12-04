@@ -77,4 +77,22 @@ const styles = StyleSheet.create({
 	alignItems: "center",
 	flexDirection: "row",
 	},
+	listContainer:{
+		width: '80%',
+		height: '60%',
+	},
+	bottomContainer: {
+		width: "100%",
+		position: "absolute",
+		bottom: "5%",
+		backgroundColor: "white",
+	},
+	bottomNav: {
+		width: "100%",
+		backgroundColor: "white",
+		borderRadius: 8,
+		justifyContent: "center",
+		alignItems: "center",
+		flexDirection: "row",
+	},
 })

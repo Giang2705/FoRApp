@@ -79,7 +79,7 @@ export default function HomepageCustomer() {
             
             <Text>What's New Today?</Text>
             
-            <ScrollView >
+            <ScrollView style = {styles.listContainer}>
             <Stack w="100%" spacing={20} >
                     <Box elevation={3}
                         backgroundColor="white"
@@ -135,6 +135,11 @@ export default function HomepageCustomer() {
                     </Box>
                     </Stack>
                 </ScrollView>
+                <View style={styles.bottomContainer}>
+                    <View>
+                        <IconButton></IconButton>
+                    </View>
+                </View>
         </Stack>
     );
 }

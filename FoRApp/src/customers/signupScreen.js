@@ -4,17 +4,43 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 
 export default function SignupPage({ navigation }) {
-  const [phoneNumber, setPhoneNum] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const handleLogin = () => {
-    console.log('Username:', username);
-    console.log('Password:', password);
-  };
+  // const [phoneNumber, setPhoneNum] = useState('');
+  // const [username, setUsername] = useState('');
+  // const [password, setPassword] = useState('');
+  // const handleLogin = () => {
+  //   console.log('Username:', username);
+  //   console.log('Password:', password);
+  // };
+
+  const [inputData, setInputData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    phoneNumber: "",
+  });
+  const [err, errMessage] = useState(null);
 
   const signupBtnPress = () => {
-    // Logic for button press
-    console.log('Signup button pressed');
+    if (inputData.email == "" || inputData.name == "" || inputData.password == "" || inputData.phoneNumber == "") {
+      alert("You must fill all fields")
+    } else {
+      console.log(inputData)
+      fetch ('http://localhost:3000/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(inputData)
+      })
+      .then(res => res.json()).then(
+        data => {
+          if (!data.error) {
+              alert("Account created successfully!")
+              navigation.navigate('LoginPage');
+          }
+        }
+      )
+    }
   };
 
   const loginBtnPress = () => {
@@ -37,13 +63,20 @@ export default function SignupPage({ navigation }) {
             <Text style={styles.signupText}>Sign up</Text>
           </View>
           
+          <View>
+            <Icon name="name" size={25} style={styles.icon} />
+            <TextInput
+              style={styles.input}
+              placeholder="Name"
+              onChangeText={text => setInputData({...inputData, name: text})}
+            />
+          </View>
           <View style={styles.phoneNumContainer}>
             <Icon name="phone" size={25} style={styles.icon} />
             <TextInput
               style={styles.input}
               placeholder="Phone number"
-              onChangeText={text => setPhoneNum(text)}
-              value={phoneNumber}
+              onChangeText={text => setInputData({...inputData, phoneNumber: text})}
             />
           </View>
           <View style={styles.accountContainer}>
@@ -51,8 +84,7 @@ export default function SignupPage({ navigation }) {
             <TextInput
               style={styles.input}
               placeholder="Email@rmit.edu.vn"
-              onChangeText={text => setUsername(text)}
-              value={username}
+              onChangeText={text => setInputData({...inputData, email: text})}
             />
           </View>
           <View style={styles.passwordContainer}>
@@ -61,8 +93,7 @@ export default function SignupPage({ navigation }) {
               style={styles.input}
               placeholder="Password"
               secureTextEntry
-              onChangeText={text => setPassword(text)}
-              value={password}
+              onChangeText={text => setInputData({...inputData, password: text})}
             />
           </View>
         </View>

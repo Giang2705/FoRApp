@@ -3,10 +3,12 @@ import {  Image, View, ScrollView } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 // import { ScrollView } from 'react-native-gesture-handler';
 import styles from "./styles";
-import { SimpleLineIcons } from '@expo/vector-icons';
-import { Avatar, Box, Stack, Icon, Text, Flex, IconButton } from "@react-native-material/core";
+import SIcon from 'react-native-vector-icons/SimpleLineIcons';
+import { Avatar, Box, Stack, Text, Flex, IconButton } from "@react-native-material/core";
+import FIcon from 'react-native-vector-icons/Foundation'; 
+import Icon from 'react-native-vector-icons/Ionicons'; 
 
-export default function HomepageCustomer() {
+export default function HomepageCustomer({navigation}) {
     const {colors} = useTheme();
     return (
         <Stack
@@ -34,7 +36,7 @@ export default function HomepageCustomer() {
                         direction="column"
                         >
                             <IconButton style={styles.image}
-                                icon= {props => <SimpleLineIcons name="picture" size={50} color={colors.button} />}
+                                icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
                                 imageStyle={{borderRadius: 10}} 
                             />
                             {/* <Image source={require("../../assets/sorrento.jpg")} style = {styles.image}/> */}
@@ -58,7 +60,7 @@ export default function HomepageCustomer() {
                         direction="column"
                         >
                             <IconButton style={styles.image}
-                                icon= {props => <SimpleLineIcons name="picture" size={50} color={colors.button} />}
+                                icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
                                 imageStyle={{borderRadius: 10}} 
                             />
                             {/* <Image source={require("../../assets/sorrento.jpg")}
@@ -93,7 +95,7 @@ export default function HomepageCustomer() {
                         direction="row"
                         >
                             <IconButton style={styles.image}
-                                icon= {props => <SimpleLineIcons name="picture" size={50} color={colors.button} />}
+                                icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
                                 imageStyle={{borderRadius: 10}} 
                             />
                             {/* <Image source={require("../../assets/sorrento.jpg")} style = {styles.image}/> */}
@@ -118,7 +120,7 @@ export default function HomepageCustomer() {
                         direction="row"
                         >
                             <IconButton style={styles.image}
-                                icon= {props => <SimpleLineIcons name="picture" size={50} color={colors.button} />}
+                                icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
                                 imageStyle={{borderRadius: 10}} 
                             />
                             {/* <Image source={require("../../assets/sorrento.jpg")}
@@ -136,8 +138,33 @@ export default function HomepageCustomer() {
                     </Stack>
                 </ScrollView>
                 <View style={styles.bottomContainer}>
+                    <View style={styles.bottomNav}>
+                        <IconButton icon={props => <FIcon name="home" {...props}/>}
+                                    color="#C51605"
+                                    style={{
+                                        alignSelf:"center",
+                                        overflow: "hidden",
+                                        // padding: 25,
+                                        backgroundColor: "transparent",
+                                        borderRadius: 10,
+                                        // margin: 10,
+                                        ...styles.shawdowBtn
+                                    }}
+                                    onPress={() => navigation.navigate("")} />
+                    </View>
                     <View>
-                        <IconButton></IconButton>
+                        <IconButton icon={props => <Icon name="chatbox-outline" {...props}/>}
+                                    color="#AAACAE"
+                                    style={{
+                                        alignSelf:"center",
+                                        overflow: "hidden",
+                                        // padding: 25,
+                                        backgroundColor: "transparent",
+                                        borderRadius: 10,
+                                        // margin: 10,
+                                        ...styles.shawdowBtn
+                                    }}
+                                    onPress={() => navigation.navigate()} />
                     </View>
                 </View>
         </Stack>

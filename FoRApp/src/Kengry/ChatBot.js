@@ -7,7 +7,7 @@ import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'r
 
 
 const KengryTheBOT = () => {
-    const apiKey = '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'
+    const apiKey = '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'
     const apiURL = 'https://api.openai.com/v1/chat/completions'
     const [messagesData, setMessages] = useState([]);
     const [userPrompt, setUserPrompt] = useState('');
@@ -36,7 +36,6 @@ const KengryTheBOT = () => {
         } catch(e) {
             console.log(e)
         }
-
 
     }
 

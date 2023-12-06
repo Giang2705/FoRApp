@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import KengryTheBOT from './src/ChatBot';
+import KengryTheBOT from './src/Kengry/ChatBot';
 
 export default function App() {
   return (

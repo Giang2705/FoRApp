@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@expo/webpack-config": "^19.0.0",
+    "@react-native-voice/voice": "^3.2.4",
     "axios": "^1.6.2",
     "expo": "^49.0.21",
     "expo-status-bar": "~1.6.0",

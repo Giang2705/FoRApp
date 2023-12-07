@@ -11,6 +11,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 export default function HomepageCustomer({navigation}) {
     const {colors} = useTheme();
     return (
+        <View>
         <Stack
             backgroundColor={colors.background}
             h="100%"
@@ -20,29 +21,33 @@ export default function HomepageCustomer({navigation}) {
             marginLeft = {20}
             spacing={20}
         >
+            <ScrollView style = {styles.listContainer}>
             <Text>Restaurant</Text>
             <Stack w="100%" spacing={20} >
             <ScrollView horizontal={true}>
                 
                     <Box elevation={3}
                         backgroundColor="white"
-                        style={styles.cardContainer}
+                        // style={styles.cardContainer}
                         w="100%"
                         key="restaurant"
+                        alignSelf="center"
                         
                     >
                         <Flex w="100%"
                         items= "center"
                         direction="column"
+                        padding="5"
                         >
-                            <IconButton style={styles.image}
+                            {/* <IconButton style={styles.image}
                                 icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
                                 imageStyle={{borderRadius: 10}} 
-                            />
-                            {/* <Image source={require("../../assets/sorrento.jpg")} style = {styles.image}/> */}
+                            /> */}
+                            <Image source={require("../../assets/sorrento.jpg")} style = {styles.image}/>
                             <View
-                            spacing={5}
+                            spacing={10}
                             w="58%"
+                            // padding="5"
                             >
                                 <Text style={styles.header}>Sorrento</Text>
                                 <Text style={styles.text}>Building 10 - Floor 2</Text>
@@ -59,12 +64,12 @@ export default function HomepageCustomer({navigation}) {
                         items= "center"
                         direction="column"
                         >
-                            <IconButton style={styles.image}
+                            {/* <IconButton style={styles.image}
                                 icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
                                 imageStyle={{borderRadius: 10}} 
-                            />
-                            {/* <Image source={require("../../assets/sorrento.jpg")}
-                                    style = {styles.image}/> */}
+                            /> */}
+                            <Image source={require("../../assets/sorrento.jpg")}
+                                    style = {styles.image}/>
                             <View
                             spacing={5}
                             w="58%"
@@ -79,9 +84,9 @@ export default function HomepageCustomer({navigation}) {
                
                     
             
-            <Text>What's New Today?</Text>
+            <Text padding={10}>What's New Today?</Text>
             
-            <ScrollView style = {styles.listContainer}>
+            
             <Stack w="100%" spacing={20} >
                     <Box elevation={3}
                         backgroundColor="white"
@@ -136,38 +141,39 @@ export default function HomepageCustomer({navigation}) {
                         </Flex>
                     </Box>
                     </Stack>
+                
+                
                 </ScrollView>
-                <View style={styles.bottomContainer}>
+        </Stack>
+        <View style={styles.bottomContainer}>
                     <View style={styles.bottomNav}>
                         <IconButton icon={props => <FIcon name="home" {...props}/>}
                                     color="#C51605"
                                     style={{
                                         alignSelf:"center",
-                                        overflow: "hidden",
-                                        // padding: 25,
+                                        // overflow: "hidden",
+                                        padding: 25,
                                         backgroundColor: "transparent",
                                         borderRadius: 10,
                                         // margin: 10,
-                                        ...styles.shawdowBtn
+                                        // ...styles.shawdowBtn
                                     }}
                                     onPress={() => navigation.navigate("")} />
-                    </View>
-                    <View>
                         <IconButton icon={props => <Icon name="chatbox-outline" {...props}/>}
                                     color="#AAACAE"
                                     style={{
                                         alignSelf:"center",
-                                        overflow: "hidden",
-                                        // padding: 25,
+                                        // overflow: "hidden",
+                                        padding: 25,
                                         backgroundColor: "transparent",
                                         borderRadius: 10,
                                         // margin: 10,
-                                        ...styles.shawdowBtn
+                                        // ...styles.shawdowBtn
                                     }}
                                     onPress={() => navigation.navigate()} />
                     </View>
                 </View>
-        </Stack>
+        </View>
     );
 }
 

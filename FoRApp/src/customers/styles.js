@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from "react-native";
 
-const styles = StyleSheet.create({
+const  styles = StyleSheet.create({
     text: {
 		fontFamily: "Montserrat",
 		fontSize: 12,
@@ -40,9 +40,9 @@ const styles = StyleSheet.create({
 		},
 		shadowOpacity: 0.25,
 		shadowColor: "black",
-		padding: 17,
+		// padding: 17,
 		backgroundColor: "white",
-		elevation: 4,
+		// elevation: 4,
 	},
 	groupCardContainer:{
 		width: "100%",
@@ -58,10 +58,9 @@ const styles = StyleSheet.create({
 		elevation: 4,
 	},
 	image: {
-		width: 50,
-		height: 200,
-		resizeMode: 'stretch',
-	
+		width: '80%',
+		height: '70%',
+		resizeMode: 'cover',
 	},
 	bottomContainer: {
 		width: "100%",
@@ -78,21 +77,24 @@ const styles = StyleSheet.create({
 	flexDirection: "row",
 	},
 	listContainer:{
-		width: '80%',
+		width: '90%',
 		height: '60%',
 	},
 	bottomContainer: {
 		width: "100%",
 		position: "absolute",
-		bottom: "5%",
+		bottom: "-0.5%",
 		backgroundColor: "white",
+		flexDirection: "row",
+		borderRadius: 15
 	},
 	bottomNav: {
 		width: "100%",
-		backgroundColor: "white",
-		borderRadius: 8,
+		// backgroundColor: "white",
+		// borderRadius: 8,
 		justifyContent: "center",
-		alignItems: "center",
+		flexDirection: "row",
+		// alignItems: "center",
 	},
 	shadowBtn: {
 		shadowColor: "#000",
@@ -105,3 +107,5 @@ const styles = StyleSheet.create({
 		elevation: 20,
 	},
 })
+
+export default styles;

@@ -21,7 +21,7 @@ export default function HomepageCustomer({navigation}) {
             marginLeft = {20}
             spacing={20}
         >
-            <ScrollView style = {styles.listContainer}>
+            <ScrollView >
             <Text>Restaurant</Text>
             <Stack w="100%" spacing={20} >
             <ScrollView horizontal={true}>
@@ -39,11 +39,11 @@ export default function HomepageCustomer({navigation}) {
                         direction="column"
                         padding="5"
                         >
-                            {/* <IconButton style={styles.image}
+                            <IconButton style={styles.image}
                                 icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
                                 imageStyle={{borderRadius: 10}} 
-                            /> */}
-                            <Image source={require("../../assets/sorrento.jpg")} style = {styles.image}/>
+                            />
+                            {/* <Image source={require("../../assets/sorrento.jpg")} style = {styles.image}/> */}
                             <View
                             spacing={10}
                             w="58%"
@@ -64,12 +64,12 @@ export default function HomepageCustomer({navigation}) {
                         items= "center"
                         direction="column"
                         >
-                            {/* <IconButton style={styles.image}
+                            <IconButton style={styles.image}
                                 icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
                                 imageStyle={{borderRadius: 10}} 
-                            /> */}
-                            <Image source={require("../../assets/sorrento.jpg")}
-                                    style = {styles.image}/>
+                            />
+                            {/* <Image source={require("../../assets/sorrento.jpg")}
+                                    style = {styles.image}/> */}
                             <View
                             spacing={5}
                             w="58%"
@@ -99,7 +99,7 @@ export default function HomepageCustomer({navigation}) {
                         items= "center"
                         direction="row"
                         >
-                            <IconButton style={styles.image}
+                            <IconButton 
                                 icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
                                 imageStyle={{borderRadius: 10}} 
                             />
@@ -124,7 +124,7 @@ export default function HomepageCustomer({navigation}) {
                         items= "center"
                         direction="row"
                         >
-                            <IconButton style={styles.image}
+                            <IconButton 
                                 icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
                                 imageStyle={{borderRadius: 10}} 
                             />

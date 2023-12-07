@@ -40,9 +40,9 @@ const  styles = StyleSheet.create({
 		},
 		shadowOpacity: 0.25,
 		shadowColor: "black",
-		// padding: 17,
+		padding: 17,
 		backgroundColor: "white",
-		// elevation: 4,
+		elevation: 4,
 	},
 	groupCardContainer:{
 		width: "100%",
@@ -59,8 +59,8 @@ const  styles = StyleSheet.create({
 	},
 	image: {
 		width: '80%',
-		height: '70%',
-		resizeMode: 'cover',
+		height: '50%',
+		resizeMode: 'auto',
 	},
 	bottomContainer: {
 		width: "100%",

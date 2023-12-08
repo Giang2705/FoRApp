@@ -14,6 +14,7 @@ import { useState, useEffect, useCallback } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import useFonts from './useFont';
 // import Text from '@react-native-material/core';
+import HomepageStaffs from './src/staffs/homepageStaffs';
 
 export const theme = {
   colors: {
@@ -59,6 +60,9 @@ const AppInner = () => {
     <NavigationContainer theme={theme} onReady={onLayoutRootView}>
       <StackNavigator.Navigator
         screenOptions={({ navigation }) => ({
+          headerTitle: props => (
+            <Text {...props} variant="h6" />
+          ),
           headerLeft: () => (
             <IconButton
               onPress={() => navigation.navigate("HomepageCustomer")}
@@ -69,6 +73,10 @@ const AppInner = () => {
               )}
             />
           ),
+          headerTitleContainerStyle: {
+						top: 30,
+						height: 50
+					},
           headerLeftContainerStyle: {
             left: 30,
             top: 30,
@@ -90,13 +98,19 @@ const AppInner = () => {
           },
         })}
       >
-        <StackNavigator.Screen
+        {/* <StackNavigator.Screen
           name="HomepageCustomer"
           component={HomepageCustomer}
           options={{
-            headerShown: true,
+            title: "Homepage"
           }}
-        />
+        /> */}
+        <StackNavigator.Screen
+          name="HomepageStaff"
+          component={HomepageStaffs} 
+          options={{
+            headerShown: false
+          }}/>
       </StackNavigator.Navigator>
     </NavigationContainer>
   )

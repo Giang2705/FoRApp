@@ -26,6 +26,8 @@ const AppInner = () => {
         <StackNavigator.Screen name="LoginPage" component={LoginPage} options={{headerShown: false}}/>
         <StackNavigator.Screen name="SignupPage" component={SignupPage} options={{headerShown: false}}/>
 
+        <StackNavigator.Screen name="HomepageCustomer" component={HomepageCustomer} options={{headerShown: false}} />
+
       </StackNavigator.Navigator>
     </NavigationContainer>
   );

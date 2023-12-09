@@ -35,7 +35,7 @@ router.post('/signup', (req, res) => {
     )
 })
 
-router.post('/signin', async (req, res) => {
+router.post('/login', async (req, res) => {
     const {email, password} = req.body;
     if (!email || !password) {
         return res.status(422).send({error: "Please fill all the fields"})

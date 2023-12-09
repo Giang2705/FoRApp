@@ -3,12 +3,33 @@ import {StyleSheet, Text, View, Image, TouchableOpacity, TextInput} from "react-
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function LoginPage({ navigation }) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [inputData, setInputData] = useState({
+    email: "",
+    password: ""
+  });
   
   const handleLogin = () => {
     // Perform login logic
-    console.log('Login button pressed');
+    if (inputData.email == "" || inputData.password == "") {
+      alert("You must fill all fields")
+    } else {
+      console.log(inputData)
+      fetch ('http://localhost:3000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(inputData)
+      })
+      .then(res => res.json()).then(
+        data => {
+          if (!data.error) {
+              alert("Login successfully!")
+              navigation.navigate('HomepageCustomer');
+          }
+        }
+      )
+    }
   };
 
   const handleSignup = () => {
@@ -37,8 +58,7 @@ export default function LoginPage({ navigation }) {
             <TextInput
               style={styles.input}
               placeholder="Email@rmit.edu.vn"
-              onChangeText={text => setUsername(text)}
-              value={username}
+              onChangeText={text => setInputData({...inputData, email: text})}
             />
           </View>
           <View style={styles.passwordContainer}>
@@ -47,8 +67,7 @@ export default function LoginPage({ navigation }) {
               style={styles.input}
               placeholder="Password"
               secureTextEntry
-              onChangeText={text => setPassword(text)}
-              value={password}
+              onChangeText={text => setInputData({...inputData, password: text})}
             />
           </View>
         </View>

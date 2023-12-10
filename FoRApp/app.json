@@ -21,10 +21,26 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.metalboxxx.FoRApp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "75c31622-8bca-4d33-8d7b-1e85b242ca05"
+      }
+    },
+    "expo": { 
+      "plugins": [ 
+          [ "@react-native-voice/voice", 
+            { 
+              "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone", 
+              "speechRecogntionPermission": "Allow $(PRODUCT_NAME) to securely recognize user speech" 
+            } 
+          ] 
+        ] 
+      }
   }
 }

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import {View, Text} from 'react-native'
 import Voice from '@react-native-community/voice'
 import { TouchableOpacity } from 'react-native'
-import { Permissions } from "expo";
 
 const VoiceExtract = () => {
     const [message,setMessage] = useState('')
@@ -10,20 +9,20 @@ const VoiceExtract = () => {
     
     Voice.getSpeechRecognitionServices()
 
-    const SpeechStartHandler = () => {
+    Voice.onSpeechStart = () => {
         console.log(Voice.isAvailable())
 
         setIsRecording(true)
         console.log('(Handler) Speech Start')
     }
-    const SpeechEndHandler = () => {
+    Voice.onSpeechEnd = () => {
         setIsRecording(false)
         console.log('(Handler) Speech End')
     }
-    const SpeechResultsHandler = r => {
+    Voice.onSpeechResults = r => {
         console.log('(Handler) Speech Result: ',r)
     }
-    const SpeechErrorHandler = e => {
+    Voice.onSpeechError = e => {
         console.log('(Handler) Speech Error: ',e)
     }
     
@@ -43,12 +42,7 @@ const VoiceExtract = () => {
     }
 
 
-    useEffect(() => {
-        Voice.onSpeechStart = SpeechStartHandler
-        Voice.onSpeechEnd = SpeechEndHandler
-        Voice.onSpeechResults = SpeechResultsHandler
-        Voice.onSpeechError = SpeechErrorHandler;
-    })
+
 
 
     return (

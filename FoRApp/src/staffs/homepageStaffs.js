@@ -1,4 +1,4 @@
-import { Stack, Text, IconButton  } from '@react-native-material/core';
+import { Stack, Text, IconButton, Box, Flex  } from '@react-native-material/core';
 import React from 'react';
 import { View, Image } from 'react-native';
 import styles from './styles';
@@ -20,7 +20,22 @@ export default function HomepageStaffs({navigation}) {
                     style={styles.editIcon}
                     icon={props => 
                     <MIcon {...props} name="pencil" size={23} color={colors.button}/>} />
+                    
             </Stack>
+            <Stack>
+            <Text marginTop = {-100}
+                marginLeft={20}
+                style={styles.section}>Food</Text>
+
+                {/* <Box elevation={3}
+                    backgroundColor="white">
+                        <Flex>
+                        </Flex>
+                </Box> */}
+                <Image source={require("../../assets/sorrento.jpg")} style={styles.foodImage}></Image>
+
+            </Stack>
+            
         </View>
     );
 }

@@ -87,7 +87,7 @@ const AppInner = () => {
               backgroundColor="white"
               borderRadius={15}
               icon={(props) => (
-                  <Icon name="person" size={24} color={theme.colors.button} />
+                  <Icon name="person" size={24} color={theme.colors.button} {...props}/>
               )}
             />
           ),
@@ -102,7 +102,7 @@ const AppInner = () => {
           name="HomepageCustomer"
           component={HomepageCustomer}
           options={{
-            title: "Homepage"
+            headerShown: false
           }}
         /> */}
         <StackNavigator.Screen

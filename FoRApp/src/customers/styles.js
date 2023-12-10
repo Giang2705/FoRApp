@@ -69,12 +69,12 @@ const  styles = StyleSheet.create({
 		backgroundColor: "transparent",
 	},
 	bottomNav: {
-	width: "100%",
-	backgroundColor: "transparent",
-	borderRadius: 8,
-	justifyContent: "center",
-	alignItems: "center",
-	flexDirection: "row",
+		width: "100%",
+		backgroundColor: "transparent",
+		borderRadius: 8,
+		justifyContent: "center",
+		alignItems: "center",
+		flexDirection: "row",
 	},
 	listContainer:{
 		width: '90%',

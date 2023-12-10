@@ -104,14 +104,14 @@ export default function HomepageCustomer({navigation}) {
                                 imageStyle={{borderRadius: 10}} 
                             />
                             {/* <Image source={require("../../assets/sorrento.jpg")} style = {styles.image}/> */}
-                            <View
+                            <Stack
                             spacing={5}
                             w="58%"
                             >
                                 <Text style={styles.header}>Chicken Pesto</Text>
                                 <Text style={styles.text}>Sorrento</Text>
                                 <Text style={styles.text}>Opening Hours: 10 AM - 4 PM</Text>
-                            </View>
+                            </Stack>
                         </Flex>
                     </Box>
                     <Box elevation={3}

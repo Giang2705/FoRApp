@@ -1,5 +1,4 @@
 import axios from "axios";
-import OpenAI from "openai";
 import { useState } from "react";
 import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 

@@ -98,13 +98,13 @@ const AppInner = () => {
           },
         })}
       >
-        {/* <StackNavigator.Screen
+        <StackNavigator.Screen
           name="HomepageCustomer"
           component={HomepageCustomer}
           options={{
             title: "Homepage"
           }}
-        /> */}
+        />
         <StackNavigator.Screen
           name="HomepageStaff"
           component={HomepageStaffs} 

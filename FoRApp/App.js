@@ -15,6 +15,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import useFonts from './useFont';
 // import Text from '@react-native-material/core';
 import HomepageStaffs from './src/staffs/homepageStaffs';
+import HomepageShopOwner from './src/shopowner/homepageShopOwner';
 
 export const theme = {
   colors: {
@@ -98,19 +99,25 @@ const AppInner = () => {
         //   },
         // })}
       >
-        <StackNavigator.Screen
+        {/* <StackNavigator.Screen
           name="HomepageCustomer"
           component={HomepageCustomer}
           options={{
             headerShown: false
           }}
-        />
+        /> */}
         {/* <StackNavigator.Screen
           name="HomepageStaff"
           component={HomepageStaffs} 
           options={{
             headerShown: false
           }}/> */}
+          <StackNavigator.Screen
+          name="HomepageShopOwner"
+          component={HomepageShopOwner} 
+          options={{
+            headerShown: false
+          }}/>
       </StackNavigator.Navigator>
     </NavigationContainer>
   )

@@ -9,11 +9,11 @@ const data = [
   ];
 
 export default function Dashbroad({ navigation }) {
-    const movingBack = () => {
-        navigation.navigate('LoginPage'); 
+    const logingOut = () => {
+        navigation.navigate('LoginPage'); // Just for testing
     };
-    const movingRestaurantList = () => {
-        navigation.navigate('RestaurantList');
+    const movingCustomerList = () => {
+        navigation.navigate('Dashbroad');
     };
     
     return (
@@ -22,18 +22,18 @@ export default function Dashbroad({ navigation }) {
                 <Image 
                     source={require("../../images/logo.png")}
                     style={styles.logoImage} />
-                <TouchableOpacity style={styles.customerList}>
-                    <Text style={styles.listText}>Customer List</Text>
+                <TouchableOpacity style={styles.customerList} onPress={movingCustomerList}>
+                    <Text style={[styles.listText, styles.listTextInCustomerList]}>Customer List</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.restaurantList} onPress={movingRestaurantList}>
-                    <Text style={[styles.listText, styles.listTextInRestaurantList]}>Restaurant List</Text>
+                <TouchableOpacity style={styles.restaurantList}>
+                    <Text style={styles.listText}>Restaurant List</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.logoutBtn} onPress={movingBack}>
+                <TouchableOpacity style={styles.logoutBtn} onPress={logingOut}>
                     <Text style={styles.logoutBtnText}>Log out</Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.main}>
-                <Text style={styles.clContent}>Customer List</Text>
+                <Text style={styles.rlContent}>Restaurant List</Text>
                 <View style={styles.tableView}> 
                     <TableView>
                         <Section>
@@ -51,7 +51,7 @@ export default function Dashbroad({ navigation }) {
                                     <Text style={styles.cellText}>Role</Text>
                                 </View>
                                 <View style={styles.tableCell}>
-                                    <Text style={styles.cellText}>Status</Text>
+                                    <Text style={styles.cellText}>Current Working</Text>
                                 </View>
                             </View>
 
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
         borderColor: '#000',
         padding: 10,
     },
-    listTextInRestaurantList:{
+    listTextInCustomerList:{
         backgroundColor:"white",
     },
     logoutBtnText: {
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     logoutBtn: {
         marginTop: 550,
     },
-    clContent: {
+    rlContent: {
         fontSize: 30,
         color: "#61481C",
         fontWeight: 'bold',

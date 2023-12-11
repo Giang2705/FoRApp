@@ -5,17 +5,18 @@ import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 import SignupPage from './src/customers/signupScreen';
 import Dashbroad from './src/admin/dashbroad'
-
+import RestaurantList from './src/admin/restaurantList'
 
 const StackNavigator = createStackNavigator()
 
 const AppInner = () => {
   return (
     <NavigationContainer>
-      <StackNavigator.Navigator initialRouteName="LoginPage">
+      <StackNavigator.Navigator initialRouteName="Dashbroad">
 
         {/* Admin */}
         <StackNavigator.Screen name="Dashbroad" component={Dashbroad} options={{headerShown: false}}/>
+        <StackNavigator.Screen name="RestaurantList" component={RestaurantList} options={{headerShown: false}}/>
         
         
         {/* Users */}

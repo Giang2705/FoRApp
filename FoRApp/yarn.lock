@@ -7111,6 +7111,11 @@ react-native-screens@~3.22.0:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
+react-native-tableview-simple@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-tableview-simple/-/react-native-tableview-simple-4.4.0.tgz#7318145e9b27934fec8cd41b2a06d773c65d74d7"
+  integrity sha512-b31+2zHrB4ymv/g+iKQRjkVA1qNfVAroRG0z6qDeV1AxL221FUP9Q3XAZrju1sGuJdY4y4JADP0E2fRJwDuBWQ==
+
 react-native-web@~0.19.6:
   version "0.19.9"
   resolved "https://registry.npmjs.org/react-native-web/-/react-native-web-0.19.9.tgz"
@@ -7184,6 +7189,11 @@ react-shallow-renderer@^16.15.0:
   dependencies:
     object-assign "^4.1.1"
     react-is "^16.12.0 || ^17.0.0 || ^18.0.0"
+
+react-table@7.7.0:
+  version "7.7.0"
+  resolved "https://registry.yarnpkg.com/react-table/-/react-table-7.7.0.tgz#e2ce14d7fe3a559f7444e9ecfe8231ea8373f912"
+  integrity sha512-jBlj70iBwOTvvImsU9t01LjFjy4sXEtclBovl3mTiqjz23Reu0DKnRza4zlLtOPACx6j2/7MrQIthIK1Wi+LIA==
 
 react@18.2.0:
   version "18.2.0"

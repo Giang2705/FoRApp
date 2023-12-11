@@ -59,58 +59,58 @@ const AppInner = () => {
   return (
     <NavigationContainer theme={theme} onReady={onLayoutRootView}>
       <StackNavigator.Navigator
-        screenOptions={({ navigation }) => ({
-          headerTitle: props => (
-            <Text {...props} variant="h6" />
-          ),
-          headerLeft: () => (
-            <IconButton
-              onPress={() => navigation.navigate("HomepageCustomer")}
-              backgroundColor="white"
-              borderRadius={15}
-              icon={(props) => (
-                  <FIcon {...props} name="home" size={24} color={theme.colors.button} />
-              )}
-            />
-          ),
-          headerTitleContainerStyle: {
-						top: 30,
-						height: 50
-					},
-          headerLeftContainerStyle: {
-            left: 30,
-            top: 30,
-          },
-          headerRight: () => (
-            <IconButton
-              onPress={() => navigation.navigate("")}
-              backgroundColor="white"
-              borderRadius={15}
-              icon={(props) => (
-                  <Icon name="person" size={24} color={theme.colors.button} {...props}/>
-              )}
-            />
-          ),
-          headerStyle: {
-            backgroundColor: theme.colors.background,
-            elevation: 0, // remove shadow on Android
-            shadowOpacity: 0, // remove shadow on iOS
-          },
-        })}
+        // screenOptions={({ navigation }) => ({
+        //   headerTitle: props => (
+        //     <Text {...props} variant="h6" />
+        //   ),
+        //   headerLeft: () => (
+        //     <IconButton
+        //       onPress={() => navigation.navigate("HomepageCustomer")}
+        //       backgroundColor="white"
+        //       borderRadius={15}
+        //       icon={(props) => (
+        //           <FIcon {...props} name="home" size={24} color={theme.colors.button} />
+        //       )}
+        //     />
+        //   ),
+        //   headerTitleContainerStyle: {
+				// 		top: 30,
+				// 		height: 50
+				// 	},
+        //   headerLeftContainerStyle: {
+        //     left: 30,
+        //     top: 30,
+        //   },
+        //   headerRight: () => (
+        //     <IconButton
+        //       onPress={() => navigation.navigate("")}
+        //       backgroundColor="white"
+        //       borderRadius={15}
+        //       icon={(props) => (
+        //           <Icon name="person" size={24} color={theme.colors.button} {...props}/>
+        //       )}
+        //     />
+        //   ),
+        //   headerStyle: {
+        //     backgroundColor: theme.colors.background,
+        //     elevation: 0, // remove shadow on Android
+        //     shadowOpacity: 0, // remove shadow on iOS
+        //   },
+        // })}
       >
-        {/* <StackNavigator.Screen
+        <StackNavigator.Screen
           name="HomepageCustomer"
           component={HomepageCustomer}
           options={{
             headerShown: false
           }}
-        /> */}
-        <StackNavigator.Screen
+        />
+        {/* <StackNavigator.Screen
           name="HomepageStaff"
           component={HomepageStaffs} 
           options={{
             headerShown: false
-          }}/>
+          }}/> */}
       </StackNavigator.Navigator>
     </NavigationContainer>
   )

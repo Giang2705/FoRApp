@@ -56,7 +56,6 @@ export default function HomepageStaffs({navigation}) {
                 </Box>
             </View>
             <Stack style={styles.bottomContainer} >
-                
                 <IconButton icon={props => <FIcon name="home" {...props} size={30}/>}
                             margin={8}
                             color="#C51606"
@@ -82,7 +81,6 @@ export default function HomepageStaffs({navigation}) {
                             color="#AAACAE"
                             margin={8}
                             onPress={()=>navigation.navigate("")}/>
-                
             </Stack>
         </View>
     );

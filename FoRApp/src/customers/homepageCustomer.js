@@ -10,11 +10,14 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 export default function HomepageCustomer({navigation}) {
     const {colors} = useTheme();
-
     
-    const dataRestaurant = [{image: "../../assets/sorrento.jpg",name: "Sorrento", location: "Building 10 - Floor 2"},
-                            {image: "../../assets/sorrento.jpg",name: "Nine", location: "Building 8 - Floor 1"}]
-    return (
+    const dataRestaurant = [{image: require("../../assets/sorrento.jpg"),name: "Sorrento", location: "Building 10 - Floor 2"},
+                            {image: require("../../assets/sorrento.jpg"),name: "Nine", location: "Building 8 - Floor 1"}]
+
+    const dataFood = [{image: require("../../assets/sorrento.jpg"), name: "Chicken Pesto", restaurant: "Sorrento", hours: "Opening Hours: 10 AM - 4 PM"},
+                    {image: require("../../assets/sorrento.jpg"), name: "Fish Burrito", restaurant: "La Cantina", hours: "Opening Hours: 10 AM - 3 PM"}]
+                    
+    return ( 
         <View>
             <Stack
                 backgroundColor={colors.background}
@@ -59,7 +62,7 @@ export default function HomepageCustomer({navigation}) {
                                     imageStyle={{borderRadius: 10}} 
                                 /> */} 
                                 
-                                    <Image source={require({item.image})} style = {styles.imageRestaurant}/>
+                                    <Image source={item.image} style = {styles.imageRestaurant}/>
                                     <View w="58%">
                                         <Text style={styles.textTitle}>{item.name}</Text>
                                         <Text style={styles.text}>{item.location}</Text>
@@ -68,7 +71,7 @@ export default function HomepageCustomer({navigation}) {
                                 </Stack>
                             ))}
                             
-                            <Stack elevation={3}
+                            {/* <Stack elevation={3}
                                 backgroundColor="white"
                                 marginRight={20}
                                 w="70%"
@@ -77,73 +80,51 @@ export default function HomepageCustomer({navigation}) {
                                 direction="column"
                                 padding={15}
                                 spacing={5}
-                            >
+                            > */}
                                 {/* nếu không có hình thì để cái này */}
                                 {/* <IconButton 
                                     icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
                                     imageStyle={{borderRadius: 10}} 
                                 /> */} 
-                                <Image 
+                                {/* <Image 
                                     source={require("../../assets/sorrento.jpg")} 
                                     style = {styles.imageRestaurant}/>
                                 <View w="58%" >
                                     <Text style={styles.textTitle}>Lygon</Text>
                                     <Text style={styles.text}>Building 1 - Floor 2</Text>
-                                </View>
-                            </Stack>
+                                </View> */}
+                            {/* </Stack> */}
                         </ScrollView>
                     </Stack>
                     <Text style={styles.header} marginTop={20}>What's New Today?</Text>
                     <Stack w="100%" spacing={15} >
-                        <Box elevation={3}
-                            backgroundColor="white"
-                            style={styles.cardContainer}
-                            w="90%"
-                            key="restaurant"
-                            borderRadius={15}
-                        >
-                            <Flex w="100%"
-                            items= "center"
-                            direction="row"
-                            padding={9}
-                            >
-                                {/* nếu không có hình thì để cái này */}
-                                {/* <IconButton 
-                                    icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
-                                    imageStyle={{borderRadius: 10}} 
-                                /> */} 
-                                <Image source={require("../../assets/sorrento.jpg")} style={styles.imageFood}/>
-                                <Stack spacing={5} w="58%" marginLeft={10}>
-                                    <Text style={styles.textTitle}>Chicken Pesto</Text>
-                                    <Text style={styles.text} >Sorrento</Text>
-                                    <Text style={styles.textHours}>Opening Hours: 10 AM - 4 PM</Text>
-                                </Stack>
-                            </Flex>
-                        </Box>
-                        <Box elevation={3}
+                        {dataFood.map((item, index)=> (
+                            <Box elevation={3}
                             backgroundColor="white"
                             style={styles.cardContainer}
                             w="90%"
                             borderRadius={15}
-                        >
-                            <Flex w="100%"
-                            items= "center"
-                            direction="row"
-                            padding={9}
+                            key={index}
                             >
-                                {/* nếu không có hình thì để cái này */}
-                                {/* <IconButton 
-                                    icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
-                                    imageStyle={{borderRadius: 10}} 
-                                /> */} 
-                                <Image source={require("../../assets/sorrento.jpg")} style={styles.imageFood}/>
-                                <Stack spacing={5} w="58%" marginLeft={10}>
-                                    <Text style={styles.textTitle}>Chicken Pesto</Text>
-                                    <Text style={styles.text} >Sorrento</Text>
-                                    <Text style={styles.textHours}>Opening Hours: 10 AM - 4 PM</Text>
-                                </Stack>
-                            </Flex>
-                        </Box>
+                                <Flex w="100%"
+                                items= "center"
+                                direction="row"
+                                padding={9}
+                                >
+                                    {/* nếu không có hình thì để cái này */}
+                                    {/* <IconButton 
+                                        icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
+                                        imageStyle={{borderRadius: 10}} 
+                                    /> */} 
+                                    <Image source={item.image} style={styles.imageFood}/>
+                                    <Stack spacing={5} w="58%" marginLeft={10}>
+                                        <Text style={styles.textTitle}>{item.name}</Text>
+                                        <Text style={styles.text} >{item.restaurant}</Text>
+                                        <Text style={styles.textHours}>{item.hours}</Text>
+                                    </Stack>
+                                </Flex>
+                            </Box>
+                        ))}
                     </Stack>
                 </ScrollView> 
             </Stack>

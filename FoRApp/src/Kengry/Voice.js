@@ -9,11 +9,17 @@ const VoiceExtract = () => {
     
     Voice.getSpeechRecognitionServices()
 
+    const voiceIsAvailable = async() => {
+        console.log('Voice Service Available: ',await Voice.isAvailable())
+    }
+
+    voiceIsAvailable()
+
+
     Voice.onSpeechStart = () => {
-        console.log(Voice.isAvailable())
+        console.log('(Handler) Speech Start')
 
         setIsRecording(true)
-        console.log('(Handler) Speech Start')
     }
     Voice.onSpeechEnd = () => {
         setIsRecording(false)
@@ -28,7 +34,10 @@ const VoiceExtract = () => {
     
     const startRecording = async() => {
         try {
-            await Voice.start('en-US')
+            await Voice.start('en-US',{
+                RECOGNIZER_ENGINE: 'GOOGLE',
+                "EXTRA_PARTIAL_RESULTS": true
+                })
         } catch(e) {
             console.log("Start Error: ",e)
         }

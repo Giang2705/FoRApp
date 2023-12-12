@@ -1,15 +1,56 @@
 import axios from "axios";
 import { useState } from "react";
 import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import Voice from '@react-native-community/voice'
+
+
 
 
 
 
 const KengryTheBOT = () => {
-    const apiKey = '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'
+    const apiKey = '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'
     const apiURL = 'https://api.openai.com/v1/chat/completions'
     const [messagesData, setMessages] = useState([]);
     const [userPrompt, setUserPrompt] = useState('');
+    const [isRecording,setIsRecording] = useState(false)
+    
+    Voice.getSpeechRecognitionServices()
+    console.log(Voice.isAvailable())
+
+    Voice.onSpeechStart = () => {
+        setIsRecording(true)
+        console.log('(Handler) Speech Start')
+    }
+    Voice.onSpeechEnd = () => {
+        setIsRecording(false)
+        console.log('(Handler) Speech End')
+    }
+    Voice.onSpeechResults = r => {
+        console.log('(Handler) Speech Result: ',r)
+        setUserPrompt(r.value[0])
+    }
+    Voice.onSpeechError = e => {
+        console.log('(Handler) Speech Error: ',e)
+    }
+    
+    const startRecording = async() => {
+        try {
+            await Voice.start('en-US',{
+                RECOGNIZER_ENGINE: 'GOOGLE',
+                "EXTRA_PARTIAL_RESULTS": true
+            })
+        } catch(e) {
+            console.log("Start Error: ",e)
+        }
+    }
+    const stopRecording = async() => {
+        try {
+            await Voice.stop()
+        } catch(e) {
+            console.log("Stop Error: ",e)
+        }
+    }
 
     const handleSend = async() => {
         try {
@@ -60,6 +101,10 @@ const KengryTheBOT = () => {
             <TouchableOpacity
                 onPress={handleSend}>
                 <Text>GO!</Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+                onPress={() =>(isRecording? stopRecording:  startRecording)}>
+                <Text>{isRecording?'STOP':'Start Recording'}</Text>
             </TouchableOpacity>
         </View>
     )

@@ -10,7 +10,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 export default function HomepageShopOwner({navigation}) {
     const {colors} = useTheme()
     const data = [{image: require("../../assets/sorrento.jpg"), name: "Rice with Pork", price: 35, hours: "8:30 AM - 4 PM"},
-                    {image: require("../../assets/sorrento.jpg"), name: "Rice with Pork", price: 55, hours: "8:30 AM - 4 PM"}]
+                    {image: require("../../assets/sorrento.jpg"), name: "Chicken Curry", price: 55, hours: "8:30 AM - 4 PM"}]
 
     const dataInformation = [{name: "Sorrento", openHours: "9 AM", closedHours: "4 PM"}]
     return (
@@ -19,37 +19,67 @@ export default function HomepageShopOwner({navigation}) {
                 <Image source={require("../../assets/sorrento-restaurant-1-1024x682.jpg")}
                 style={styles.backgroundImage} />
                 <Text style={styles.header}>Sorrento</Text>
-                <IconButton
+                {/* <IconButton
                     onPress={()=> navigation.navigate("")}
                     backgroundColor = "white"
                     borderRadius = {15}
                     style={styles.editIcon}
                     icon={props => 
-                    <MIcon {...props} name="pencil" size={23} color={colors.button}/>} />
+                    <MIcon {...props} name="pencil" size={23} color={colors.button}/>} /> */}
                     
             </View>
+        
             <View>
                 <Text marginTop={15}
                 marginLeft={20}
                 style={styles.section}>General Information</Text>
-                <IconButton icon={props => <FIcon name="plus" size={25} {...props} />} 
+                <IconButton icon={props => <MIcon name="pencil" size={25} {...props} />} 
                             style={styles.addButton}
                             onPress={navigation.navigate("")}
                             color="#61481C"
                 />
-                {dataInformation.map((index,item) =>(
+                {dataInformation.map((item,index) =>(
                     <Box elevation={4}
                     backgroundColor="white"
                     margin={15}
                     borderRadius={15}
                     >
+                        <Flex margin={15} >
+                            <Stack spacing={5}>
+                                    <Text style={{
+                                        fontSize: 13,
+                                        color: "#61481C",
+                                    }}>Name:</Text>
+                                    <Text style={{
+                                        fontSize: 13,
+                                        color: "#61481C",
+                                    }}>Opening hour:</Text>
+                                    <Text style={{
+                                        fontSize: 13,
+                                        color: "#61481C",
+                                    }}>Closed hour:</Text>
+                            </Stack>
+                        </Flex>
                         <Flex items="center"
                                 direction='column'
-                                w="100%">
+                                w="100%"
+                                marginTop={-80}
+                                marginBottom={15}>
                             <Stack spacing={5}>
-                                <Text>{item.name}</Text>
-                                <Text>{item.openHours}</Text>
+                                <Text style={{
+                                    fontSize: 13,
+                                    color: "#61481C",
+                                }}>{item.name}</Text>
+                                <Text style={{
+                                    fontSize: 13,
+                                    color: "#61481C",
+                                }}>{item.openHours}</Text>
+                                <Text style={{
+                                    fontSize: 13,
+                                    color: "#61481C",
+                                }}>{item.closedHours}</Text>
                             </Stack>
+
                         </Flex>
                     </Box>
                 ))}

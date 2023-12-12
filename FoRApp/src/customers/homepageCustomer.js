@@ -10,6 +10,10 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 export default function HomepageCustomer({navigation}) {
     const {colors} = useTheme();
+
+    
+    const dataRestaurant = [{image: "../../assets/sorrento.jpg",name: "Sorrento", location: "Building 10 - Floor 2"},
+                            {image: "../../assets/sorrento.jpg",name: "Nine", location: "Building 8 - Floor 1"}]
     return (
         <View>
             <Stack
@@ -36,28 +40,34 @@ export default function HomepageCustomer({navigation}) {
                     <Text style={styles.header}>Restaurant</Text>
                     <Stack w="100%" spacing={20} >
                         <ScrollView horizontal={true}>
-                            <Stack elevation={3}
+                            {dataRestaurant.map((item, index) => (
+                                <Stack elevation={3}
+                                key={index}
                                 backgroundColor="white"
                                 marginRight={20}
                                 w="70%"
-                                key="restaurant"
                                 alignSelf="center"
                                 borderRadius={15}
                                 direction="column"
                                 padding={15}
                                 spacing={5}
+                                
                             >
                                 {/* nếu không có hình thì để cái này */}
                                 {/* <IconButton 
                                     icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
                                     imageStyle={{borderRadius: 10}} 
                                 /> */} 
-                                <Image source={require("../../assets/sorrento.jpg")} style = {styles.imageRestaurant}/>
-                                <View w="58%">
-                                    <Text style={styles.textTitle}>Sorrento</Text>
-                                    <Text style={styles.text}>Building 10 - Floor 2</Text>
-                                </View>
-                            </Stack>
+                                
+                                    <Image source={require({item.image})} style = {styles.imageRestaurant}/>
+                                    <View w="58%">
+                                        <Text style={styles.textTitle}>{item.name}</Text>
+                                        <Text style={styles.text}>{item.location}</Text>
+                                    </View>
+                                
+                                </Stack>
+                            ))}
+                            
                             <Stack elevation={3}
                                 backgroundColor="white"
                                 marginRight={20}

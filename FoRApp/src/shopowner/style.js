@@ -75,6 +75,23 @@ const styles = StyleSheet.create({
         marginTop: 45,
         marginLeft: 15
 	},
+    centeredView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        // marginTop: 22,
+    },
+    modalView: {
+        // margin: 20,
+        backgroundColor: '#F9F9C6',
+        borderRadius: 20,
+        padding: 35,
+        alignItems: 'center',
+    },
+    modalText: {
+        fontFamily: "Montserrat",
+        color: "#61481C"
+    }
 })
 
 export default styles;

@@ -4,16 +4,9 @@ import HomepageCustomer from './src/customers/homepageCustomer';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
-import {
-	IconButton, Text
-} from "react-native";
-// import { AntDesign, Ionicons } from '@expo/vector-icons';
-import FIcon from "react-native-vector-icons/Foundation"
-import Icon from "react-native-vector-icons/Ionicons"
 import { useState, useEffect, useCallback } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import useFonts from './useFont';
-// import Text from '@react-native-material/core';
 import HomepageStaffs from './src/staffs/homepageStaffs';
 import HomepageShopOwner from './src/shopowner/homepageShopOwner';
 
@@ -60,45 +53,7 @@ const AppInner = () => {
   return (
     <NavigationContainer theme={theme} onReady={onLayoutRootView}>
       <StackNavigator.Navigator
-        // screenOptions={({ navigation }) => ({
-        //   headerTitle: props => (
-        //     <Text {...props} variant="h6" />
-        //   ),
-        //   headerLeft: () => (
-        //     <IconButton
-        //       onPress={() => navigation.navigate("HomepageCustomer")}
-        //       backgroundColor="white"
-        //       borderRadius={15}
-        //       icon={(props) => (
-        //           <FIcon {...props} name="home" size={24} color={theme.colors.button} />
-        //       )}
-        //     />
-        //   ),
-        //   headerTitleContainerStyle: {
-				// 		top: 30,
-				// 		height: 50
-				// 	},
-        //   headerLeftContainerStyle: {
-        //     left: 30,
-        //     top: 30,
-        //   },
-        //   headerRight: () => (
-        //     <IconButton
-        //       onPress={() => navigation.navigate("")}
-        //       backgroundColor="white"
-        //       borderRadius={15}
-        //       icon={(props) => (
-        //           <Icon name="person" size={24} color={theme.colors.button} {...props}/>
-        //       )}
-        //     />
-        //   ),
-        //   headerStyle: {
-        //     backgroundColor: theme.colors.background,
-        //     elevation: 0, // remove shadow on Android
-        //     shadowOpacity: 0, // remove shadow on iOS
-        //   },
-        // })}
-      >
+        >
         {/* <StackNavigator.Screen
           name="HomepageCustomer"
           component={HomepageCustomer}
@@ -106,18 +61,19 @@ const AppInner = () => {
             headerShown: false
           }}
         /> */}
-        <StackNavigator.Screen
+        {/* <StackNavigator.Screen
           name="HomepageStaff"
           component={HomepageStaffs} 
           options={{
             headerShown: false
-          }}/>
-          {/* <StackNavigator.Screen
+          }}/> */}
+          <StackNavigator.Screen
           name="HomepageShopOwner"
           component={HomepageShopOwner} 
           options={{
             headerShown: false
-          }}/> */}
+          }}/>
+          
       </StackNavigator.Navigator>
     </NavigationContainer>
   )

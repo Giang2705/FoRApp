@@ -1,11 +1,13 @@
 import { Stack, Text, IconButton, Box, Flex, Button  } from '@react-native-material/core';
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
 import styles from './style';
 import MIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import { useTheme } from '@react-navigation/native';
 import FIcon from 'react-native-vector-icons/Foundation';
 import Icon from 'react-native-vector-icons/Ionicons';
+import AddFood from './addFood';
+
 
 export default function HomepageShopOwner({navigation}) {
     const {colors} = useTheme()
@@ -13,6 +15,11 @@ export default function HomepageShopOwner({navigation}) {
                     {image: require("../../assets/sorrento.jpg"), name: "Chicken Curry", price: 55, hours: "8:30 AM - 4 PM"}]
 
     const dataInformation = [{name: "Sorrento", openHours: "9 AM", closedHours: "4 PM"}]
+    const [modalVisible, setModalVisible] = useState(false)
+    const handleAddFoodPress = () => {
+        setModalVisible(true);
+      };
+
     return (
         <View>
             <View>
@@ -92,7 +99,7 @@ export default function HomepageShopOwner({navigation}) {
                 style={styles.section}>Food</Text>
                 <IconButton icon={props => <FIcon name="plus" size={25} {...props}/>} 
                             style={styles.addButton}
-                            onPress={navigation.navigate("")}
+                            onPress={handleAddFoodPress}
                             color="#61481C"/>
                 {data.map((item, index) => (
                     <Box elevation={4}
@@ -127,7 +134,8 @@ export default function HomepageShopOwner({navigation}) {
                         </Flex>
                     </Box>
                 ))}
-                
+            <AddFood modalVisible={modalVisible} setModalVisible={setModalVisible} />
+
             </View>
             <Stack style={styles.bottomContainer} >
                 <IconButton icon={props => <FIcon name="home" {...props} size={30}/>}

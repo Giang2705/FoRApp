@@ -1,6 +1,6 @@
 import { Stack, Text, IconButton, Box, Flex  } from '@react-native-material/core';
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import MIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import { useTheme } from '@react-navigation/native';
@@ -9,51 +9,58 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 export default function HomepageStaffs({navigation}) {
     const {colors} = useTheme()
+    const data = [{image: require("../../assets/sorrento.jpg"), name: "Rice with Pork", price: 35, hours: "8:30 AM - 4 PM"},
+                    {image: require("../../assets/sorrento.jpg"), name: "Chicken Curry", price: 55, hours: "8:30 AM - 4 PM"}]
     return (
         <View>
             <View>
                 <Image source={require("../../assets/sorrento-restaurant-1-1024x682.jpg")}
-                style={styles.backgroundImage} />
+                        style={styles.backgroundImage} />
+                <TouchableOpacity style={styles.logoBackground} onPress={navigation.navigate("HomepageCustomer")}>
+                    <Image source={require("../../assets/logo.png")} style={styles.logoButton}></Image>
+                </TouchableOpacity>
                 <Text style={styles.header}>Sorrento</Text>
-                <IconButton
-                    onPress={()=> navigation.navigate("")}
-                    backgroundColor = "white"
-                    borderRadius = {15}
-                    style={styles.editIcon}
-                    icon={props => 
-                    <MIcon {...props} name="pencil" size={23} color={colors.button}/>} />
-                    
+                <IconButton icon={props => <Icon name="person" {...props} size={30} />} 
+                            color='#C51606'
+                            backgroundColor="white"
+                            borderRadius={15}
+                            style={styles.userButton}
+                            onPress={navigation.navigate("")}/>
             </View>
             <View>
                 <Text marginTop={15}
                 marginLeft={20}
                 style={styles.section}>Food</Text>
-                <Box elevation={4}
+                {data.map((item, index) => (
+                    <Box elevation={4}
                     backgroundColor="white"
-                    margin={15}
-                    borderRadius={15}>
-                    <Flex items="center"
-                        direction='row'
-                        w="100%">
-                        <Image source={require("../../assets/sorrento.jpg")} style={styles.foodImage}/>
-                        <Stack spacing={5}>
-                            <Text style={{
-                                fontSize: 15,
-                                fontFamily: "Montserrat-SemiBold",
-                                color: "#61481C",
-                            }}>Rice with Pork</Text>
-                            <Text style={{
-                                fontSize: 12,
-                                color: "#61481C",
-                                fontFamily: "Montserrat",
-                            }}>35,000 VND</Text>
-                            <Text style={{
-                                fontSize: 12,
-                                color: "#C51605",
-                            }}>Opening Hours: 8AM-5PM</Text>
-                        </Stack>
-                    </Flex>
-                </Box>
+                    margin={11}
+                    borderRadius={15}
+                    key={index}>
+                        <Flex items="center"
+                            direction='row'
+                            w="100%">
+                            <Image source={item.image} style={styles.foodImage}/>
+                            <Stack spacing={5}>
+                                <Text style={{
+                                    fontSize: 15,
+                                    fontFamily: "Montserrat-SemiBold",
+                                    color: "#61481C",
+                                }}>{item.name}</Text>
+                                <Text style={{
+                                    fontSize: 12,
+                                    color: "#61481C",
+                                    fontFamily: "Montserrat",
+                                }}>{item.price}</Text>
+                                <Text style={{
+                                    fontSize: 12,
+                                    color: "#C51605",
+                                }}>Opening Hours: {item.hours}</Text>
+                            </Stack>
+                        </Flex>
+                    </Box>
+                ))}
+                
             </View>
             <Stack style={styles.bottomContainer} >
                 <IconButton icon={props => <FIcon name="home" {...props} size={30}/>}

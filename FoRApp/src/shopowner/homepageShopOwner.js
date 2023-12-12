@@ -1,6 +1,6 @@
 import { Stack, Text, IconButton, Box, Flex, Button  } from '@react-native-material/core';
 import React from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, TouchableOpacity } from 'react-native';
 import styles from './style';
 import MIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import { useTheme } from '@react-navigation/native';
@@ -19,14 +19,16 @@ export default function HomepageShopOwner({navigation}) {
                 <Image source={require("../../assets/sorrento-restaurant-1-1024x682.jpg")}
                 style={styles.backgroundImage} />
                 <Text style={styles.header}>Sorrento</Text>
-                {/* <IconButton
-                    onPress={()=> navigation.navigate("")}
-                    backgroundColor = "white"
-                    borderRadius = {15}
-                    style={styles.editIcon}
-                    icon={props => 
-                    <MIcon {...props} name="pencil" size={23} color={colors.button}/>} /> */}
-                    
+                <TouchableOpacity style={styles.logoBackground} onPress={navigation.navigate("HomepageCustomer")}>
+                    <Image source={require("../../assets/logo.png")} style={styles.logoButton}></Image>
+                </TouchableOpacity>
+                <Text style={styles.header}>Sorrento</Text>
+                <IconButton icon={props => <Icon name="person" {...props} size={30} />} 
+                            color='#C51606'
+                            backgroundColor="white"
+                            borderRadius={15}
+                            style={styles.userButton}
+                            onPress={navigation.navigate("")}/>
             </View>
         
             <View>

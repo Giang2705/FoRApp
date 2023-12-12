@@ -106,18 +106,18 @@ const AppInner = () => {
             headerShown: false
           }}
         /> */}
-        {/* <StackNavigator.Screen
+        <StackNavigator.Screen
           name="HomepageStaff"
           component={HomepageStaffs} 
           options={{
             headerShown: false
-          }}/> */}
-          <StackNavigator.Screen
+          }}/>
+          {/* <StackNavigator.Screen
           name="HomepageShopOwner"
           component={HomepageShopOwner} 
           options={{
             headerShown: false
-          }}/>
+          }}/> */}
       </StackNavigator.Navigator>
     </NavigationContainer>
   )

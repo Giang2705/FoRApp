@@ -54,7 +54,27 @@ const styles = StyleSheet.create({
     buttonInCard: {
         width: "95%",
         marginLeft: 5
-    }
+    },
+    userButton: {
+		position: "absolute",
+		marginLeft: 330,
+        marginTop: 45
+	},
+    logoButton: {
+		height: 40,
+		width: "70%",
+		resizeMode: "center",
+		margin: 9,
+		borderRadius: 10
+	},
+    logoBackground: {
+		backgroundColor: "white",
+		width: "15%",
+		borderRadius: 15,
+        position: "absolute",
+        marginTop: 45,
+        marginLeft: 15
+	},
 })
 
 export default styles;

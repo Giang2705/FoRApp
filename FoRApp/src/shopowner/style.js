@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     },
     foodImage: {
         height: 100,
-        width: "25%",
+        width: "18%",
         margin: 15,
         resizeMode: "cover",
         borderRadius: 10
@@ -50,7 +50,10 @@ const styles = StyleSheet.create({
         bottom: "-115%",
         justifyContent:"center",
         alignItems:"center",
-        
+    },
+    buttonInCard: {
+        width: "95%",
+        marginLeft: 5
     }
 })
 

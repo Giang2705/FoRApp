@@ -56,9 +56,9 @@ export default function HomepageShopOwner({navigation}) {
                                 color: "#C51605",
                             }}>Opening Hours: 8AM-5PM</Text>
                         </Stack>
-                        <Stack direction='column'>
-                            <Button title="edit" color="#D9D9D9"/>
-                            <Button title="delete" color="#D9D9D9" />
+                        <Stack direction='column'spacing={15}>
+                            <Button title="edit" color="#D9D9D9" style={styles.buttonInCard}/>
+                            <Button title="delete" color="#C51605" style={styles.buttonInCard}/>
                         </Stack>
                     </Flex>
                 </Box>

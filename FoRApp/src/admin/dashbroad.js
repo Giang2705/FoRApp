@@ -55,7 +55,7 @@ export default function Dashbroad({ navigation }) {
                                 </View>
                                 <View style={styles.tableCell}>
                                     <TouchableOpacity style={styles.addBtn} onPress={''}>
-                                        <Text style={styles.addText} numberOfLines={1}>Add</Text>
+                                        <Text style={styles.addText} numberOfLines={1}>Add +</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
@@ -172,10 +172,13 @@ const styles = StyleSheet.create({
     cellText: {
         fontSize: 18,
     },
+    addBtn: {
+        backgroundColor: 'gray',
+        width: 60,
+        alignItems:'center',
+    },
     addText: {
         fontSize: 18,
-        backgroundColor: 'gray',
-
     },
     btnTableCell: {
         flexDirection:'row',

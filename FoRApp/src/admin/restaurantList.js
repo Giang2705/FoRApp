@@ -153,8 +153,6 @@ const styles = StyleSheet.create({
     tableCell: {
         flex:1,
         alignItems:'center',
-        borderWidth: 1,
-        borderColor: '#000',
         padding: 10,
         paddingHorizontal:50,
     },

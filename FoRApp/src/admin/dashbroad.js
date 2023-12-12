@@ -53,6 +53,11 @@ export default function Dashbroad({ navigation }) {
                                 <View style={styles.tableCell}>
                                     <Text style={styles.cellText}>Status</Text>
                                 </View>
+                                <View style={styles.tableCell}>
+                                    <TouchableOpacity style={styles.addBtn} onPress={''}>
+                                        <Text style={styles.addText} numberOfLines={1}>Add</Text>
+                                    </TouchableOpacity>
+                                </View>
                             </View>
 
                             {data.map((item, index) => (
@@ -71,6 +76,14 @@ export default function Dashbroad({ navigation }) {
                                     </View>
                                     <View style={styles.tableCell}>
                                         <Text style={styles.cellText} numberOfLines={1}>{item.status}</Text>
+                                    </View>
+                                    <View style={[styles.tableCell, styles.btnTableCell]}>
+                                        <TouchableOpacity style={styles.editBtn} onPress={''}>
+                                            <Text style={styles.editText} numberOfLines={1}>Edit</Text>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity style={styles.deleteBtn} onPress={''}>
+                                            <Text style={styles.deleteText} numberOfLines={1}>Delete</Text>
+                                        </TouchableOpacity>
                                     </View>
                                 </View>
                             ))}
@@ -144,7 +157,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
       },
     tableView: {
-        width: '100%',
+        width: '95%',
     },
     tableRow: {
         flexDirection: 'row',
@@ -153,12 +166,22 @@ const styles = StyleSheet.create({
     tableCell: {
         flex:1,
         alignItems:'center',
-        borderWidth: 1,
-        borderColor: '#000',
         padding: 10,
         paddingHorizontal:50,
     },
     cellText: {
         fontSize: 18,
     },
+    addText: {
+        fontSize: 18,
+        backgroundColor: 'gray',
+
+    },
+    btnTableCell: {
+        flexDirection:'row',
+    },
+    editBtn: {
+        alignItems:'center',
+    },
+
 });

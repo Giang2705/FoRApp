@@ -16,7 +16,11 @@ const KengryTheBOT = () => {
     const [isRecording,setIsRecording] = useState(false)
     
     Voice.getSpeechRecognitionServices()
-    console.log(Voice.isAvailable())
+    const voiceIsAvailable = async() => {
+        console.log('Voice Service Available: ',await Voice.isAvailable())
+    }
+    voiceIsAvailable()
+
 
     Voice.onSpeechStart = () => {
         setIsRecording(true)
@@ -27,8 +31,11 @@ const KengryTheBOT = () => {
         console.log('(Handler) Speech End')
     }
     Voice.onSpeechResults = r => {
-        console.log('(Handler) Speech Result: ',r)
-        setUserPrompt(r.value[0])
+        // console.log('(Handler) Speech Result: ',r)
+        result = r.value[0]
+        setUserPrompt(result)
+        console.log(result)
+        console.log('User prompt: ', userPrompt)
     }
     Voice.onSpeechError = e => {
         console.log('(Handler) Speech Error: ',e)
@@ -36,8 +43,8 @@ const KengryTheBOT = () => {
     
     const startRecording = async() => {
         try {
+            console.log('Clciked', isRecording)
             await Voice.start('en-US',{
-                RECOGNIZER_ENGINE: 'GOOGLE',
                 "EXTRA_PARTIAL_RESULTS": true
             })
         } catch(e) {
@@ -46,6 +53,7 @@ const KengryTheBOT = () => {
     }
     const stopRecording = async() => {
         try {
+            console.log('Brake', isRecording)
             await Voice.stop()
         } catch(e) {
             console.log("Stop Error: ",e)
@@ -102,10 +110,14 @@ const KengryTheBOT = () => {
                 onPress={handleSend}>
                 <Text>GO!</Text>
             </TouchableOpacity>
-            <TouchableOpacity 
-                onPress={() =>(isRecording? stopRecording:  startRecording)}>
-                <Text>{isRecording?'STOP':'Start Recording'}</Text>
+
+            <TouchableOpacity onPress={startRecording} >
+                <Text>Start Recording</Text>
             </TouchableOpacity>
+            <TouchableOpacity onPress={stopRecording}>
+                <Text>Stop Recording</Text>
+            </TouchableOpacity >
+
         </View>
     )
 }

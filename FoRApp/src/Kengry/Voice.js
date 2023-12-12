@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import {View, Text} from 'react-native'
+import {View, Text, TouchableOpacity } from 'react-native'
 import Voice from '@react-native-community/voice'
-import { TouchableOpacity } from 'react-native'
 
 const VoiceExtract = () => {
     const [message,setMessage] = useState('')
@@ -17,9 +16,8 @@ const VoiceExtract = () => {
 
 
     Voice.onSpeechStart = () => {
-        console.log('(Handler) Speech Start')
-
         setIsRecording(true)
+        console.log('(Handler) Speech Start')
     }
     Voice.onSpeechEnd = () => {
         setIsRecording(false)
@@ -34,8 +32,8 @@ const VoiceExtract = () => {
     
     const startRecording = async() => {
         try {
+            console.log('Clciked', isRecording)
             await Voice.start('en-US',{
-                RECOGNIZER_ENGINE: 'GOOGLE',
                 "EXTRA_PARTIAL_RESULTS": true
                 })
         } catch(e) {
@@ -44,6 +42,7 @@ const VoiceExtract = () => {
     }
     const stopRecording = async() => {
         try {
+            console.log('Brake', isRecording)
             await Voice.stop()
         } catch(e) {
             console.log("Stop Error: ",e)

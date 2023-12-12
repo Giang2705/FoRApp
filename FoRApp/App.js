@@ -7,8 +7,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>Hello FoR</Text>
-      {/* <KengryTheBOT></KengryTheBOT> */}
-      <VoiceExtract></VoiceExtract>
+      <KengryTheBOT></KengryTheBOT>
+      {/* <VoiceExtract></VoiceExtract> */}
       <StatusBar style="auto" />
     </View>
   );

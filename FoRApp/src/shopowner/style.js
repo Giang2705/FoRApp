@@ -80,6 +80,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         // marginTop: 22,
+        backgroundColor: "rgba(52, 52, 52, 0.8)",
+        
     },
     modalView: {
         // margin: 20,
@@ -91,6 +93,44 @@ const styles = StyleSheet.create({
     modalText: {
         fontFamily: "Montserrat",
         color: "#61481C"
+    },
+    textInput: {
+        fontFamily: "Montserrat",
+        backgroundColor:"white",
+        borderRadius: 15,
+        height: 40,
+        width: 250,
+        paddingLeft: 10,
+        paddingRight: 10,
+        color: "#61481C"
+    },
+    descriptionInput: {
+        fontFamily: "Montserrat",
+        backgroundColor:"white",
+        height: 100,
+        width: 250,
+        borderRadius: 15,
+        paddingLeft: 10,
+        paddingRight: 10,
+        color: "#61481C",
+        paddingBottom: 20
+    },
+    uploadPhoto: {
+        backgroundColor: "white",
+        alignSelf: "center",
+        padding: 30,
+        borderRadius: 15,
+        color: "#61481C"
+    },
+    modalHeader: {
+        fontFamily: "Montserrat-Bold",
+        color: "#61481C",
+        alignSelf: "center",
+        fontSize: 18
+    },
+    buttonForm: {
+        marginTop: 20,
+        
     }
 })
 

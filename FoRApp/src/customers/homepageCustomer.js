@@ -29,15 +29,15 @@ export default function HomepageCustomer({navigation}) {
                 spacing={20}
             >
                 <View>
-                    <TouchableOpacity style={styles.logoBackground} onPress={navigation.navigate("HomepageCustomer")}>
+                    <TouchableOpacity style={styles.logoBackground} onPress={() => navigation.navigate("")}>
                         <Image source={require("../../assets/logo.png")} style={styles.logoButton}></Image>
                     </TouchableOpacity>
-                    <IconButton icon={props => <Icon name="person" {...props} size={30} />} 
+                    <IconButton icon={props => <Icon name="person" {...props} size={25} />} 
                                 color='#C51606'
                                 backgroundColor="white"
                                 borderRadius={15}
                                 style={styles.userButton}
-                                onPress={navigation.navigate("")}/>
+                                onPress={() => navigation.navigate("Setting")}/>
                 </View>
                 <ScrollView>
                     <Text style={styles.header}>Restaurant</Text>

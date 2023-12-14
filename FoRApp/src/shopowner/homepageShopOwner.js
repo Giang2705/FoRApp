@@ -26,7 +26,7 @@ export default function HomepageShopOwner({navigation}) {
                 <Image source={require("../../assets/sorrento-restaurant-1-1024x682.jpg")}
                 style={styles.backgroundImage} />
                 <Text style={styles.header}>Sorrento</Text>
-                <TouchableOpacity style={styles.logoBackground} onPress={navigation.navigate("HomepageCustomer")}>
+                <TouchableOpacity style={styles.logoBackground} onPress={() => navigation.navigate("HomepageCustomer")}>
                     <Image source={require("../../assets/logo.png")} style={styles.logoButton}></Image>
                 </TouchableOpacity>
                 <Text style={styles.header}>Sorrento</Text>
@@ -35,7 +35,7 @@ export default function HomepageShopOwner({navigation}) {
                             backgroundColor="white"
                             borderRadius={15}
                             style={styles.userButton}
-                            onPress={navigation.navigate("")}/>
+                            onPress={() => navigation.navigate("Setting")}/>
             </View>
         
             <View>

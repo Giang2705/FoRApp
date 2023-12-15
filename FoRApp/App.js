@@ -10,6 +10,7 @@ import useFonts from './useFont';
 import HomepageStaffs from './src/staffs/homepageStaffs';
 import HomepageShopOwner from './src/shopowner/homepageShopOwner';
 import Setting from './src/settings/setting';
+import TopupCredit from './src/settings/topupCredit';
 
 export const theme = {
   colors: {
@@ -77,6 +78,12 @@ const AppInner = () => {
           <StackNavigator.Screen
           name="Setting"
           component={Setting}
+          options={{
+            headerShown: false
+          }}/>
+          <StackNavigator.Screen
+          name="TopupCredit"
+          component={TopupCredit}
           options={{
             headerShown: false
           }}/>

@@ -33,7 +33,7 @@ export default function Setting({navigation})  {
                         <Flex w="100%"
                             direction='row'>
                             <Box backgroundColor="white"
-                            w="28%"
+                            w="25%"
                             borderRadius={15}
                             elevation={3}
                             padding={10}>
@@ -63,7 +63,7 @@ export default function Setting({navigation})  {
                             <Text style={styles.settingText}>Update Profile</Text>
                         </Flex>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate("TopupCredit")}>
                         <Flex direction='row'>
                             <IconButton icon={props => <Icon name="card-outline" {...props} />}
                                         color="#61481C"></IconButton>

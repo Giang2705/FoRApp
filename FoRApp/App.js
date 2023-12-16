@@ -1,33 +1,82 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import 'react-native-gesture-handler';
-
-// admin
-import AdminLoginPage from './src/admin/adminLoginScreen'
-import Dashbroad from './src/admin/dashbroad'
-
-// user
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, View } from 'react-native';
 import HomepageCustomer from './src/customers/homepageCustomer';
-import LoginPage from './src/customers/loginScreen';
-import SignupPage from './src/customers/signupScreen';
+
+export const theme = {
+  colors: {
+    background: "#F9F9C6",
+    mainColor: "#C51605",
+    button: "#C51605"
+  }
+}
+
+// SplashScreen.preventAutoHideAsync();
 
 const StackNavigator = createStackNavigator()
 
 const AppInner = () => {
+  const [IsReady, SetIsReady] = useState(false);
+
+  useEffect(() => {
+    async function prepare() {
+      try {
+        await useFonts();
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        SetIsReady(true);
+      }
+    }
+
+    prepare();
+  }, []);
+
+  const onLayoutRootView = useCallback(async () => {
+    if (IsReady) {
+      await SplashScreen.hideAsync();
+    }
+  }, [IsReady]);
+
+  if (!IsReady) {
+    return null;
+  }
+
   return (
-    <NavigationContainer>
-      <StackNavigator.Navigator initialRouteName="LoginPage">
-
-        {/* Admin */}
-        <StackNavigator.Screen name="AdminLoginPage" component={AdminLoginPage} options={{headerShown: false}}/>
-        <StackNavigator.Screen name="Dashbroad" component={Dashbroad} options={{headerShown: false}}/>
-        
-        {/* Users */}
-        <StackNavigator.Screen name="LoginPage" component={LoginPage} options={{headerShown: false}}/>
-        <StackNavigator.Screen name="SignupPage" component={SignupPage} options={{headerShown: false}}/>
-
-        <StackNavigator.Screen name="HomepageCustomer" component={HomepageCustomer} options={{headerShown: false}} />
-
+    <NavigationContainer theme={theme} onReady={onLayoutRootView}>
+      <StackNavigator.Navigator
+        >
+        <StackNavigator.Screen
+          name="HomepageCustomer"
+          component={HomepageCustomer}
+          options={{
+            headerShown: false
+          }}
+        />
+        {/* <StackNavigator.Screen
+          name="HomepageStaff"
+          component={HomepageStaffs} 
+          options={{
+            headerShown: false
+          }}/> */}
+          {/* <StackNavigator.Screen
+          name="HomepageShopOwner"
+          component={HomepageShopOwner} 
+          options={{
+            headerShown: false
+          }}/> */}
+          <StackNavigator.Screen
+          name="Setting"
+          component={Setting}
+          options={{
+            headerShown: false
+          }}/>
+          <StackNavigator.Screen
+          name="TopupCredit"
+          component={TopupCredit}
+          options={{
+            headerShown: false
+          }}/>
       </StackNavigator.Navigator>
     </NavigationContainer>
   );

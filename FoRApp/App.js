@@ -1,7 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import HomepageCustomer from './src/customers/homepageCustomer';
-
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import 'react-native-gesture-handler';
+import { useState, useEffect, useCallback } from 'react';
+import * as SplashScreen from 'expo-splash-screen';
+import useFonts from './useFont';
+import HomepageStaffs from './src/staffs/homepageStaffs';
+import HomepageShopOwner from './src/shopowner/homepageShopOwner';
+import Setting from './src/settings/setting';
+import TopupCredit from './src/settings/topupCredit';
 export const theme = {
   colors: {
     background: "#F9F9C6",

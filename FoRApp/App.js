@@ -1,16 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import HomepageCustomer from './src/customers/homepageCustomer';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import 'react-native-gesture-handler';
-import { useState, useEffect, useCallback } from 'react';
-import * as SplashScreen from 'expo-splash-screen';
-import useFonts from './useFont';
-import HomepageStaffs from './src/staffs/homepageStaffs';
-import HomepageShopOwner from './src/shopowner/homepageShopOwner';
-import Setting from './src/settings/setting';
-import TopupCredit from './src/settings/topupCredit';
 
 export const theme = {
   colors: {
@@ -87,27 +77,9 @@ const AppInner = () => {
           options={{
             headerShown: false
           }}/>
-          
       </StackNavigator.Navigator>
     </NavigationContainer>
-  )
-}
-
-export default function App() {
-  return (
-    // <View style={styles.container}>
-    //   <Text>Hello FoR</Text>
-    //   <StatusBar style="auto" />
-    // </View>
-    <AppInner />
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F9F9C6',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default AppInner;

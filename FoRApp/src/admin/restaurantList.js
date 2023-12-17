@@ -53,6 +53,11 @@ export default function Dashbroad({ navigation }) {
                                 <View style={styles.tableCell}>
                                     <Text style={styles.cellText}>Current Working</Text>
                                 </View>
+                                <View style={styles.tableCell}>
+                                    <TouchableOpacity style={styles.addBtn} onPress={''}>
+                                        <Text style={styles.addText} numberOfLines={1}>Add +</Text>
+                                    </TouchableOpacity>
+                                </View>
                             </View>
 
                             {data.map((item, index) => (
@@ -71,6 +76,14 @@ export default function Dashbroad({ navigation }) {
                                     </View>
                                     <View style={styles.tableCell}>
                                         <Text style={styles.cellText} numberOfLines={1}>{item.status}</Text>
+                                    </View>
+                                    <View style={[styles.tableCell, styles.btnTableCell]}>
+                                        <TouchableOpacity style={styles.editBtn} onPress={''}>
+                                            <Text style={styles.editText} numberOfLines={1}>Edit</Text>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity style={styles.deleteBtn} onPress={''}>
+                                            <Text style={styles.deleteText} numberOfLines={1}>Delete</Text>
+                                        </TouchableOpacity>
                                     </View>
                                 </View>
                             ))}
@@ -158,5 +171,36 @@ const styles = StyleSheet.create({
     },
     cellText: {
         fontSize: 18,
+    },
+    addBtn: {
+        backgroundColor: 'gray',
+        width: 60,
+        alignItems:'center',
+        borderRadius: 8,
+    },
+    addText: {
+        fontSize: 18,
+    },
+    btnTableCell: {
+        flexDirection:'row',
+    },
+    editBtn: {
+        backgroundColor: 'gray',
+        width: 60,
+        alignItems:'center',
+        borderRadius: 8,
+    },
+    editText: {
+        fontSize: 18,
+    },
+    deleteBtn: {
+        backgroundColor: '#C51605',
+        width: 60,
+        alignItems:'center',
+        borderRadius: 8,
+    },
+    deleteText:{
+        fontSize: 18,
+        color: 'white',
     },
 });

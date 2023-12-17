@@ -176,6 +176,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'gray',
         width: 60,
         alignItems:'center',
+        borderRadius: 8,
     },
     addText: {
         fontSize: 18,
@@ -184,7 +185,22 @@ const styles = StyleSheet.create({
         flexDirection:'row',
     },
     editBtn: {
+        backgroundColor: 'gray',
+        width: 60,
         alignItems:'center',
+        borderRadius: 8,
     },
-
+    editText: {
+        fontSize: 18,
+    },
+    deleteBtn: {
+        backgroundColor: '#C51605',
+        width: 60,
+        alignItems:'center',
+        borderRadius: 8,
+    },
+    deleteText:{
+        fontSize: 18,
+        color: 'white',
+    },
 });

@@ -8,6 +8,7 @@ export default function SignupPage({ navigation }) {
   const [phoneNumber, setPhoneNum] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  
   const handleLogin = () => {
     console.log('Username:', username);
     console.log('Password:', password);

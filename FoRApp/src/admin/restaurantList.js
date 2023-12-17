@@ -15,6 +15,9 @@ export default function Dashbroad({ navigation }) {
     const movingCustomerList = () => {
         navigation.navigate('Dashbroad');
     };
+    const addingRestaurant = () => {
+        navigation.navigate('AddRestaurant');
+    };
     
     return (
         <View style={styles.container}>
@@ -54,7 +57,7 @@ export default function Dashbroad({ navigation }) {
                                     <Text style={styles.cellText}>Current Working</Text>
                                 </View>
                                 <View style={styles.tableCell}>
-                                    <TouchableOpacity style={styles.addBtn} onPress={''}>
+                                    <TouchableOpacity style={styles.addBtn} onPress={addingRestaurant}>
                                         <Text style={styles.addText} numberOfLines={1}>Add +</Text>
                                     </TouchableOpacity>
                                 </View>

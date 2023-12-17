@@ -11,16 +11,9 @@ import HomepageStaffs from './src/staffs/homepageStaffs';
 import HomepageShopOwner from './src/shopowner/homepageShopOwner';
 import Setting from './src/settings/setting';
 import TopupCredit from './src/settings/topupCredit';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import 'react-native-gesture-handler';
-import { useState, useEffect, useCallback } from 'react';
-import * as SplashScreen from 'expo-splash-screen';
-import useFonts from './useFont';
-import HomepageStaffs from './src/staffs/homepageStaffs';
-import HomepageShopOwner from './src/shopowner/homepageShopOwner';
-import Setting from './src/settings/setting';
-import TopupCredit from './src/settings/topupCredit';
+import ViewFood from './src/orderfood/viewFood';
+import { Stack } from '@react-native-material/core';
+
 export const theme = {
   colors: {
     background: "#F9F9C6",
@@ -62,26 +55,26 @@ const AppInner = () => {
     <NavigationContainer theme={theme} onReady={onLayoutRootView}>
       <StackNavigator.Navigator
         >
-        {/* <StackNavigator.Screen
+        <StackNavigator.Screen
           name="HomepageCustomer"
           component={HomepageCustomer}
           options={{
             headerShown: false
           }}
-        /> */}
+        />
         {/* <StackNavigator.Screen
           name="HomepageStaff"
           component={HomepageStaffs} 
           options={{
             headerShown: false
           }}/> */}
-          <StackNavigator.Screen
+          {/* <StackNavigator.Screen
           name="HomepageShopOwner"
           component={HomepageShopOwner} 
           options={{
             headerShown: false
-          }}/>
-          {/* <StackNavigator.Screen
+          }}/> */}
+          <StackNavigator.Screen
           name="Setting"
           component={Setting}
           options={{
@@ -92,7 +85,13 @@ const AppInner = () => {
           component={TopupCredit}
           options={{
             headerShown: false
-          }}/> */}
+          }}/>
+          <StackNavigator.Screen
+          name="ViewFood"
+          component={ViewFood}
+          options={{
+            headerShown: false
+          }} />
 
       </StackNavigator.Navigator>
     </NavigationContainer>

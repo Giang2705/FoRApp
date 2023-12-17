@@ -9,9 +9,11 @@ require('./models/User');
 
 const authRoutes = require("./routes/authRoutes");
 const authToken = require("./middlewares/authTokenRequires");
+const foodRoutes = require("./routes/foodRoutes")
 
 app.use(bodyParser.json());
 app.use(authRoutes);
+app.use(foodRoutes);
 
 app.get('/', authToken , (req, res) => {
     console.log(req.user)

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Voice from '@react-native-community/voice'
 
@@ -9,12 +9,23 @@ import Voice from '@react-native-community/voice'
 
 
 const KengryTheBOT = () => {
-    const apiKey = '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'
+    const apiKey = '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'
     const apiURL = 'https://api.openai.com/v1/chat/completions'
     const [messagesData, setMessages] = useState([]);
     const [userPrompt, setUserPrompt] = useState('');
     const [isRecording,setIsRecording] = useState(false)
-    
+    let tempt = userPrompt
+    useEffect(()=>{
+        Voice.onSpeechStart = speechStartHandler
+        Voice.onSpeechEnd = speechEndHandler
+        Voice.onSpeechResults = speechResultsHandler
+        Voice.onSpeechError = speechErrorHandler
+
+        return () => {
+            Voice.destroy().then(Voice.removeEventListener);
+        }
+    },[])
+
     Voice.getSpeechRecognitionServices()
     const voiceIsAvailable = async() => {
         console.log('Voice Service Available: ',await Voice.isAvailable())
@@ -22,26 +33,26 @@ const KengryTheBOT = () => {
     voiceIsAvailable()
 
 
-    Voice.onSpeechStart = () => {
+    const speechStartHandler = () => {
         setIsRecording(true)
         console.log('(Handler) Speech Start')
     }
-    Voice.onSpeechEnd = () => {
+    const speechEndHandler = () => {
         setIsRecording(false)
         console.log('(Handler) Speech End')
     }
-    Voice.onSpeechResults = r => {
-        // console.log('(Handler) Speech Result: ',r)
-        result = r.value[0]
-        setUserPrompt(result)
-        console.log(result)
-        console.log('User prompt: ', userPrompt)
+    const speechResultsHandler = r => {
+        console.log('(Handler) Speech Result: ',r)
+        tempt = r.value[0]
+        setUserPrompt(tempt)
     }
-    Voice.onSpeechError = e => {
+    const speechErrorHandler = e => {
         console.log('(Handler) Speech Error: ',e)
+        setUserPrompt('')
     }
     
     const startRecording = async() => {
+        setIsRecording(true)
         try {
             console.log('Clciked', isRecording)
             await Voice.start('en-US',{
@@ -55,10 +66,14 @@ const KengryTheBOT = () => {
         try {
             console.log('Brake', isRecording)
             await Voice.stop()
+            setIsRecording(false)
+
         } catch(e) {
             console.log("Stop Error: ",e)
         }
     }
+
+
 
     const handleSend = async() => {
         try {

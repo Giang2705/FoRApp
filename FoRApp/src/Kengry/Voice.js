@@ -55,12 +55,9 @@ const VoiceExtract = () => {
 
     return (
         <View>
-            <TouchableOpacity onPress={startRecording} >
-                <Text>Start Recording</Text>
+            <TouchableOpacity onPress={()=>(isRecording?stopRecording:startRecording)} >
+                <Text>{isRecording? stopRecording:startRecording}</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={stopRecording}>
-                <Text>Stop Recording</Text>
-            </TouchableOpacity >
         </View>
     )
 }

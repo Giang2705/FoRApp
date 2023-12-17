@@ -7,7 +7,7 @@ import { useTheme } from '@react-navigation/native';
 import FIcon from 'react-native-vector-icons/Foundation';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-export default function HomepageStaffs({navigation}) {
+export default function ViewRestaurant({navigation}) {
     const {colors} = useTheme()
     const data = [{image: require("../../assets/sorrento.jpg"), name: "Rice with Pork", price: 35, hours: "8:30 AM - 4 PM"},
                     {image: require("../../assets/sorrento.jpg"), name: "Chicken Curry", price: 55, hours: "8:30 AM - 4 PM"}]
@@ -16,18 +16,18 @@ export default function HomepageStaffs({navigation}) {
             <View>
                 <Image source={require("../../assets/sorrento-restaurant-1-1024x682.jpg")}
                         style={styles.backgroundImage} />
-                <TouchableOpacity style={styles.logoBackground} onPress={() => navigation.navigate("HomepageCustomer")}>
-                    <Image source={require("../../assets/logo.png")} style={styles.logoButton}></Image>
+                <TouchableOpacity style={styles.logoBackground1} onPress={() => navigation.navigate("HomepageCustomer")}>
+                    <Image source={require("../../assets/logo.png")} style={styles.logoButton1}></Image>
                 </TouchableOpacity>
                 <Text style={styles.header}>Sorrento</Text>
                 <IconButton icon={props => <Icon name="person" {...props} size={20} />} 
                             color='#C51606'
                             backgroundColor="white"
                             borderRadius={15}
-                            style={styles.userButton}
+                            style={styles.userButton1}
                             onPress={() => navigation.navigate("Setting")}/>
             </View>
-            <View>
+            <View marginTop={100}>
                 <Text marginTop={15}
                 marginLeft={20}
                 style={styles.section}>Food</Text>

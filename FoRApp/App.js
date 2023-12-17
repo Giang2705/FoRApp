@@ -13,6 +13,7 @@ import Setting from './src/settings/setting';
 import TopupCredit from './src/settings/topupCredit';
 import ViewFood from './src/orderfood/viewFood';
 import { Stack } from '@react-native-material/core';
+import ViewRestaurant from './src/orderfood/viewRestaurant';
 
 export const theme = {
   colors: {
@@ -62,12 +63,12 @@ const AppInner = () => {
             headerShown: false
           }}
         />
-        {/* <StackNavigator.Screen
+        <StackNavigator.Screen
           name="HomepageStaff"
           component={HomepageStaffs} 
           options={{
             headerShown: false
-          }}/> */}
+          }}/>
           {/* <StackNavigator.Screen
           name="HomepageShopOwner"
           component={HomepageShopOwner} 
@@ -89,6 +90,12 @@ const AppInner = () => {
           <StackNavigator.Screen
           name="ViewFood"
           component={ViewFood}
+          options={{
+            headerShown: false
+          }} />
+          <StackNavigator.Screen
+          name="ViewRestaurant"
+          component={ViewRestaurant}
           options={{
             headerShown: false
           }} />

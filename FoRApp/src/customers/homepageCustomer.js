@@ -44,31 +44,31 @@ export default function HomepageCustomer({navigation}) {
                     <Stack w="100%" spacing={20} >
                         <ScrollView horizontal={true}>
                             {dataRestaurant.map((item, index) => (
-                                <Stack elevation={3}
-                                key={index}
-                                backgroundColor="white"
-                                marginRight={20}
-                                w="70%"
-                                alignSelf="center"
-                                borderRadius={15}
-                                direction="column"
-                                padding={15}
-                                spacing={5}
+                                <TouchableOpacity onPress={() => navigation.navigate("ViewRestaurant")}>
+                                    <Stack elevation={3}
+                                        key={index}
+                                        backgroundColor="white"
+                                        marginRight={20}
+                                        w={200}
+                                        alignSelf="center"
+                                        borderRadius={15}
+                                        direction="column"
+                                        padding={15}
+                                        spacing={5}
+                                    >
+                                        {/* nếu không có hình thì để cái này */}
+                                        {/* <IconButton 
+                                            icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
+                                            imageStyle={{borderRadius: 10}} 
+                                        /> */} 
+                                        <Image source={item.image} style = {styles.imageRestaurant}/>
+                                        <View w="58%">
+                                            <Text style={styles.textTitle}>{item.name}</Text>
+                                            <Text style={styles.text}>{item.location}</Text>
+                                        </View>
+                                    </Stack>
+                                </TouchableOpacity>
                                 
-                            >
-                                {/* nếu không có hình thì để cái này */}
-                                {/* <IconButton 
-                                    icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
-                                    imageStyle={{borderRadius: 10}} 
-                                /> */} 
-                                
-                                    <Image source={item.image} style = {styles.imageRestaurant}/>
-                                    <View w="58%">
-                                        <Text style={styles.textTitle}>{item.name}</Text>
-                                        <Text style={styles.text}>{item.location}</Text>
-                                    </View>
-                                
-                                </Stack>
                             ))}
                             
                             {/* <Stack elevation={3}

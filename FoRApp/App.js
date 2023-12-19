@@ -54,7 +54,7 @@ const AppInner = () => {
 
   return (
     <NavigationContainer theme={theme} onReady={onLayoutRootView}>
-      <StackNavigator.Navigator
+      <StackNavigator.Navigator initialRouteName='HomepageCustomer'
         >
         <StackNavigator.Screen
           name="HomepageCustomer"
@@ -69,12 +69,12 @@ const AppInner = () => {
           options={{
             headerShown: false
           }}/>
-          {/* <StackNavigator.Screen
+          <StackNavigator.Screen
           name="HomepageShopOwner"
           component={HomepageShopOwner} 
           options={{
             headerShown: false
-          }}/> */}
+          }}/>
           <StackNavigator.Screen
           name="Setting"
           component={Setting}

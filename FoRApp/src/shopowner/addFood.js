@@ -36,15 +36,15 @@ export default function AddFood({ modalVisible, setModalVisible }) {
                             <Text style={styles.modalText}>Food's Name</Text>
                             <TextInput
                             style={styles.textInput}
-                            color='#B4BABC'></TextInput>
+                            placeholderTextColor='#61481C'></TextInput>
                             <Text style={styles.modalText}>Price</Text>
                             <TextInput
                             style={styles.textInput}
-                            color='#B4BABC'></TextInput>
+                            placeholderTextColor='#61481C'></TextInput>
                             <Text style={styles.modalText}>Description</Text>
                             <TextInput
                             style={styles.descriptionInput}
-                            color='#B4BABC'
+                            placeholderTextColor='#61481C'
                             inputMode='text'
                             multiline={true} 
                             />

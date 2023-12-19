@@ -3,13 +3,10 @@ import { useEffect, useState } from "react";
 import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Voice from '@react-native-community/voice'
 
-
-
-
-
+require('dotenv').config();
 
 const KengryChatBOT = () => {
-    const apiKey = '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'
+    const apiKey = process.env.CHAT_BOT_API
     const apiURL = 'https://api.openai.com/v1/chat/completions'
     const [messagesData, setMessages] = useState([]);
     const [userPrompt, setUserPrompt] = useState('');
@@ -63,10 +60,10 @@ const KengryChatBOT = () => {
         }
     }
     const stopRecording = async() => {
+        setIsRecording(false)
         try {
             console.log('Brake', isRecording)
             await Voice.stop()
-            setIsRecording(false)
 
         } catch(e) {
             console.log("Stop Error: ",e)

@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Voice from '@react-native-community/voice'
 
-require('dotenv').config();
 
 const KengryChatBOT = () => {
     const apiKey = process.env.CHAT_BOT_API
@@ -119,6 +118,11 @@ const KengryChatBOT = () => {
                 onChangeText={text => setUserPrompt(text)}
             ></TextInput>
             <TouchableOpacity
+                style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}
                 onPress={handleSend}>
                 <Text>GO!</Text>
             </TouchableOpacity>

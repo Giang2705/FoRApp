@@ -1,5 +1,6 @@
-import React from 'react';
-import {View, Image, TextInput} from 'react-native';
+import React, { useState } from 'react';
+import {View, Image, TextInput,
+        KeyboardAvoidingView, Platform} from 'react-native';
 import styles from './styles';
 import { IconButton, Stack, Text } from '@react-native-material/core';
 import { useTheme } from '@react-native-material/core';
@@ -8,6 +9,18 @@ import Icon from "react-native-vector-icons/Ionicons"
 import { Box, Flex } from '@react-native-material/core';
 
 const ViewFood = ({navigation}) => {
+    const [count, setCount] = useState(1);
+
+    const handleIncrement = () => {
+        setCount(count +1)
+    }
+
+    const handleDecrement = () => {
+        if (count>1) {
+            setCount(count-1);
+        }
+    }
+
     const colors = useTheme()
   return (
     <View>
@@ -57,6 +70,9 @@ const ViewFood = ({navigation}) => {
                 <Text style={styles.foodTitle}>Beef hamburger</Text>
                 <Text style={styles.foodInfo}>Not for vegan consumers</Text>
             </Stack>
+            <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} >
+            
+        
             <Stack
              spacing={8}
              style={{
@@ -75,14 +91,15 @@ const ViewFood = ({navigation}) => {
             <Flex direction='row'
                     alignSelf="center"
                     >
-                <TouchableOpacity>
+                <TouchableOpacity onPress={handleDecrement}>
                     <Icon name="remove" size={30} color="#C51605"/>
                 </TouchableOpacity>
-                <Text style={styles.amountText}>1</Text>
-                <TouchableOpacity>
+                <TextInput style={styles.amountText} value={count.toString()}/>
+                <TouchableOpacity onPress={handleIncrement}>
                     <Icon name="add" size={30} color="#C51605"/>
                 </TouchableOpacity>
             </Flex>
+            </KeyboardAvoidingView>
             <View style={{flex: 1, marginBottom: 30, justifyContent: 'flex-end'}}>
                 <TouchableOpacity>
                     <Box 
@@ -107,7 +124,6 @@ const ViewFood = ({navigation}) => {
                         </Box>
                 </TouchableOpacity>
             </View>
-            
         </Box>
       </Stack>
     </View>

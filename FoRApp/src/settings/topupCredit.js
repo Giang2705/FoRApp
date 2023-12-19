@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {View, Image} from 'react-native';
 import styles from './styles';
 import { IconButton, Stack, Text } from '@react-native-material/core';
 import { useTheme } from '@react-native-material/core';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from "react-native-vector-icons/Ionicons"
 import { Box, Flex } from '@react-native-material/core';
 
 const TopupCredit = ({navigation}) => {
     const colors = useTheme()
+    const [count, setCount] = useState(1)
+    
+    const handleIncrement = () => {
+        setCount(count+1)
+    }
+
+    const handleDecrement = () => {
+        if (count>1) {
+            setCount(count-1)
+        }
+    }
+
     return (
         <View>
             <Stack
@@ -111,22 +123,36 @@ const TopupCredit = ({navigation}) => {
                     }}>Amount</Text>
                     <Flex direction='row'
                             marginTop={15}
-                            alignSelf="center"
+                            alignItems="center"
+                            style={{
+                                justifyContent: "center",
+                            }}
                             >
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={handleDecrement}>
                             <Icon name="remove" size={50} color="#C51605"/>
                         </TouchableOpacity>
-                        <Text style={{
+                        <View style={{
+                             flexDirection: 'row', 
+                             alignItems: 'center', 
+                             justifyContent: 'center'
+                        }}>
+                        <TextInput style={{
                             fontFamily: "Montserrat",
                             fontSize: 50,
                             alignSelf: "center",
-                            justifyContent: "center",
-                            paddingLeft: 50,
-                            paddingRight: 50,
+                            // justifyContent: "center",
+                            paddingLeft: 10,
+                            paddingRight: 10,
+                            textAlign: "center",
                             marginTop: -10,
-                            color: "#61481C"
-                        }}>50</Text>
-                        <TouchableOpacity>
+                            color: "#61481C",
+                            // flex: 1
+                            // width: "auto"
+                        }} 
+                        placeholder={count.toString()}
+                        />
+                        </View>
+                        <TouchableOpacity onPress={handleIncrement}>
                             <Icon name="add" size={50} color="#C51605"/>
                         </TouchableOpacity>
                     </Flex>

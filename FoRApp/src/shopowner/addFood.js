@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import { useTheme, Stack } from '@react-native-material/core';
-import { Avatar, View, Modal, Button, Text, Alert, TextInput, TouchableOpacity } from 'react-native';
+import { Avatar, View, Modal, Button, Text, Alert, TextInput, TouchableOpacity,
+    KeyboardAvoidingView, Platform} from 'react-native';
 import styles from './style';
 import Icon from "react-native-vector-icons/Ionicons"
 import FIcon from "react-native-vector-icons/Feather"
@@ -22,7 +23,8 @@ export default function AddFood({ modalVisible, setModalVisible }) {
                         Alert.alert("Are you sure?");
                         setModalVisible(!modalVisible)
                     }}>
-                <View style={styles.centeredView}>
+                <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                style={styles.centeredView}> 
                     <View style={styles.modalView} >
                         <Stack spacing={8}>
                             <Text style={styles.modalHeader}>Add Food</Text>
@@ -57,7 +59,7 @@ export default function AddFood({ modalVisible, setModalVisible }) {
                                 onPress={() => setModalVisible(!modalVisible)}/>
                         </Stack>
                     </View>
-                </View>
+                </KeyboardAvoidingView>
             </Modal>
        </View>
     );

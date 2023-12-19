@@ -11,6 +11,7 @@ import HomepageStaffs from './src/staffs/homepageStaffs';
 import HomepageShopOwner from './src/shopowner/homepageShopOwner';
 import Setting from './src/settings/setting';
 import TopupCredit from './src/settings/topupCredit';
+import KengryChatBOT from './src/Kengry/chatBot';
 
 export const theme = {
   colors: {
@@ -53,6 +54,13 @@ const AppInner = () => {
     <NavigationContainer theme={theme} onReady={onLayoutRootView}>
       <StackNavigator.Navigator
         >
+          <StackNavigator.Screen
+          name="KengryChatBot"
+          component={KengryChatBOT}
+          options={{
+            headerShown: false
+          }}
+          />
         {/* <StackNavigator.Screen
           name="HomepageCustomer"
           component={HomepageCustomer}
@@ -66,12 +74,14 @@ const AppInner = () => {
           options={{
             headerShown: false
           }}/> */}
-          <StackNavigator.Screen
+
+          {/* <StackNavigator.Screen
           name="HomepageShopOwner"
           component={HomepageShopOwner} 
           options={{
             headerShown: false
-          }}/>
+          }}/> */}
+
           {/* <StackNavigator.Screen
           name="Setting"
           component={Setting}

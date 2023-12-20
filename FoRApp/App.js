@@ -12,8 +12,8 @@ import HomepageShopOwner from './src/shopowner/homepageShopOwner';
 import Setting from './src/settings/setting';
 import TopupCredit from './src/settings/topupCredit';
 import ViewFood from './src/orderfood/viewFood';
-import { Stack } from '@react-native-material/core';
 import ViewRestaurant from './src/orderfood/viewRestaurant';
+import UpdatePassword from './src/settings/updatePassword';
 
 export const theme = {
   colors: {
@@ -54,7 +54,7 @@ const AppInner = () => {
 
   return (
     <NavigationContainer theme={theme} onReady={onLayoutRootView}>
-      <StackNavigator.Navigator initialRouteName='HomepageCustomer'
+      <StackNavigator.Navigator initialRouteName='Setting'
         >
         <StackNavigator.Screen
           name="HomepageCustomer"
@@ -99,6 +99,12 @@ const AppInner = () => {
           options={{
             headerShown: false
           }} />
+          <StackNavigator.Screen 
+          name="UpdatePassword"
+          component={UpdatePassword}
+          options={{
+            headerShown: false
+          }}/>
 
       </StackNavigator.Navigator>
     </NavigationContainer>

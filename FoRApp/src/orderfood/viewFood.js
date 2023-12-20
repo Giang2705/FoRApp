@@ -94,7 +94,7 @@ const ViewFood = ({navigation}) => {
                 <TouchableOpacity onPress={handleDecrement}>
                     <Icon name="remove" size={30} color="#C51605"/>
                 </TouchableOpacity>
-                <TextInput style={styles.amountText} value={count.toString()}/>
+                <TextInput style={styles.amountText} inputMode="numeric" placeholder={count.toString()} />
                 <TouchableOpacity onPress={handleIncrement}>
                     <Icon name="add" size={30} color="#C51605"/>
                 </TouchableOpacity>

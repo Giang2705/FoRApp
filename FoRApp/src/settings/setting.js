@@ -68,7 +68,7 @@ export default function Setting({navigation})  {
                             <Text style={styles.settingText}>Add More Points</Text>
                         </Flex>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate("UpdatePassword")}>
                         <Flex direction='row' marginLeft={7}>
                             <Icon name="lock-closed-outline" size={30} marginRight={10} color="#61481C"/>
                             <Text style={styles.settingText}>Change Password</Text>

@@ -49,6 +49,18 @@ const styles = StyleSheet.create({
     logoutText: {
         alignSelf: "center",
         fontFamily: "Montserrat-Bold",
+    },
+    passwordTitle: {
+        fontFamily: "Montserrat-SemiBold",
+        color: "#61481C"
+    },
+    passwordInput: {
+        borderWidth: 1,
+        borderRadius: 20,
+        borderColor:  "#61481C",
+        padding: 5,
+        paddingLeft: 15,
+        fontFamily: "Montserrat"
     }
 })
 

@@ -156,7 +156,7 @@ export default function HomepageCustomer({navigation}) {
                     <IconButton icon={props => <Icon name="cart-outline"{...props} size={33}/>} 
                                 color="#AAACAE"
                                 margin={8}
-                                onPress={()=>navigation.navigate()}/>
+                                onPress={()=>navigation.navigate("Cart")}/>
                 </View>
             </View>
         </View>

@@ -15,6 +15,7 @@ import ViewFood from './src/orderfood/viewFood';
 import ViewRestaurant from './src/orderfood/viewRestaurant';
 import UpdatePassword from './src/settings/updatePassword';
 import SearchPage from './src/customers/searchPage';
+import Cart from './src/customers/cart';
 
 export const theme = {
   colors: {
@@ -112,7 +113,12 @@ const AppInner = () => {
           options={{
             headerShown: false
           }}/>
-
+          <StackNavigator.Screen 
+          component={Cart}
+          name="Cart"
+          options={{
+            headerShown: false
+          }}/>
       </StackNavigator.Navigator>
     </NavigationContainer>
   );

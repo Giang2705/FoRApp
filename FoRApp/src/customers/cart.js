@@ -5,17 +5,16 @@ import styles from './styles';
 import { IconButton, Stack, Text } from '@react-native-material/core';
 import { useTheme } from '@react-native-material/core';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import Icon from "react-native-vector-icons/Ionicons"
-import MIcon from "react-native-vector-icons/MaterialCommunityIcons"
-import FIcon from 'react-native-vector-icons/Foundation'; 
+import Icon from "react-native-vector-icons/Ionicons";
 import OIcon from "react-native-vector-icons/Octicons";
 import { Box, Flex } from '@react-native-material/core';
 
-const SearchPage = ({navigation}) => {
+const Cart = ({navigation}) => {
+    const data = [{image: require("../../assets/sorrento.jpg"), name: "Sorento", itemsNum: 2, total: 40},
+                    {image: require("../../assets/sorrento.jpg"), name: "Nine", itemsNum: 4, total: 100}]
     return (
         <View>
             <Stack
-            // backgroundColor={colors.background}
             h="100%"
             w="100%"
             // items="center"
@@ -33,30 +32,41 @@ const SearchPage = ({navigation}) => {
                                 style={styles.userButton}
                                 onPress={() => navigation.navigate("Setting")}/>
                 </View>
-                <Box 
-                backgroundColor="white"
-                borderRadius={25}
-                w="90%">
-                    <Flex direction='row'>
-                        <Icon padding={8} name="search" size={20} color="#C51605"/>
-                        <TextInput placeholder='Search' placeholderTextColor="#61481C" style={styles.searchText}/>
-                    </Flex>
-                </Box>
-                <View marginLeft={5}>
-                    <Text style={styles.header}>Recent Searches</Text>
-                    <Stack spacing={8}
-                    marginLeft={5}>
+                <View>
+                    <Stack spacing={10}>
+                        {data.map((item, index) => (
                         <TouchableOpacity>
-                            <Flex direction='row' alignItems="center">
-                                <MIcon name="history" size={25} color="#61481C"/>
-                                <Text style={{
-                                    alignContent: "center",
-                                    fontFamily: "Montserrat-Medium",
-                                    margin: 3,
-                                    color: "#61481C"
-                                }}>La Cantina</Text>
-                            </Flex>
+                            <Box 
+                            backgroundColor="white"
+                            w="90%"
+                            borderRadius={15}
+                            key={index}>
+                                <Flex items="center"
+                                    direction='row'
+                                    w="100%"
+                                    padding={5}>
+                                    <Image source={item.image} style={styles.imageFood}/>
+                                    <Stack spacing={5} margin={10}>
+                                        <Text style={{
+                                            fontSize: 15,
+                                            fontFamily: "Montserrat-SemiBold",
+                                            color: "#61481C",
+                                        }}>{item.name}</Text>
+                                        <Text style={{
+                                            fontSize: 13,
+                                            color: "#61481C",
+                                            fontFamily: "Montserrat",
+                                        }}>{item.itemsNum} items</Text>
+                                        <Text style={{
+                                            fontSize: 13,
+                                            color: "#C51605",
+                                            fontFamily: "Montserrat-Medium"
+                                        }}>{item.total} points</Text>
+                                    </Stack>
+                                </Flex>
+                            </Box>
                         </TouchableOpacity>
+                    ))}
                     </Stack>
                 </View>
             </Stack>
@@ -84,8 +94,8 @@ const SearchPage = ({navigation}) => {
                                 color='#AAACAE'
                                 margin={8}
                                 onPress={()=>navigation.navigate()}/>
-                    <IconButton icon={props => <Icon name="cart-outline"{...props} size={33}/>} 
-                                color="#AAACAE"
+                    <IconButton icon={props => <Icon name="cart"{...props} size={33}/>} 
+                                color="#C51605"
                                 margin={8}
                                 onPress={()=>navigation.navigate("Cart")}/>
                 </View>
@@ -95,5 +105,4 @@ const SearchPage = ({navigation}) => {
 }
 
 
-
-export default SearchPage;
+export default Cart;

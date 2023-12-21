@@ -55,6 +55,7 @@ export default function ViewRestaurant({navigation}) {
                                 <Text style={{
                                     fontSize: 12,
                                     color: "#C51605",
+                                    fontFamily: "Montserrat-Medium"
                                 }}>Opening Hours: {item.hours}</Text>
                             </Stack>
                         </Flex>
@@ -66,7 +67,7 @@ export default function ViewRestaurant({navigation}) {
                 <IconButton icon={props => <FIcon name="home" {...props} size={30}/>}
                             margin={8}
                             color="#C51606"
-                            onPress={()=> navigation.navigate("")} />
+                            onPress={()=> navigation.navigate("HomepageCustomer")} />
                 <IconButton icon={props => <Icon name="chatbox-outline" {...props} size={30}/>}
                             margin={8}
                             color="#AAACAE"

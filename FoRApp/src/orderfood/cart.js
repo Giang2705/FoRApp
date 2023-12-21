@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {View, Image, TextInput,
         KeyboardAvoidingView, Platform} from 'react-native';
-import styles from './styles';
+import styles from '../customers/styles';
 import { IconButton, Stack, Text } from '@react-native-material/core';
 import { useTheme } from '@react-native-material/core';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -35,7 +35,7 @@ const Cart = ({navigation}) => {
                 <View>
                     <Stack spacing={10}>
                         {data.map((item, index) => (
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate("PlaceOrder")}>
                             <Box 
                             backgroundColor="white"
                             w="90%"

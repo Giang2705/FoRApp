@@ -147,7 +147,7 @@ export default function HomepageCustomer({navigation}) {
                         borderRadius={40}
                         // position="absolute"
                         marginBottom={10}
-                        onPress={() =>navigation.navigate()}
+                        onPress={() =>navigation.navigate("SearchPage")}
                         />
                     <IconButton icon={props => <Icon name="notifications-outline" {...props} size={30}/>}
                                 color='#AAACAE'

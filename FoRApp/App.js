@@ -14,6 +14,7 @@ import TopupCredit from './src/settings/topupCredit';
 import ViewFood from './src/orderfood/viewFood';
 import ViewRestaurant from './src/orderfood/viewRestaurant';
 import UpdatePassword from './src/settings/updatePassword';
+import SearchPage from './src/customers/searchPage';
 
 export const theme = {
   colors: {
@@ -54,7 +55,7 @@ const AppInner = () => {
 
   return (
     <NavigationContainer theme={theme} onReady={onLayoutRootView}>
-      <StackNavigator.Navigator initialRouteName='Setting'
+      <StackNavigator.Navigator initialRouteName='HomepageCustomer'
         >
         <StackNavigator.Screen
           name="HomepageCustomer"
@@ -102,6 +103,12 @@ const AppInner = () => {
           <StackNavigator.Screen 
           name="UpdatePassword"
           component={UpdatePassword}
+          options={{
+            headerShown: false
+          }}/>
+          <StackNavigator.Screen
+          name="SearchPage"
+          component={SearchPage}
           options={{
             headerShown: false
           }}/>

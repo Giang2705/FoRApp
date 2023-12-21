@@ -132,6 +132,10 @@ const  styles = StyleSheet.create({
 		position: "absolute",
 		marginLeft: 310
 	},
+	searchText: {
+		fontFamily: "Montserrat",
+		width: "80%"
+	}
 })
 
 export default styles;

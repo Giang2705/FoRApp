@@ -64,20 +64,43 @@ const UpdatePassword = ({navigation}) => {
                         margin: 30,
                     }}>
                         <Text style={styles.passwordTitle}>Current Password</Text>
-                        <TextInput placeholderTextColor='#61481C'
+                        <TextInput secureTextEntry={true} placeholderTextColor='#61481C'
                         placeholder='Current password'
                         style={styles.passwordInput}
                         />
                         <Text style={styles.passwordTitle}>New Password</Text>
-                        <TextInput placeholderTextColor='#61481C'
+                        <TextInput secureTextEntry={true} placeholderTextColor='#61481C'
                         placeholder='New password'
                         style={styles.passwordInput}
                         />
                         <Text style={styles.passwordTitle}>Confirm New Password</Text>
-                        <TextInput placeholderTextColor='#61481C'
+                        <TextInput secureTextEntry={true} placeholderTextColor='#61481C'
                         placeholder='Confirm new password'
                         style={styles.passwordInput}
                         />
+                        <TouchableOpacity onPress={() => navigation.goBack()}>
+                            <Box 
+                            style={{
+                                backgroundColor: "#C51605",
+                                borderRadius: 25,
+                                width: "80%",
+                                alignSelf: "center",
+                                height: 40,
+                                marginTop: 10
+                            }}>
+                                <Text style={{
+                                    paddingTop: 5,
+                                    paddingBottom:8,
+                                    fontFamily: "Montserrat-SemiBold",
+                                    fontSize: 18,
+                                    // paddingRight: 10,
+                                    // paddingLeft: 10,
+                                    alignSelf: "center",
+                                    color: "white",
+                                    lineHeight: 30
+                                }}>Save</Text>
+                            </Box>
+                        </TouchableOpacity>
                     </Stack>
                 </Box>
             </Stack>

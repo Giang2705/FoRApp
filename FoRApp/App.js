@@ -57,7 +57,7 @@ const AppInner = () => {
 
   return (
     <NavigationContainer theme={theme} onReady={onLayoutRootView}>
-      <StackNavigator.Navigator initialRouteName='HomepageCustomer'
+      <StackNavigator.Navigator initialRouteName='PlaceOrder'
         >
         <StackNavigator.Screen
           name="HomepageCustomer"

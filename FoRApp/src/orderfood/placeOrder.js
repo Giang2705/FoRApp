@@ -32,6 +32,27 @@ const PlaceOrder = ({navigation}) => {
                 </View>
                 <View marginLeft={5}>
                     <Text style={styles.header}>Your Order</Text>
+                    <Stack spacing={7}>
+                        <Box>
+                            <TouchableOpacity>
+                                <Box style={{
+                                    backgroundColor: "white",
+                                    width: '20%',
+                                    borderRadius: 15
+                                }}>
+                                    <Image source={require("../../assets/logo.png")} 
+                                    style={{
+                                        width: '100%',
+                                        height: 50,
+                                        resizeMode: "center",
+                                        borderRadius: 10,
+                                        marginTop: 8,
+                                        marginBottom: 5
+                                    }}/>
+                                </Box>
+                            </TouchableOpacity>
+                        </Box>
+                    </Stack>
                 </View>
             </Stack>
         </View>

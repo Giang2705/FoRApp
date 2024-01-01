@@ -38,7 +38,11 @@ export default function EditFood({ navigation }) {
         <View style={styles.container}>
             <View style={styles.boxForm}>
                 <View style={(styles.frameInput, styles.frameSelectImage)}>
-                    {image  && <Image source={{ uri: image  }} style={styles.image} />}
+                    {image ? (
+                        <Image source={{ uri: image  }} style={styles.image}/>
+                        ) : ( 
+                        <Image source={require('../../images/logo.png')} style={styles.image} />
+                    )}
                     <TouchableOpacity onPress={pickImage}>
                         <Text style={styles.imagePickerText}>Change Image</Text>
                     </TouchableOpacity>

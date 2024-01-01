@@ -1,7 +1,7 @@
-import React,{ useState } from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, Image, TextInput} from "react-native";
+import React, { useState, useEffect } from 'react';
+import {StyleSheet, Text, View, TouchableOpacity, TextInput, TouchableNativeFeedback, Keyboard, Modal, Alert,} from "react-native";
 
-export default function AddRestaurant({ navigation }) {
+export default function AddRestaurant({ modalVisible, setModalVisible }) {
     
     const [restaurantEmail, setRestaurantEmail] = useState('');
     const [resPhoneNum, setResPhoneNum] = useState('');
@@ -14,60 +14,77 @@ export default function AddRestaurant({ navigation }) {
     const canceling = () => {
         navigation.navigate('RestaurantList');
     };
-    
+
+    useEffect(() => {
+        if (!modalVisible) {
+          setModalVisible(false);
+        }
+      }, [modalVisible, setModalVisible]);
 
     return (
-        <View style={styles.container}>
-            <View style={styles.boxForm}>
-                <View style={styles.frameInput}>
-                    <Text style={styles.textView}>Restaurant Name</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Name"
-                        onChangeText={text => setRestaurantName(text)}
-                        value={restaurantName}/>
-                </View>
-                <View style={styles.frameInput}>
-                    <Text style={styles.textView}>Email</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="restaurant@rmit.edu.vn"
-                        onChangeText={text => setRestaurantEmail(text)}
-                        value={restaurantEmail}/>
-                </View>
-                <View style={styles.frameInput}>
-                    <Text style={styles.textView}>Phone Number</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Phone Number"
-                        onChangeText={text => setResPhoneNum(text)}
-                        value={resPhoneNum}/>
-                </View>
-                <View style={styles.frameInput}>
-                    <Text style={styles.textView}>Role</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Role"
-                        onChangeText={text => setRestaurantRole(text)}
-                        value={restaurantRole}/>
-                </View>
+        <TouchableNativeFeedback onPress={Keyboard.dismiss}>
+            <View>
+                <Modal animationType='slide'
+                        transparent={true}
+                        visible={modalVisible}
+                        onRequestClose={() => {
+                            Alert.alert("Are you sure?");
+                            setModalVisible(!modalVisible)
+                        }}>
+                    <View style={styles.container}>
+                        <View style={styles.boxForm}>
+                            <View style={styles.frameInput}>
+                                <Text style={styles.textView}>Restaurant Name</Text>
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder="Name"
+                                    onChangeText={text => setRestaurantName(text)}
+                                    value={restaurantName}/>
+                            </View>
+                            <View style={styles.frameInput}>
+                                <Text style={styles.textView}>Email</Text>
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder="restaurant@rmit.edu.vn"
+                                    onChangeText={text => setRestaurantEmail(text)}
+                                    value={restaurantEmail}/>
+                            </View>
+                            <View style={styles.frameInput}>
+                                <Text style={styles.textView}>Phone Number</Text>
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder="Phone Number"
+                                    onChangeText={text => setResPhoneNum(text)}
+                                    value={resPhoneNum}/>
+                            </View>
+                            <View style={styles.frameInput}>
+                                <Text style={styles.textView}>Role</Text>
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder="Role"
+                                    onChangeText={text => setRestaurantRole(text)}
+                                    value={restaurantRole}/>
+                            </View>
+                        </View>
+                        <View style={styles.containerBtns}>
+                                <TouchableOpacity style={styles.cancelBtn} onPress={adding}>
+                                    <Text style={styles.cancalText}>Cancel</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.addBtn} onPress={canceling}>
+                                    <Text style={styles.addText}>Add</Text>
+                                </TouchableOpacity>
+                        </View>
+                    </View>
+                </Modal>
             </View>
-            <View style={styles.containerBtns}>
-                    <TouchableOpacity style={styles.cancelBtn} onPress={adding}>
-                        <Text style={styles.cancalText}>Cancel</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.addBtn} onPress={canceling}>
-                        <Text style={styles.addText}>Add</Text>
-                    </TouchableOpacity>
-                </View>
-        </View>
+       </TouchableNativeFeedback>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor:"#F9F9C6",
+        backgroundColor:"rgba(0, 0, 0, 0.5)",
         alignItems: "center",
         padding: 24,
     },

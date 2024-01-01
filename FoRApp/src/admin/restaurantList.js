@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TableView, Section, Cell } from 'react-native-tableview-simple';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from "react-native";
+import AddRestaurant from './addRestaurant';
 
 const data = [
     { name: 'John Doe',phone: '974897',email: 'john@example.com', role: 'User', status: 'Active' },
@@ -15,8 +16,13 @@ export default function Dashbroad({ navigation }) {
     const movingCustomerList = () => {
         navigation.navigate('Dashbroad');
     };
+    // const addingRestaurant = () => {
+    //     navigation.navigate('AddRestaurant');
+    // };
+
+    const [modalVisible, setModalVisible] = useState(false)
     const addingRestaurant = () => {
-        navigation.navigate('AddRestaurant');
+        setModalVisible(true);
     };
     
     return (
@@ -62,7 +68,6 @@ export default function Dashbroad({ navigation }) {
                                     </TouchableOpacity>
                                 </View>
                             </View>
-
                             {data.map((item, index) => (
                                 <View key={index} style={styles.tableRow}>                                
                                     <View style={styles.tableCell}>
@@ -89,6 +94,7 @@ export default function Dashbroad({ navigation }) {
                             ))}
                         </Section>
                     </TableView>
+                <AddRestaurant modalVisible={modalVisible} setModalVisible={setModalVisible} />
                 </View>
             </View>
         </View>

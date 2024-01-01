@@ -1,50 +1,45 @@
 import React,{ useState } from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Image, TextInput} from "react-native";
-import ImagePicker from 'react-native-image-picker';
+// import { launchImageLibrary } from 'react-native-image-picker';
+import * as ImagePicker from 'expo-image-picker';
 
 export default function EditFood({ navigation }) {
     
-    const [selectedImage, setSelectedImage] = useState(null);
+    const [image, setImage] = useState(null);
 
     const [nameFood, setNameFood] = useState('');
     const [price, setPrice] = useState('');
     const [decription, setDecription] = useState('');
 
     const updating = () => {
-        console.log('../../images', selectedImage);
         navigation.navigate('');
     };
     const canceling = () => {
         navigation.navigate('');
     };
     
-    const handleImagePicker = () => {
-        let options = {
-          title: 'Select Image',
-          storageOptions: {
-            skipBackup: true,
-            path: '../../images',
-          },
-        };
-        
-        ImagePicker.showImagePicker(options, (response) => {
-          if (response.didCancel) {
-            console.log('User cancelled image picker');
-          } else if (response.error) {
-            console.log('ImagePicker Error: ', response.error);
-          } else {
-            setSelectedImage(response.uri);
-          }
+    const pickImage = async () => {
+        // No permissions request is necessary for launching the image library
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.All,
+          allowsEditing: true,
+          aspect: [4, 3],
+          quality: 1,
         });
+    
+        console.log(result);
+    
+        if (!result.canceled) {
+          setImage(result.assets[0].uri);
+        }
       };
 
     return (
         <View style={styles.container}>
             <View style={styles.boxForm}>
                 <View style={(styles.frameInput, styles.frameSelectImage)}>
-                    <Image source={require("../../images/logo.png")} style={styles.image} />
-                    {/* {selectedImage && <Image source={{ uri: selectedImage }} style={styles.image} />} */}
-                    <TouchableOpacity onPress={handleImagePicker}>
+                    {image  && <Image source={{ uri: image  }} style={styles.image} />}
+                    <TouchableOpacity onPress={pickImage}>
                         <Text style={styles.imagePickerText}>Change Image</Text>
                     </TouchableOpacity>
                 </View>
@@ -64,7 +59,7 @@ export default function EditFood({ navigation }) {
                 </View>
                 <View style={styles.frameInput}>
                     <TextInput
-                        style={(styles.input, styles.decription)}
+                        style={[styles.input, styles.decription]}
                         placeholder="Decription"  // Needing the data
                         onChangeText={text => setDecription(text)}
                         value={decription}
@@ -130,14 +125,8 @@ const styles = StyleSheet.create({
 
     },
     decription: {
-        flex: 1, 
-        borderColor: '#61481C',
-        fontSize:20,
-        borderWidth: 1,
-        borderRadius: 10,
-        paddingHorizontal: 20,
         width: 270,
-        backgroundColor:"#FFFFFF",
+        height: 120,
     },
     textView: {
         width: 180,

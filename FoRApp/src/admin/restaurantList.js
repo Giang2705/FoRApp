@@ -81,9 +81,6 @@ export default function Dashbroad({ navigation }) {
                                         <Text style={styles.cellText} numberOfLines={1}>{item.status}</Text>
                                     </View>
                                     <View style={[styles.tableCell, styles.btnTableCell]}>
-                                        <TouchableOpacity style={styles.editBtn} onPress={''}>
-                                            <Text style={styles.editText} numberOfLines={1}>Edit</Text>
-                                        </TouchableOpacity>
                                         <TouchableOpacity style={styles.deleteBtn} onPress={''}>
                                             <Text style={styles.deleteText} numberOfLines={1}>Delete</Text>
                                         </TouchableOpacity>

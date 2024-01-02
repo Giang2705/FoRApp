@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 5,
     },
     header:{
+        padding:5,
         marginTop: 30,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -103,37 +104,19 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         padding: 10,
 	},
-	frameTexting: {
-		width: "100%",
+    frameChat:{
+        padding:7,
         flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-	},
-    input: {
-        flex: 1,
-        height: 40,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 20,
-        paddingHorizontal: 10,
-        marginRight: 10,
-    },
-    sendIcon: {
-        marginRight: 10,
     },
     messagesContainer: {
-        padding: 5,
-        height:630,
-        flexGrow: 1, // Allows the ScrollView to take the available space
-        justifyContent: 'flex-end', // Messages are aligned to the top
+        flexGrow: 1, 
+        justifyContent: 'flex-end',
     },
     chatView1:{
         justifyContent: 'flex-end',
     },
     chatView1:{
         alignSelf: 'flex-start',
-        justifyContent:''
     },
     textView1: {
         padding: 10,
@@ -155,4 +138,25 @@ const styles = StyleSheet.create({
         height: 'auto',
         borderRadius: 20,
     },
+
+	frameTexting: {
+		width: "100%",
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+	},
+    input: {
+        flex: 1,
+        height: 40,
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderRadius: 20,
+        paddingHorizontal: 10,
+        marginRight: 10,
+    },
+    sendIcon: {
+        marginRight: 10,
+    },
+    
 });

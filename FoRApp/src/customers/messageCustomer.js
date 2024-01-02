@@ -16,7 +16,9 @@ const colors = {
 
 export default function MessageCustomer({ navigation }) {
 
-
+    const openedChatBox = () => {
+        navigation.navigate('ChatBoxView');
+      };
 
     return ( 
         <View style={styles.container}>
@@ -25,7 +27,7 @@ export default function MessageCustomer({ navigation }) {
                 <ScrollView>
                     {data.map((item, index) => (
                         <View key={index} style={styles.chatBoxView}>    
-                            <TouchableOpacity style={styles.btnChatBox}>
+                            <TouchableOpacity style={styles.btnChatBox} onPress={openedChatBox}>
                                 <View style={styles.frameChatBox}>
                                     <Image source={item.image} resizeMode="contain" style={styles.userImage}/>
                                     <View style = {styles.textContent}>
@@ -74,10 +76,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
+        backgroundColor: '#F9F9C6',
     },
     mainContainer: {
         flex: 1,
-        backgroundColor: '#F9F9C6',
         paddingHorizontal: 10,
     },
     messageText: {
@@ -118,12 +120,12 @@ const styles = StyleSheet.create({
     },
     bottomContainer: {
 		height: 80,
-		borderRadius: 8,
-		backgroundColor: "transparent",
+        borderTopLeftRadius: 20, 
+        borderTopRightRadius: 20,
+        backgroundColor: "white",
 	},
 	bottomNav: {
 		width: "100%",
-		borderRadius: 8,
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-around',

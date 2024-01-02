@@ -8,6 +8,7 @@ import Dashbroad from './src/admin/dashbroad'
 import RestaurantList from './src/admin/restaurantList'
 import EditFood from './src/shopOwner/editFoodpage'
 import MessageCustomer from './src/customers/messageCustomer';
+import ChatBoxView from './src/customers/chatBoxView';
 
 const StackNavigator = createStackNavigator()
 
@@ -24,6 +25,7 @@ const AppInner = () => {
         <StackNavigator.Screen name="LoginPage" component={LoginPage} options={{headerShown: false}}/>
         <StackNavigator.Screen name="SignupPage" component={SignupPage} options={{headerShown: false}}/>
         <StackNavigator.Screen name="MessageCustomer" component={MessageCustomer} options={{headerShown: false}}/>
+        <StackNavigator.Screen name="ChatBoxView" component={ChatBoxView} options={{headerShown: false}}/>
 
 
         {/* Shop Onwer */}

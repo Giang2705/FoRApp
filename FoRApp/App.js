@@ -6,24 +6,25 @@ import 'react-native-gesture-handler';
 import SignupPage from './src/customers/signupScreen';
 import Dashbroad from './src/admin/dashbroad'
 import RestaurantList from './src/admin/restaurantList'
-// import AddRestaurant from './src/admin/addRestaurant'
 import EditFood from './src/shopOwner/editFoodpage'
+import MessageCustomer from './src/customers/messageCustomer';
 
 const StackNavigator = createStackNavigator()
 
 const AppInner = () => {
   return (
     <NavigationContainer>
-      <StackNavigator.Navigator initialRouteName="RestaurantList">
+      <StackNavigator.Navigator initialRouteName="MessageCustomer">
 
         {/* Admin */}
         <StackNavigator.Screen name="Dashbroad" component={Dashbroad} options={{headerShown: false}}/>
         <StackNavigator.Screen name="RestaurantList" component={RestaurantList} options={{headerShown: false}}/>
-        {/* <StackNavigator.Screen name="AddRestaurant" component={AddRestaurant} options={{headerShown: false}}/> */}
         
         {/* Users */}
         <StackNavigator.Screen name="LoginPage" component={LoginPage} options={{headerShown: false}}/>
         <StackNavigator.Screen name="SignupPage" component={SignupPage} options={{headerShown: false}}/>
+        <StackNavigator.Screen name="MessageCustomer" component={MessageCustomer} options={{headerShown: false}}/>
+
 
         {/* Shop Onwer */}
         <StackNavigator.Screen name="EditFood" component={EditFood} options={{headerShown: false}}/>

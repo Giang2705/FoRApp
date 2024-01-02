@@ -7,6 +7,7 @@ import SignupPage from './src/customers/signupScreen';
 import Dashbroad from './src/admin/dashbroad'
 import RestaurantList from './src/admin/restaurantList'
 import EditFood from './src/shopOwner/editFoodpage'
+import EditRestaurant from './src/shopOwner/editRestaurantpage';
 import MessageCustomer from './src/customers/messageCustomer';
 import ChatBoxView from './src/customers/chatBoxView';
 
@@ -15,7 +16,7 @@ const StackNavigator = createStackNavigator()
 const AppInner = () => {
   return (
     <NavigationContainer>
-      <StackNavigator.Navigator initialRouteName="MessageCustomer">
+      <StackNavigator.Navigator initialRouteName="EditRestaurant">
 
         {/* Admin */}
         <StackNavigator.Screen name="Dashbroad" component={Dashbroad} options={{headerShown: false}}/>
@@ -30,6 +31,7 @@ const AppInner = () => {
 
         {/* Shop Onwer */}
         <StackNavigator.Screen name="EditFood" component={EditFood} options={{headerShown: false}}/>
+        <StackNavigator.Screen name="EditRestaurant" component={EditRestaurant} options={{headerShown: false}}/>
 
       </StackNavigator.Navigator>
     </NavigationContainer>

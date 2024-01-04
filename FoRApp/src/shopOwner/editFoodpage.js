@@ -71,13 +71,13 @@ export default function EditFood({ navigation }) {
                 </View>
             </View>
             <View style={styles.containerBtns}>
-                    <TouchableOpacity style={styles.cancelBtn} onPress={canceling}>
-                        <Text style={styles.cancalText}>Cancel</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.updateBtn} onPress={updating}>
-                        <Text style={styles.updateText}>Update</Text>
-                    </TouchableOpacity>
-                </View>
+                <TouchableOpacity style={styles.cancelBtn} onPress={canceling}>
+                    <Text style={styles.cancalText}>Cancel</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.updateBtn} onPress={updating}>
+                    <Text style={styles.updateText}>Update</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 }

@@ -74,7 +74,7 @@ const KengryChatBOT = () => {
 
     // HANDLE BOT
     // Variables for AI apis
-    const apiKey = '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'
+    const apiKey = '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'
     const assistantID = 'asst_JBPA46nmUDsH1j0xqt703OEh'
     const [threadID, setThreadID] = useState('');
 
@@ -104,7 +104,7 @@ const KengryChatBOT = () => {
         
         console.log("")
         setUserPrompt('');
-        createMessage()
+        createUserMessage()
         listMessages()
         processRun()
     
@@ -141,7 +141,7 @@ const KengryChatBOT = () => {
         return
     }
     
-    async function createMessage() {
+    async function createUserMessage() {
         const threadURL  = `https://api.openai.com/v1/threads/${threadID}/messages`
         const createMessage = await axios.post(threadURL,
           {
@@ -167,28 +167,55 @@ const KengryChatBOT = () => {
             'OpenAI-Beta': 'assistants=v1'
           }})
         const runID = run.data.id
-        console.log('Run CALLED: ',runID);
+        console.log('Run START: ',runID);
 
         const runRetrieveURL = `https://api.openai.com/v1/threads/${threadID}/runs/${runID}`
-        const runRetrieve = await axios.get(runRetrieveURL,
-            {headers:{
-                'Authorization': `Bearer ${apiKey}`,
-                'OpenAI-Beta': 'assistants=v1'
-            }})
-        console.log('Run retrieved data: ',runRetrieve.data)
-        
-        let isCompleted = runRetrieve.data.completed_at
+        let isCompleted = null
+        // Loop and Wait until the API response
         while(isCompleted === null){
-            setTimeout(()=>{},1000);
             const runRetrieve = await axios.get(runRetrieveURL,
                 {headers:{
                     'Authorization': `Bearer ${apiKey}`,
                     'OpenAI-Beta': 'assistants=v1'
                 }})
-            console.log('is RUN Completed: ', runRetrieve.data.completed_at);
             isCompleted = runRetrieve.data.completed_at
+            
+            // Handle FUNCTION CALLING
+            if (runRetrieve.data.status === 'requires_action'){
+                const tool_calls = runRetrieve.data.required_action.submit_tool_outputs.tool_calls
+                // Iterate through the all possible functions ai thinks it can call
+                for (let i = 0; i < tool_calls.length; i++){
+                    if (tool_calls[i].function.name === 'order_food'){
+                        const argus = JSON.parse(tool_calls[i].function.arguments)
+                        funcOutput = order_food(argus.food,argus.restaurant)
+                        
+                        const submitToolsOutput = await axios.post(
+                            `https://api.openai.com/v1/threads/${threadID}/runs/${runID}/submit_tool_outputs`,
+                            {tool_outputs: [{
+                                tool_call_id: tool_calls[i].id,
+                                output: funcOutput
+                                }]
+                            },
+                            {headers:{
+                                'Authorization': `Bearer ${apiKey}`,
+                                'OpenAI-Beta': 'assistants=v1'
+                            }}
+                        )
+                    }
+                }
+            
+            }       
+
+            setTimeout(()=>{},1000);
         };
         listMessages()
+    }
+
+
+    function order_food(food,restaurant) {
+        console.log("function order_food called HHUURAAAYY",food,restaurant)
+
+        return "Food added to cart successfully"
     }
 
     return(

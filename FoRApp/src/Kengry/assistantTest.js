@@ -2,8 +2,7 @@ import OpenAI from "openai";
 import axios from "axios";
 const main = () => {
     const client = new OpenAI({
-      // apiKey: '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'
-      apiKey: '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'
+      // apiKey: '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'
     })
     const assistantID = 'asst_JBPA46nmUDsH1j0xqt703OEh'
     const threadID  = 'thread_G2eLytocMfYUyqIcj2kemuGG'

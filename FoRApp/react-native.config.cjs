@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('react-native-dotenv').config()
 module.exports = {
     env: {
         CHAT_BOT_API : process.env.CHAT_BOT_API,

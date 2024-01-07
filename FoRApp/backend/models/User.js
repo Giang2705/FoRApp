@@ -28,6 +28,10 @@ const userSchema = new mongoose.Schema({
         type: Number,
         require: true,
         default: 0
+    },
+    cart: {
+        type: Array,
+        default: [],
     }
 })
 
@@ -48,4 +52,4 @@ userSchema.pre('save', async function (next) {
     next()
 })
 
-mongoose.model("User", userSchema);
+module.exports = mongoose.model("User", userSchema);

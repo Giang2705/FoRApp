@@ -1,25 +1,43 @@
-const express = require('express');
-const port = 3000;
+require('dotenv').config()
+const express = require('express')
+const mongoose = require('mongoose')
+const cors = require('cors')
+const fileUpload = require('express-fileupload')
+const cookieParser = require('cookie-parser')
+const path = require('path')
 
-const app = express();
-const bodyParser = require('body-parser');
+const app = express()
+app.use(express.json())
+app.use(cookieParser())
+app.use(cors())
+app.use(fileUpload({
+    useTempFiles: true,
+}));
 
-require('./db');
-require('./models/User');
+// Routes
+app.use("/user", require("./routes/userRoutes"));
+app.use("/api", require("./routes/uploadRoutes"))
+app.use("/api", require("./routes/foodRoutes"))
+app.use("/api", require("./routes/paymentRoutes"))
 
-const authRoutes = require("./routes/authRoutes");
-const authToken = require("./middlewares/authTokenRequires");
-const foodRoutes = require("./routes/foodRoutes")
-
-app.use(bodyParser.json());
-app.use(authRoutes);
-app.use(foodRoutes);
-
-app.get('/', authToken , (req, res) => {
-    console.log(req.user)
-    res.send(req.user)
+// Connect to mongodb
+mongoose.connect(process.env.MONGO_URL).then(
+    () => {
+        console.log("connect to database")
+    }
+)
+.catch((error) => {
+    console.log(`Cannot connect to databse ` + error);
 })
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+// if(process.env.NODE_ENV === 'production'){
+//     app.use(express.static('client/build'))
+//     app.get('*', (req, res) => {
+//         res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+//     })
+// }
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, ()  => {
+    console.log("Server is running on port", PORT);
 })

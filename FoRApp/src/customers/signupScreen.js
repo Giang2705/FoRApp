@@ -27,26 +27,29 @@ export default function SignupPage({ navigation }) {
   // };
 
   const signupBtnPress = () => {
-    if (inputData.email == "" || inputData.name == "" || inputData.password == "" || inputData.phoneNumber == "") {
-      alert("You must fill all fields")
-    } else {
       console.log(inputData)
-      fetch ('http://localhost:3000/signup', {
+      fetch ('http://localhost:3000/user/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(inputData)
+        body: JSON.parse(JSON.stringify(inputData))
       })
       .then(res => res.json()).then(
         data => {
           if (!data.error) {
               alert("Account created successfully!")
               navigation.navigate('LoginPage');
+          } else {
+            alert(data.error)
           }
         }
       )
-    }
+      .catch (function(error) {
+        console.log('There has been a problem with your fetch operation: ' + error.message);
+         // ADD THIS THROW error
+          throw error;
+      });
   };
 
   const loginBtnPress = () => {

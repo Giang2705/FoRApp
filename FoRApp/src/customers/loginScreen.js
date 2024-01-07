@@ -10,26 +10,27 @@ export default function LoginPage({ navigation }) {
   
   const handleLogin = () => {
     // Perform login logic
-    if (inputData.email == "" || inputData.password == "") {
-      alert("You must fill all fields")
-    } else {
-      console.log(inputData)
-      fetch ('http://localhost:3000/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(inputData)
-      })
-      .then(res => res.json()).then(
-        data => {
-          if (!data.error) {
-              alert("Login successfully!")
-              navigation.navigate('HomepageCustomer');
-          }
+    fetch ('http://localhost:3000/user/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.parse(JSON.stringify(inputData))
+    })
+    .then(res => res.json()).then(
+      data => {
+        if (!data.error) {
+            console.log(inputData);
+            alert("Login successfully!")
+            navigation.navigate('HomepageCustomer');
+        } else {
+          alert(data.error)
         }
-      )
-    }
+      }
+    ).catch((error)=>{
+      alert("Error: " + error.message);
+      throw error;
+    });
   };
 
   const handleSignup = () => {

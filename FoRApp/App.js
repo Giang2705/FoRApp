@@ -11,6 +11,8 @@ import HomepageStaffs from './src/staffs/homepageStaffs';
 import HomepageShopOwner from './src/shopowner/homepageShopOwner';
 import Setting from './src/settings/setting';
 import TopupCredit from './src/settings/topupCredit';
+import SignupPage from './src/customers/signupScreen';
+import LoginPage from './src/customers/loginScreen';
 
 export const theme = {
   colors: {
@@ -51,28 +53,42 @@ const AppInner = () => {
 
   return (
     <NavigationContainer theme={theme} onReady={onLayoutRootView}>
-      <StackNavigator.Navigator
+      <StackNavigator.Navigator initialRouteName='SignupPage' 
         >
-        {/* <StackNavigator.Screen
+        <StackNavigator.Screen
+        name = "SignupPage"
+        component = {SignupPage}
+        options={{
+          headerShown: false
+        }} />
+
+        <StackNavigator.Screen 
+        name = "LoginPage"
+        component = {LoginPage}
+        options={{
+          headerShown: false
+        }}/>
+
+        <StackNavigator.Screen
           name="HomepageCustomer"
           component={HomepageCustomer}
           options={{
             headerShown: false
           }}
-        /> */}
-        {/* <StackNavigator.Screen
+        />
+        <StackNavigator.Screen
           name="HomepageStaff"
           component={HomepageStaffs} 
           options={{
             headerShown: false
-          }}/> */}
+          }}/>
           <StackNavigator.Screen
           name="HomepageShopOwner"
           component={HomepageShopOwner} 
           options={{
             headerShown: false
           }}/>
-          {/* <StackNavigator.Screen
+          <StackNavigator.Screen
           name="Setting"
           component={Setting}
           options={{
@@ -83,7 +99,7 @@ const AppInner = () => {
           component={TopupCredit}
           options={{
             headerShown: false
-          }}/> */}
+          }}/>
 
       </StackNavigator.Navigator>
     </NavigationContainer>

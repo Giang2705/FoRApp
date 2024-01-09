@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View, Image, ScrollView } from 'react-native';
 import Voice from '@react-native-community/voice'
-import OpenAI from "openai";
-
+import { IconButton } from "@react-native-material/core";
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const KengryChatBOT = () => {
     const [messagesData, setMessagesData] = useState([]);
@@ -80,34 +80,11 @@ const KengryChatBOT = () => {
 
 
     const handleSend = async() => {
-        // const apiURL = 'https://api.openai.com/v1/chat/completions'
-        // try {
-        //     const params = {
-        //         model: "gpt-3.5-turbo",
-        //         max_tokens : 70,
-        //         temperature: 0.5,
-        //         messages:  [{content: userPrompt, role:'user' }] 
-        //     }
-        //     const header = {
-        //         'Authorization': `Bearer ${apiKey}`,
-        //     }
-        //     const chatCompletion = await axios.post(apiURL,
-        //         params,
-        //         {headers: header})
-
-        //     const textResponse = chatCompletion.data.choices[0].message.content
-        //     setMessagesData([...messagesData,{role:'user', content: userPrompt },
-        //                                 {role : 'assistant', content: textResponse }])
-        //     setUserPrompt('');
-        // } catch(e) {
-        //     console.log(e)
-        
         console.log("")
         setUserPrompt('');
         createUserMessage()
         listMessages()
         processRun()
-    
     }
     
     async function createThread() {
@@ -127,7 +104,6 @@ const KengryChatBOT = () => {
     }
 
     async function listMessages() {
-        console.log("Listing messages")
         const threadURL  = `https://api.openai.com/v1/threads/${threadID}/messages`
         const threadData = await axios.get(threadURL,
             {headers: {
@@ -183,14 +159,14 @@ const KengryChatBOT = () => {
             // Handle FUNCTION CALLING
             if (runRetrieve.data.status === 'requires_action'){
                 const tool_calls = runRetrieve.data.required_action.submit_tool_outputs.tool_calls
+                const submitToolsOutputURL = `https://api.openai.com/v1/threads/${threadID}/runs/${runID}/submit_tool_outputs`
                 // Iterate through the all possible functions ai thinks it can call
                 for (let i = 0; i < tool_calls.length; i++){
                     if (tool_calls[i].function.name === 'order_food'){
                         const argus = JSON.parse(tool_calls[i].function.arguments)
                         funcOutput = order_food(argus.food,argus.restaurant)
-                        
                         const submitToolsOutput = await axios.post(
-                            `https://api.openai.com/v1/threads/${threadID}/runs/${runID}/submit_tool_outputs`,
+                            submitToolsOutputURL,
                             {tool_outputs: [{
                                 tool_call_id: tool_calls[i].id,
                                 output: funcOutput
@@ -219,46 +195,151 @@ const KengryChatBOT = () => {
     }
 
     return(
-        <View>
-            <Text>Kengry the BOT</Text>
-            <FlatList
-                data={messagesData}
-                keyExtractor={(item,index)=>index.toString()}
-                renderItem={({item}) => (
-                    <View style = {{flexDirection:'row'}}>
-                        <Text>{item.role==='assistant'?'BOT: ':'USER: '}</Text>
-                        <Text>{item.content[0].text.value}</Text>
-                    
-                    </View>
-                )}>
-            </FlatList>
-            <TextInput
-                value= {userPrompt}
-                placeholder="Insert what you want to ask here"
-                onChangeText={text => setUserPrompt(text)}
-            ></TextInput>
-            <TouchableOpacity
-                style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}
-                onPress={handleSend}>
-                <Text>GO!</Text>
-            </TouchableOpacity>
 
-            <TouchableOpacity onPress={startRecording} >
-                <Text>Start Recording</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={stopRecording}>
-                <Text>Stop Recording</Text>
-            </TouchableOpacity >
+    
+    <View style={styles.container}>
+        <View style = {styles.mainContainer}>
+            <View style = {styles.header}>
+                <View style={styles.rightGroup}>
+                    <IconButton icon={props => <Icon name="arrow-back" {...props} size={30} />} 
+                        style={styles.back} color='#61481C'
+                        onPress={()=>navigation.navigate("MessageCustomer")} />
+                    <Image source={require("../../images/147137.png")} style= {styles.userImage}/>
+                    <Text style={styles.username}>Kengry the Bot</Text>
+                </View>
+                <TouchableOpacity onPress={()=>{}}>
+                    <Image source={require("../../images/aichatbot.png")} style= {styles.botImage}/>
+                </TouchableOpacity>
+            </View>
+            <View style={styles.frameChat}>
+                <ScrollView contentContainerStyle={styles.messagesContainer}>
+                    {messagesData.slice().map((item, index) => (
+                        <View key={index} style={item.role==='assistant'?styles.chatView1:styles.chatView2}>    
+                            <Text>{item.role==='assistant'?'BOT: ':'USER: '}</Text>
+                            <Text style={styles.textView1}>{item.content[0].text.value}</Text>
+                        </View>
+                    ))}
+
+                </ScrollView>
+            </View>
         </View>
+        <View style={styles.bottomContainer}>
+            <View style={styles.frameTexting}>
+                <TextInput
+                    style={styles.input}
+                    value= {userPrompt}
+                    placeholder="Insert what you want to ask here"
+                    onChangeText={text => setUserPrompt(text)}
+                    />
+                <TouchableOpacity onPress={handleSend}>    
+                    <Icon name="send" size={24} color="#61481C" />
+                </TouchableOpacity>
+            </View>    
+        </View>    
+    </View>    
+    
+    
     )
 }
 
 export default KengryChatBOT
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        backgroundColor: '#F9F9C6',
+    },
+    mainContainer: {
+        flex: 1,
+        paddingHorizontal: 5,
+    },
+    header:{
+        padding:5,
+        marginTop: 30,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    rightGroup: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
+    userImage: {
+        width: 65,
+        height: 65,
+    },
+    username:{
+        paddingHorizontal: 10,
+        fontSize: 18,
+        fontWeight: 'bold',
+        color:'#61481C'
+    },
+    botImage: {
+        justifyContent: 'flex-end',
+        width: 65,
+        height: 65,
+    },
+    bottomContainer: {
+		height: 50,
+        borderRadius: 50,
+        backgroundColor: "white",
+        padding: 10,
+	},
+    frameChat:{
+        padding:7,
+        flex: 1,
+    },
+    messagesContainer: {
+        flexGrow: 1, 
+        justifyContent: 'flex-end',
+    },
+    chatView1:{
+        justifyContent: 'flex-end',
+    },
+    chatView1:{
+        alignSelf: 'flex-start',
+    },
+    textView1: {
+        padding: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#ccc',
+        backgroundColor: 'white',
+        height: 'auto',
+        borderRadius: 20,
+    },
+    chatView2:{
+        alignSelf: 'flex-end',
+        justifyContent:'flex-end',
+    },
+    textView2: {
+        padding: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#ccc',
+        backgroundColor: 'white',
+        height: 'auto',
+        borderRadius: 20,
+    },
 
-})
+	frameTexting: {
+		width: "100%",
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+	},
+    input: {
+        flex: 1,
+        height: 40,
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderRadius: 20,
+        paddingHorizontal: 10,
+        marginRight: 10,
+    },
+    sendIcon: {
+        marginRight: 10,
+    },
+    
+});

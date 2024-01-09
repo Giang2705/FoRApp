@@ -74,7 +74,7 @@ const KengryChatBOT = () => {
 
     // HANDLE BOT
     // Variables for AI apis
-    const apiKey = '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'
+    const apiKey = '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'
     const assistantID = 'asst_JBPA46nmUDsH1j0xqt703OEh'
     const [threadID, setThreadID] = useState('');
 
@@ -253,7 +253,6 @@ const KengryChatBOT = () => {
             <TouchableOpacity onPress={stopRecording}>
                 <Text>Stop Recording</Text>
             </TouchableOpacity >
-
         </View>
     )
 }

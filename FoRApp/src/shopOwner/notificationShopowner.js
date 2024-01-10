@@ -38,10 +38,6 @@ export default function NotificationShopowner({ navigation }) {
             </View>    
             <View style={styles.bottomContainer}>
                 <View style={styles.bottomNav}>
-                    <IconButton icon={props => <OIcon name="home" {...props} size={30}/>}
-                                margin={8}
-                                color="#AAACAE"
-                                onPress={()=> navigation.navigate()} />
                     <IconButton icon={props => <Icon name="chatbox-outline" {...props} size={30}/>}
                                 margin={8}
                                 color="#AAACAE"
@@ -58,10 +54,6 @@ export default function NotificationShopowner({ navigation }) {
                                 color='#C51606'
                                 margin={8}
                                 onPress={()=>navigation.navigate()}/>
-                    <IconButton icon={props => <Icon name="archive-outline" {...props} size={33}/>} 
-                                color="#AAACAE"
-                                margin={8}
-                                onPress={()=>navigation.navigate("")}/>
                 </View>
             </View>
         </View>

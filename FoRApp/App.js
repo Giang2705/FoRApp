@@ -16,7 +16,6 @@ import NotificationCustomer from './src/customers/notificationCustomer';
 import EditFood from './src/shopOwner/editFoodpage'
 import EditRestaurant from './src/shopOwner/editRestaurantpage';
 import ChatBoxView from './src/customers/chatBoxView';
-import DeliveryShopownerPage from './src/shopOwner/deliveryShopownerPage';
 import NotificationShopowner from './src/shopOwner/notificationShopowner';
 
 const StackNavigator = createStackNavigator()
@@ -24,7 +23,7 @@ const StackNavigator = createStackNavigator()
 const AppInner = () => {
   return (
     <NavigationContainer>
-      <StackNavigator.Navigator initialRouteName="OrderHistoryCustomer">
+      <StackNavigator.Navigator initialRouteName="NotificationShopowner">
 
         {/* Admin */}
         <StackNavigator.Screen name="Dashbroad" component={Dashbroad} options={{headerShown: false}}/>
@@ -41,7 +40,6 @@ const AppInner = () => {
         {/* Shop Onwer */}
         <StackNavigator.Screen name="EditFood" component={EditFood} options={{headerShown: false}}/>
         <StackNavigator.Screen name="EditRestaurant" component={EditRestaurant} options={{headerShown: false}}/>
-        <StackNavigator.Screen name="DeliveryPage" component={DeliveryShopownerPage} options={{headerShown: false}}/>
         <StackNavigator.Screen name="NotificationShopowner" component={NotificationShopowner} options={{headerShown: false}}/>
 
 

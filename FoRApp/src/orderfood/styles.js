@@ -142,8 +142,8 @@ const styles = StyleSheet.create({
         bottom: -310,
         justifyContent:"center",
         alignItems:"center",
-        
     },
+
 })
 
 export default styles;

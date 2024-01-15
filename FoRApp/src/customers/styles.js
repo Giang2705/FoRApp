@@ -135,7 +135,14 @@ const  styles = StyleSheet.create({
 	searchText: {
 		fontFamily: "Montserrat",
 		width: "80%"
-	}
+	},
+	timeSlotInput: {
+        fontFamily: "Montserrat",
+        backgroundColor: "transparent",
+        borderRadius: 15,
+        borderColor: "#61481C",
+        borderWidth: 1
+    }
 })
 
 export default styles;

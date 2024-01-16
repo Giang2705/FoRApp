@@ -141,7 +141,12 @@ const  styles = StyleSheet.create({
         backgroundColor: "transparent",
         borderRadius: 15,
         borderColor: "#61481C",
-        borderWidth: 1
+        borderWidth: 1,
+		width: '12%',
+		padding: 8,
+		fontSize: 20,
+		alignContent:'center'
+		// width: "100%",
     }
 })
 

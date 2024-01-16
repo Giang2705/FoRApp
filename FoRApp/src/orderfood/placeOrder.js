@@ -94,7 +94,6 @@ const PlaceOrder = ({navigation}) => {
                                             marginTop: 8,
                                             marginBottom: 5
                                         }}/>
-                                        
                                     </Box>
                                     <Stack spacing={5} 
                                     style={{
@@ -116,18 +115,102 @@ const PlaceOrder = ({navigation}) => {
                                 </Flex>
                             </TouchableOpacity>
                         </Box>
-                        <Stack spacing={10}>
-                            
+                        <Stack spacing={8}>
+                            <Text style={styles.header}>Pick-up Time Slot</Text>
+                            <Flex direction='row'  w="88%" justifyContent="center" >
+                                <TextInput placeholderTextColor='#61481C'
+                                inputMode='numeric'
+                                style={styles.timeSlotInput} />
+                                <Text style={{
+                                    fontFamily: "Montserrat-Bold",
+                                    color: "#61481C",
+                                    fontSize: 25,
+                                    alignSelf: "center",
+                                    paddingLeft: 10,
+                                    paddingRight: 10
+                                }}>:</Text>
+                                <TextInput placeholderTextColor='#61481C'
+                                inputMode='numeric'
+                                style={styles.timeSlotInput} />
+                            </Flex>
                         </Stack>
-                        <Text style={styles.header}>Pick-up Time Slot</Text>
-                        <Flex direction='row'>
-                            <TextInput placeholderTextColor='#61481C'
-                            inputMode='numeric'
-                            style={styles.timeSlotInput} />
+                       <Stack spacing={8}>
+                        <Text style={styles.header}>Checkout</Text>
+                        <Flex direction='row' w="88%" justifyContent="space-between">
+                            <Text style={{
+                                fontFamily: "Montserrat",
+                                fontSize: 15,
+                                color: "#61481C"
+                            }}>Food Amount</Text>
+                            <Text style={{
+                                 fontFamily: "Montserrat-Bold",
+                                 fontSize: 15,
+                                 color: "#61481C"
+                            }}>2</Text>
                         </Flex>
+                        <Flex direction='row' w="88%" justifyContent="space-between">
+                            <Text style={{
+                                fontFamily: "Montserrat",
+                                fontSize: 15,
+                                color: "#61481C"
+                            }}>Total price</Text>
+                            <Text style={{
+                                 fontFamily: "Montserrat-Bold",
+                                 fontSize: 15,
+                                 color: "#61481C"
+                            }}>75.000 VND</Text>
+                        </Flex>
+                        <Flex direction='row' w="88%" justifyContent="space-between">
+                            <Text style={{
+                                fontFamily: "Montserrat-Bold",
+                                fontSize: 15,
+                                color: "#61481C"
+                            }}>Total credits</Text>
+                            <Text style={{
+                                 fontFamily: "Montserrat-Bold",
+                                 fontSize: 15,
+                                 color: "#61481C"
+                            }}>75</Text>
+                        </Flex>
+                       </Stack>
+                       <Flex direction='row' style={{
+                            marginTop: 140
+                       }}>
+                        <Text style={{
+                            fontFamily: "Montserrat-Medium",
+                            color: "#61481C"
+                        }}>Your Credits: </Text>
+                        <Text style={{
+                            fontFamily: "Montserrat-Medium",
+                            color: "#61481C"
+                        }}>100</Text>
+                       </Flex>
+                       <View style={{}}>
+                            <TouchableOpacity>
+                                <Box 
+                                    style={{
+                                        backgroundColor: "#C51605",
+                                        borderRadius: 25,
+                                        width: "88%",
+                                        alignItems: "center",
+                                        height: 45
+                                    }}>
+                                        <Text style={{
+                                            fontFamily: "Montserrat-SemiBold",
+                                            fontSize: 18,
+                                            color: "white",
+                                            lineHeight: 30,
+                                            paddingTop: 7,
+                                            alignSelf: "center"
+                                        }}>PLACE ORDER</Text>
+                                    </Box>
+                            </TouchableOpacity>
+                        </View>
                     </Stack>
                 </View>
+                
             </Stack>
+            
         </View>
     );
 }

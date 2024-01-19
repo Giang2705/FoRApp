@@ -132,6 +132,22 @@ const  styles = StyleSheet.create({
 		position: "absolute",
 		marginLeft: 310
 	},
+	searchText: {
+		fontFamily: "Montserrat",
+		width: "80%"
+	},
+	timeSlotInput: {
+        fontFamily: "Montserrat",
+        backgroundColor: "transparent",
+        borderRadius: 15,
+        borderColor: "#61481C",
+        borderWidth: 1,
+		width: '12%',
+		padding: 8,
+		fontSize: 20,
+		alignContent:'center'
+		// width: "100%",
+    }
 })
 
 export default styles;

@@ -11,8 +11,8 @@ import AddFood from './addFood';
 
 export default function HomepageShopOwner({navigation}) {
     const {colors} = useTheme()
-    const data = [{image: require("../../assets/sorrento.jpg"), name: "Rice with Pork", price: 35, hours: "8:30 AM - 4 PM"},
-                    {image: require("../../assets/sorrento.jpg"), name: "Chicken Curry", price: 55, hours: "8:30 AM - 4 PM"}]
+    const data = [{image: require("../../assets/pork.jpeg"), name: "Rice with Pork", price: 35, hours: "8:30 AM - 4 PM"},
+                    {image: require("../../assets/curry.jpg"), name: "Chicken Curry", price: 55, hours: "8:30 AM - 4 PM"}]
 
     const dataInformation = [{name: "Sorrento", openHours: "9 AM", closedHours: "4 PM"}]
     const [modalVisible, setModalVisible] = useState(false)
@@ -26,11 +26,11 @@ export default function HomepageShopOwner({navigation}) {
                 <Image source={require("../../assets/sorrento-restaurant-1-1024x682.jpg")}
                 style={styles.backgroundImage} />
                 <Text style={styles.header}>Sorrento</Text>
-                <TouchableOpacity style={styles.logoBackground} onPress={() => navigation.navigate("HomepageCustomer")}>
+                <TouchableOpacity style={styles.logoBackground} onPress={() => navigation.navigate("HomepageShopOwner")}>
                     <Image source={require("../../assets/logo.png")} style={styles.logoButton}></Image>
                 </TouchableOpacity>
                 <Text style={styles.header}>Sorrento</Text>
-                <IconButton icon={props => <Icon name="person" {...props} size={30} />} 
+                <IconButton icon={props => <Icon name="person" {...props} size={25} />} 
                             color='#C51606'
                             backgroundColor="white"
                             borderRadius={15}
@@ -72,7 +72,7 @@ export default function HomepageShopOwner({navigation}) {
                         <Flex items="center"
                                 direction='column'
                                 w="100%"
-                                marginTop={-80}
+                                marginTop={-70}
                                 marginBottom={15}>
                             <Stack spacing={5}>
                                 <Text style={{

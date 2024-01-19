@@ -55,25 +55,22 @@ export default function Setting({navigation})  {
                         </Flex>
                     </Box>
                 </Stack>
-                <Stack spacing={5}>
+                <Stack spacing={15}>
                     <TouchableOpacity>
-                        <Flex direction='row'>
-                            <IconButton icon={props => <Icon name="person-outline" {...props} />}
-                                        color="#61481C"></IconButton>
-                            <Text style={styles.settingText}>Update Profile</Text>
+                        <Flex  marginLeft={7} direction='row'>
+                                <Icon name="person-outline" color="#61481C" size={30} marginRight={10}/>
+                                <Text style={styles.settingText}>Update Profile</Text>
                         </Flex>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => navigation.navigate("TopupCredit")}>
-                        <Flex direction='row'>
-                            <IconButton icon={props => <Icon name="card-outline" {...props} />}
-                                        color="#61481C"></IconButton>
+                        <Flex direction='row' marginLeft={7}>
+                            <Icon name="card-outline" color="#61481C" size={30} marginRight={10}/>
                             <Text style={styles.settingText}>Add More Points</Text>
                         </Flex>
                     </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Flex direction='row'>
-                            <IconButton icon={props => <Icon name="lock-closed-outline" {...props} />}
-                                        color="#61481C"></IconButton>
+                    <TouchableOpacity onPress={() => navigation.navigate("UpdatePassword")}>
+                        <Flex direction='row' marginLeft={7}>
+                            <Icon name="lock-closed-outline" size={30} marginRight={10} color="#61481C"/>
                             <Text style={styles.settingText}>Change Password</Text>
                         </Flex>
                     </TouchableOpacity>

@@ -11,11 +11,11 @@ import Icon from 'react-native-vector-icons/Ionicons';
 export default function HomepageCustomer({navigation}) {
     const {colors} = useTheme();
     
-    const dataRestaurant = [{image: require("../../assets/sorrento.jpg"),name: "Sorrento", location: "Building 10 - Floor 2"},
-                            {image: require("../../assets/sorrento.jpg"),name: "Nine", location: "Building 8 - Floor 1"}]
+    const dataRestaurant = [{image: require("../../assets/restaurant1.jpg"),name: "Sorrento", location: "Building 10 - Floor 2"},
+                            {image: require("../../assets/restaurant2.jpeg"),name: "Nine", location: "Building 8 - Floor 1"}]
 
-    const dataFood = [{image: require("../../assets/sorrento.jpg"), name: "Chicken Pesto", restaurant: "Sorrento", hours: "Opening Hours: 10 AM - 4 PM"},
-                    {image: require("../../assets/sorrento.jpg"), name: "Fish Burrito", restaurant: "La Cantina", hours: "Opening Hours: 10 AM - 3 PM"}]
+    const dataFood = [{image: require("../../assets/chicken-pesto.jpg"), name: "Chicken Pesto", restaurant: "Sorrento", hours: "Opening Hours: 10 AM - 4 PM"},
+                    {image: require("../../assets/fish-burrito.webp"), name: "Fish Burrito", restaurant: "La Cantina", hours: "Opening Hours: 10 AM - 3 PM"}]
                     
     return ( 
         <View>
@@ -44,31 +44,31 @@ export default function HomepageCustomer({navigation}) {
                     <Stack w="100%" spacing={20} >
                         <ScrollView horizontal={true}>
                             {dataRestaurant.map((item, index) => (
-                                <Stack elevation={3}
-                                key={index}
-                                backgroundColor="white"
-                                marginRight={20}
-                                w="70%"
-                                alignSelf="center"
-                                borderRadius={15}
-                                direction="column"
-                                padding={15}
-                                spacing={5}
+                                <TouchableOpacity onPress={() => navigation.navigate("ViewRestaurant")}>
+                                    <Stack elevation={3}
+                                        key={index}
+                                        backgroundColor="white"
+                                        marginRight={20}
+                                        w={200}
+                                        alignSelf="center"
+                                        borderRadius={15}
+                                        direction="column"
+                                        padding={15}
+                                        spacing={5}
+                                    >
+                                        {/* nếu không có hình thì để cái này */}
+                                        {/* <IconButton 
+                                            icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
+                                            imageStyle={{borderRadius: 10}} 
+                                        /> */} 
+                                        <Image source={item.image} style = {styles.imageRestaurant}/>
+                                        <View w="58%">
+                                            <Text style={styles.textTitle}>{item.name}</Text>
+                                            <Text style={styles.text}>{item.location}</Text>
+                                        </View>
+                                    </Stack>
+                                </TouchableOpacity>
                                 
-                            >
-                                {/* nếu không có hình thì để cái này */}
-                                {/* <IconButton 
-                                    icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
-                                    imageStyle={{borderRadius: 10}} 
-                                /> */} 
-                                
-                                    <Image source={item.image} style = {styles.imageRestaurant}/>
-                                    <View w="58%">
-                                        <Text style={styles.textTitle}>{item.name}</Text>
-                                        <Text style={styles.text}>{item.location}</Text>
-                                    </View>
-                                
-                                </Stack>
                             ))}
                             
                             {/* <Stack elevation={3}
@@ -99,31 +99,33 @@ export default function HomepageCustomer({navigation}) {
                     <Text style={styles.header} marginTop={20}>What's New Today?</Text>
                     <Stack w="100%" spacing={15} >
                         {dataFood.map((item, index)=> (
-                            <Box elevation={3}
-                            backgroundColor="white"
-                            style={styles.cardContainer}
-                            w="90%"
-                            borderRadius={15}
-                            key={index}
-                            >
-                                <Flex w="100%"
-                                items= "center"
-                                direction="row"
-                                padding={9}
+                            <TouchableOpacity onPress={() => navigation.navigate("ViewFood")}>
+                                <Box elevation={3}
+                                backgroundColor="white"
+                                style={styles.cardContainer}
+                                w="90%"
+                                borderRadius={15}
+                                key={index}
                                 >
-                                    {/* nếu không có hình thì để cái này */}
-                                    {/* <IconButton 
-                                        icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
-                                        imageStyle={{borderRadius: 10}} 
-                                    /> */} 
-                                    <Image source={item.image} style={styles.imageFood}/>
-                                    <Stack spacing={5} w="58%" marginLeft={10}>
-                                        <Text style={styles.textTitle}>{item.name}</Text>
-                                        <Text style={styles.text} >{item.restaurant}</Text>
-                                        <Text style={styles.textHours}>{item.hours}</Text>
-                                    </Stack>
-                                </Flex>
-                            </Box>
+                                    <Flex w="100%"
+                                    items= "center"
+                                    direction="row"
+                                    padding={9}
+                                    >
+                                        {/* nếu không có hình thì để cái này */}
+                                        {/* <IconButton 
+                                            icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
+                                            imageStyle={{borderRadius: 10}} 
+                                        /> */} 
+                                        <Image source={item.image} style={styles.imageFood}/>
+                                        <Stack spacing={5} w="58%" marginLeft={10}>
+                                            <Text style={styles.textTitle}>{item.name}</Text>
+                                            <Text style={styles.text} >{item.restaurant}</Text>
+                                            <Text style={styles.textHours}>{item.hours}</Text>
+                                        </Stack>
+                                    </Flex>
+                                </Box>
+                            </TouchableOpacity>
                         ))}
                     </Stack>
                 </ScrollView> 
@@ -145,7 +147,7 @@ export default function HomepageCustomer({navigation}) {
                         borderRadius={40}
                         // position="absolute"
                         marginBottom={10}
-                        onPress={() =>navigation.navigate()}
+                        onPress={() =>navigation.navigate("SearchPage")}
                         />
                     <IconButton icon={props => <Icon name="notifications-outline" {...props} size={30}/>}
                                 color='#AAACAE'
@@ -154,7 +156,7 @@ export default function HomepageCustomer({navigation}) {
                     <IconButton icon={props => <Icon name="cart-outline"{...props} size={33}/>} 
                                 color="#AAACAE"
                                 margin={8}
-                                onPress={()=>navigation.navigate()}/>
+                                onPress={()=>navigation.navigate("Cart")}/>
                 </View>
             </View>
         </View>

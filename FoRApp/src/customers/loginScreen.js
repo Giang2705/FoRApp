@@ -10,27 +10,7 @@ export default function LoginPage({ navigation }) {
   
   const handleLogin = () => {
     // Perform login logic
-    fetch ('http://localhost:3000/user/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.parse(JSON.stringify(inputData))
-    })
-    .then(res => res.json()).then(
-      data => {
-        if (!data.error) {
-            console.log(inputData);
-            alert("Login successfully!")
-            navigation.navigate('HomepageCustomer');
-        } else {
-          alert(data.error)
-        }
-      }
-    ).catch((error)=>{
-      alert("Error: " + error.message);
-      throw error;
-    });
+    
   };
 
   const handleSignup = () => {
@@ -43,7 +23,7 @@ export default function LoginPage({ navigation }) {
     <View style={styles.container}>
       <View style={styles.main}>
         <Image
-            source={require("../../images/logo.png")}
+            source={require("../../assets/logo.png")}
             style={styles.image}/>
         <Text style={styles.subtitle}>Fine words butter no parsnips</Text>
         <View style={styles.anothercontainer}>

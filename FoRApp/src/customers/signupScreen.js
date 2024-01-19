@@ -4,15 +4,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 
 export default function SignupPage({ navigation }) {
-
-  // const [phoneNumber, setPhoneNum] = useState('');
-  // const [username, setUsername] = useState('');
-  // const [password, setPassword] = useState('');
-  // const handleLogin = () => {
-  //   console.log('Username:', username);
-  //   console.log('Password:', password);
-  // };
-
   const [inputData, setInputData] = useState({
     name: "",
     email: "",
@@ -20,36 +11,9 @@ export default function SignupPage({ navigation }) {
     phoneNumber: "",
   });
   const [err, errMessage] = useState(null);
-  
-  // const handleLogin = () => {
-  //   console.log('Username:', username);
-  //   console.log('Password:', password);
-  // };
 
   const signupBtnPress = () => {
-      console.log(inputData)
-      fetch ('http://localhost:3000/user/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.parse(JSON.stringify(inputData))
-      })
-      .then(res => res.json()).then(
-        data => {
-          if (!data.error) {
-              alert("Account created successfully!")
-              navigation.navigate('LoginPage');
-          } else {
-            alert(data.error)
-          }
-        }
-      )
-      .catch (function(error) {
-        console.log('There has been a problem with your fetch operation: ' + error.message);
-         // ADD THIS THROW error
-          throw error;
-      });
+    //Sign up logic
   };
 
   const loginBtnPress = () => {
@@ -61,7 +25,7 @@ export default function SignupPage({ navigation }) {
     <View style={styles.container}>
       <View style={styles.main}>
         <Image
-            source={require("../../images/logo.png")}
+            source={require("../../assets/logo.png")}
             style={styles.image}/>
         <Text style={styles.subtitle}>Fine words butter no parsnips</Text>
         <View style={styles.anothercontainer}>

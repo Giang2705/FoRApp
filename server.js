@@ -16,6 +16,7 @@ app.use(fileUpload({
 
 // Routes
 app.use("/api", require("./routes/uploadImageRoutes"))
+app.use("/api/auth", require("./routes/authRoutes"))
 
 // Connect to mongodb
 const connectDatabase = async () => {

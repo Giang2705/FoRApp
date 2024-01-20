@@ -10,8 +10,8 @@ import OIcon from "react-native-vector-icons/Octicons";
 import { Box, Flex } from '@react-native-material/core';
 
 const Cart = ({navigation}) => {
-    const data = [{image: require("../../assets/sorrento.jpg"), name: "Sorento", itemsNum: 2, total: 40},
-                    {image: require("../../assets/sorrento.jpg"), name: "Nine", itemsNum: 4, total: 100}]
+    const data = [{image: require("../../assets/restaurant1.jpg"), name: "Sorento", itemsNum: 2, total: 40},
+                    {image: require("../../assets/restaurant2.jpeg"), name: "Nine", itemsNum: 4, total: 100}]
     return (
         <View>
             <Stack

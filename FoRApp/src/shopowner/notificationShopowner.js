@@ -5,9 +5,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import OIcon from "react-native-vector-icons/Octicons";
 
 const data = [
-    { image: require("../../assets/sorrento.jpg"), name: 'fOOD1', price: 65000 , quantity: 1, order: 'Orderred by user 1'},
-    { image: require("../../assets/sorrento.jpg"), name: 'FOOD 123', price: 400000, quantity: 6, order: 'Orderred by user 3' },
-    { image: require("../../assets/sorrento.jpg"), name: 'F', price: 250000, quantity: 4, order: 'Orderred by user 7' },
+    { image: require("../../assets/pork.jpeg"), name: 'fOOD1', price: 65000 , quantity: 1, order: 'Orderred by user 1'},
+    { image: require("../../assets/curry.jpg"), name: 'FOOD 123', price: 400000, quantity: 6, order: 'Orderred by user 3' },
+    { image: require("../../assets/fish-burrito.webp"), name: 'F', price: 250000, quantity: 4, order: 'Orderred by user 7' },
   ];
 
 const colors = {

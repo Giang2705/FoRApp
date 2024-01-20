@@ -23,11 +23,11 @@ export default function ChatBoxView({ navigation }) {
                         <IconButton icon={props => <Icon name="arrow-back" {...props} size={30} />} 
                             style={styles.back} color='#61481C'
                             onPress={()=>navigation.navigate("MessageCustomer")} />
-                        <Image source={require("../../assets/sorrento.jpg")} style= {styles.userImage}/>
-                        <Text style={styles.username}>Shoper</Text>
+                        <Image source={require("../../assets/restaurant1.jpg")} style= {styles.userImage}/>
+                        <Text style={styles.username}>Sorrento</Text>
                     </View>
                     <TouchableOpacity onPress={'Logic for AI'}>
-                        <Image source={require("../../assets/sorrento.jpg")} style= {styles.botImage}/>
+                        <Image source={require("../../assets/avatar.jpg")} style= {styles.botImage}/>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.frameChat}>

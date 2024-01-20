@@ -26,44 +26,47 @@ const restaurantControllers = {
             return res.status(500).json({ msg: err.message });
           }
     }, 
-    getAllFood: async(req, res) => {
+    getARestaurant: async(req, res) => {
         try {
-            const foods = await req.body;
-      
-            res.json({
-              status: "success",
-              result: foods.length,
-              foods: foods,
-            });
-          } catch (err) {
-            return res.status(500).json({ msg: err.message });
-          }
+          const restaurant = await Restaurants.findById(req.params.id).populate("shopOwner");
+          res.status(200).json(restaurant);
+        } catch (err) {
+          res.status(500).json(err);
+        }
     }, 
-    deleteFood: async(req, res) => {
+    getListRestaurant: async(req, res) => {
+      try {
+        const restaurants = await Restaurants.find();
+        res.status(200).json(restaurants);
+      } catch (err) {
+        res.status(500).json(err);
+      }
+  }, 
+    deleteRestaurant: async(req, res) => {
         try {
-            await Foods.findByIdAndDelete(req.params.id);
-            res.json({ msg: "Food deleted" });
-          } catch (err) {
-            return res.status(500).json({ msg: err.message });
-          }
+            await Foods.deleteMany({restaurant: req.params.id});
+            await Restaurants.findByIdAndDelete(req.params.id);
+            res.json({ msg: "Restaurant deleted" });
+        } catch (err) {
+          return res.status(500).json({ msg: err.message });
+        }
     }, 
-    updateFood: async(req, res) => {
+    updateRestaurant: async(req, res) => {
         try {
-            const { name, price, description } =
+            const { name, description } =
               req.body;
             // if (!images) return res.status(400).json({ msg: "No image upload" });
       
-            await Foods.findByIdAndUpdate(
+            await Restaurants.findByIdAndUpdate(
               { _id: req.params.id },
               {
                 name,
-                price,
                 description,
                 // images,
               }
             );
       
-            res.json({ msg: "Updated food" });
+            res.json({ msg: "Updated restaurant" });
           } catch (err) {
             return res.status(500).json({ msg: err.message });
           }

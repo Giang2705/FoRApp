@@ -32,7 +32,7 @@ const foodControllers = {
             return res.status(500).json({ msg: err.message });
           }
     }, 
-    getAllFood: async(req, res) => {
+    getAllFoodInRes: async(req, res) => {
         try {
         const restaurantId = req.params.restaurantId;
         const foods = await Foods.find({ restaurant: restaurantId }).populate('restaurant');
@@ -40,6 +40,14 @@ const foodControllers = {
         } catch (err) {
         res.status(500).json(err);
         }
+    }, 
+    getAllFood: async(req, res) => {
+      try {
+        const foods = await Foods.find();
+        res.status(200).json(foods);
+      } catch (err) {
+        res.status(500).json(err);
+      }
     }, 
     deleteFood: async(req, res) => {
         try {

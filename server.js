@@ -19,6 +19,7 @@ app.use("/api", require("./routes/uploadImageRoutes"))
 app.use("/api/auth", require("./routes/authRoutes"))
 app.use("/api/foods", require("./routes/foodRoutes"))
 app.use("/api/restaurants", require("./routes/restaurantRoutes"))
+app.use("/api/orders", require("./routes/orderRoutes"))
 
 
 // Connect to mongodb

@@ -15,11 +15,16 @@ const orderSchema = new mongoose.Schema({
     },
     total: {
         type: Number,
+        default: 0,
     },
     status: {
         type: String,
         default: "Appending...",
     },
+    time: {
+        type: String,
+        default: "00:00"
+    }
 }, {
     timestamps: true,
 })

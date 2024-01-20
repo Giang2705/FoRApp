@@ -48,7 +48,7 @@ export default function EditRestaurant({ navigation }) {
         </View>
       </ImageBackground>
       ) : ( 
-      <ImageBackground source={require('../../assets/sorrento.jpg')} style={styles.backgroundImage}>
+      <ImageBackground source={require('../../assets/restaurant1.jpg')} style={styles.backgroundImage}>
         <View style={styles.headerContainer}>
           <TouchableOpacity style={styles.updateIconImage} onPress={pickImage}>
             <Image source={require('../../assets/sorrento.jpg')} style={styles.iconImage} />

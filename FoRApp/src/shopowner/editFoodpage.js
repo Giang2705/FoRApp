@@ -39,7 +39,7 @@ export default function EditFood({ navigation }) {
                     {image ? (
                         <Image source={{ uri: image  }} style={styles.image}/>
                         ) : ( 
-                        <Image source={require('../../assets/sorrento.jpg')} style={styles.image} />
+                        <Image source={require('../../assets/pork.jpeg')} style={styles.image} />
                     )}
                     <TouchableOpacity onPress={pickImage}>
                         <Text style={styles.imagePickerText}>Change Image</Text>

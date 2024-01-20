@@ -51,7 +51,7 @@ const ViewFood = ({navigation}) => {
             style={{
                 alignSelf:"center"
             }}>
-                <Image source={require("../../assets/sorrento.jpg")} 
+                <Image source={require("../../assets/hamburger.jpg")} 
                 style={styles.imageFood}
                 />
         </Box>

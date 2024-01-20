@@ -9,8 +9,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 export default function ViewRestaurant({navigation}) {
     const {colors} = useTheme()
-    const data = [{image: require("../../assets/sorrento.jpg"), name: "Rice with Pork", price: 35, hours: "8:30 AM - 4 PM"},
-                    {image: require("../../assets/sorrento.jpg"), name: "Chicken Curry", price: 55, hours: "8:30 AM - 4 PM"}]
+    const data = [{image: require("../../assets/pork.jpeg"), name: "Rice with Pork", price: 35, hours: "8:30 AM - 4 PM"},
+                    {image: require("../../assets/curry.jpg"), name: "Chicken Curry", price: 55, hours: "8:30 AM - 4 PM"}]
     return (
         <View>
             <View>

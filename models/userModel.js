@@ -31,6 +31,10 @@ const userSchema = new mongoose.Schema({
   cart: {
     type: Array,
     default: [],
+  },
+  onGoingOrder: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Order",
   }
 });
 

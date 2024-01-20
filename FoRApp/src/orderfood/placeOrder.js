@@ -44,7 +44,7 @@ const PlaceOrder = ({navigation}) => {
                                         width: '20%',
                                         borderRadius: 15
                                     }}>
-                                        <Image source={require("../../assets/logo.png")} 
+                                        <Image source={require("../../assets/hamburger.jpg")} 
                                         style={{
                                             width: '100%',
                                             height: 50,
@@ -85,7 +85,7 @@ const PlaceOrder = ({navigation}) => {
                                         width: '20%',
                                         borderRadius: 15
                                     }}>
-                                        <Image source={require("../../assets/logo.png")} 
+                                        <Image source={require("../../assets/hamburger.jpg")} 
                                         style={{
                                             width: '100%',
                                             height: 50,

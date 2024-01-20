@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get("/", orderControllers.getAllOrders)
 router.get("/:id", orderControllers.getAnOrder)
-router.get("/getOrdersInRes/:shopOwnerId", orderControllers.getAllOrdersInRes)
+router.get("/getOrdersInRes/:restaurant", orderControllers.getAllOrdersInRes)
 router.get("/getOrdersOfUser/:userId", orderControllers.getAllOrdersOfUser)
 router.post("/create", orderControllers.createOrder)
 router.delete("/:id", orderControllers.deleteOrder)

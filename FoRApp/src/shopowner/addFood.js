@@ -8,6 +8,30 @@ import FIcon from "react-native-vector-icons/Feather"
 
 export default function AddFood({ modalVisible, setModalVisible }) {
     const {colors} = useTheme()
+    const [inputData, setInputData] = useState({
+        name: "",
+        price: "",
+        description: "",
+        restaurant: "",
+      });
+
+    const handleAddFood = async () => {
+        // Perform login logic
+        const url = "http://localhost:3000/api/foods/create"
+
+        await axios.post(url, inputData).then((response) => {
+            const result = response.data;
+            if (response.status == 201){
+            alert("Sign up successfully!");
+            navigation.navigate('LoginPage');
+            } else if (response.status == 401){
+            alert(response.data);
+            }
+        })
+        .catch((err) =>{
+        alert(err);
+        })
+    }
 
     useEffect(() => {
         if (!modalVisible) {

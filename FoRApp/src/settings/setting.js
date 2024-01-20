@@ -45,7 +45,7 @@ export default function Setting({navigation, route})  {
                                 backgroundColor="#C51606"
                                 borderRadius={15}
                                 style={styles.userButton}
-                                onPress={() => navigation.navigate("Setting")}/>
+                                onPress={() => navigation.navigate("Setting", {...route.params})}/>
                 </View>
                 <Stack spacing={8}>
                     <Box w="90%">

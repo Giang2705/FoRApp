@@ -16,6 +16,10 @@ const restaurantSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Food",
     }],
+    orders: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Order",
+    }],
     description: {
         type: String,
     },

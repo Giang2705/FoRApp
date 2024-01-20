@@ -13,9 +13,9 @@ const orderControllers = {
               const user = Users.findById(req.body.user);
               await user.updateOne({ $push: { orders: savedOrder._id } });
             }
-            if (req.body.shopOwner) {
-              const shopOwner = Users.findById(req.body.shopOwner);
-              await shopOwner.updateOne({ $push: { orders: savedOrder._id } });
+            if (req.body.restaurant) {
+              const restaurant = Restaurants.findById(req.body.restaurant);
+              await restaurant.updateOne({ $push: { orders: savedOrder._id } });
             }
             res.status(200).json(savedOrder);
         } catch (err) {
@@ -24,7 +24,7 @@ const orderControllers = {
     }, 
     getAnOrder: async(req, res) => {
         try {
-            const order = await Orders.findById(req.params.id).populate('user', 'shopOwner');
+            const order = await Orders.findById(req.params.id).populate('user', 'restaurant');
             res.status(200).json(order);
         } catch (err) {
             res.status(500).json(err);
@@ -32,8 +32,8 @@ const orderControllers = {
     }, 
     getAllOrdersInRes: async(req, res) => {
         try {
-        const shopOwnerId = req.params.shopOwnerId;
-        const orders = await Orders.find({ shopOwner: shopOwnerId }).populate('user', 'shopOwner');
+        const restaurantId = req.params.restaurantId;
+        const orders = await Orders.find({ restaurant: restaurantId }).populate('user', 'restaurant');
         res.status(200).json(orders);
         } catch (err) {
         res.status(500).json(err);
@@ -42,7 +42,7 @@ const orderControllers = {
     getAllOrdersOfUser: async(req, res) => {
         try {
             const userId = req.params.userId;
-            const orders = await Orders.find({ user: userId }).populate('user', 'shopOwner');
+            const orders = await Orders.find({ user: userId }).populate('user', 'restaurant');
         res.status(200).json(orders);
         } catch (err) {
         res.status(500).json(err);

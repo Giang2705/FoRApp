@@ -13,7 +13,7 @@ const UpdatePassword = ({navigation, route}) => {
     const colors = useTheme()
     const {email} = route.params;
     const [inputData, setInputData] = useState({email: email, oldPassword: "oldPassord", newPassword: "newPassword"});
-    const [conPassword, setConPasswor] = useState();
+    const [conPassword, setConPassword] = useState();
 
     const handleChangePass = async () => {
         // Perform login logic
@@ -45,7 +45,7 @@ const UpdatePassword = ({navigation, route}) => {
             marginLeft = {20}
             spacing={20}>
                 <View>
-                    <TouchableOpacity style={styles.logoBackground} onPress={() => navigation.navigate("HomepageCustomer")}>
+                    <TouchableOpacity style={styles.logoBackground} onPress={() => navigation.navigate("HomepageCustomer", {...route.params})}>
                         <Image source={require("../../assets/logo.png")} style={styles.logoButton}></Image>
                     </TouchableOpacity>
                     <IconButton icon={props => <Icon name="person" {...props} size={25} />} 
@@ -103,7 +103,7 @@ const UpdatePassword = ({navigation, route}) => {
                         <TextInput secureTextEntry={true} placeholderTextColor='#61481C'
                         placeholder='Confirm new password'
                         style={styles.passwordInput}
-                        onChangeText={text => setConPasswor(text)}
+                        onChangeText={text => setConPassword({text})}
                         />
                         <TouchableOpacity onPress={() => handleChangePass()}>
                             <Box 

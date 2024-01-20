@@ -1,27 +1,39 @@
 const Foods = require("../models/foodModel");
+const Users = require("../models/userModel");
 const Restaurants = require("../models/restaurantModel");
+const axios = require("axios");
 
 const restaurantControllers = {
     createRestaurant: async(req, res) => {
         try {
-            const { name, description, shopOwner } =
+            const { name, description, shopOwnerEmail, shopOwnerName, shopOwnerPassword, shopOwnerPhoneNumber } =
               req.body;
             // if (!images) return res.status(400).json({ msg: "No image upload" });
-      
-            const newRestaurant = new Restaurants({
-                name: name.toLowerCase(),
-                description,
-                shopOwner,
-              });
-
-            const restaurant = await Restaurants.findOne({name});
-            if (restaurant)
-              return res.status(400).json({ msg: "This restaurant already exists" });
-
-      
-            await newRestaurant.save();
-      
-            res.json({ msg: "Restaurant created" });
+              const url = "http://localhost:3000/api/auth/register/shopOwner"
+              const inputData = {
+                email: shopOwnerEmail,
+                name: shopOwnerName,
+                password: shopOwnerPassword,
+                phoneNumber: shopOwnerPhoneNumber
+              }
+              await axios.post(url, inputData).then(async (response) => {
+                  const newRestaurant = new Restaurants({
+                    name: name.toLowerCase(),
+                    description,
+                    shopOwner: response.data._id,
+                  });    
+                const restaurant = await Restaurants.findOne({name});
+                if (restaurant)
+                  return res.status(400).json({ msg: "This restaurant already exists" });
+    
+                await Users.findByIdAndUpdate(response.data._id, {$push : {restaurant: newRestaurant}})
+                await newRestaurant.save();
+                
+                res.json({ msg: "Restaurant created" });
+              })
+              .catch((err) =>{
+                console.log(err);
+              })
           } catch (err) {
             return res.status(500).json({ msg: err.message });
           }

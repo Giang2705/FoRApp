@@ -20,7 +20,7 @@ export default function Dashbroad({ navigation }) {
         <View style={styles.container}>
             <View style={styles.adminBar}>
                 <Image 
-                    source={require("../../assets/sorrento.jpg")}
+                    source={require("../../assets/logo.png")}
                     style={styles.logoImage} />
                 <TouchableOpacity style={styles.customerList}>
                     <Text style={styles.listText}>Customer List</Text>

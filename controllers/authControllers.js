@@ -56,9 +56,7 @@ register: async (req, res) => {
       const token = jwt.sign({_id: newUser._id}, process.env.JWT_SECRET)
   
       res.status(201).json({
-        _id: newUser._id,
-        name: newUser.name,
-        email: newUser.email,
+        newUser
       });
     } catch (error) {
       handleServerError(res, error);
@@ -92,6 +90,7 @@ login: async (req, res) => {
           credit: user.credit,
           cart: user.cart,
           orders: user.orders,
+          restaurant: user.restaurant,
         });
       } else {
         return res.status(401).json({ message: "Invalid email or password" });

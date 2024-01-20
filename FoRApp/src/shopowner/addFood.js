@@ -1,18 +1,20 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useTheme, Stack } from '@react-native-material/core';
 import { Avatar, View, Modal, Button, Text, Alert, TextInput, TouchableOpacity,
     KeyboardAvoidingView, Platform, TouchableNativeFeedback, Keyboard} from 'react-native';
 import styles from './style';
 import Icon from "react-native-vector-icons/Ionicons"
 import FIcon from "react-native-vector-icons/Feather"
+import axios from 'axios';
 
-export default function AddFood({ modalVisible, setModalVisible }) {
+export default function AddFood({ navigation, modalVisible, setModalVisible, route}) {
     const {colors} = useTheme()
+    const {restaurant} = route.params;
     const [inputData, setInputData] = useState({
         name: "",
         price: "",
         description: "",
-        restaurant: "",
+        restaurant: restaurant,
       });
 
     const handleAddFood = async () => {
@@ -21,15 +23,17 @@ export default function AddFood({ modalVisible, setModalVisible }) {
 
         await axios.post(url, inputData).then((response) => {
             const result = response.data;
-            if (response.status == 201){
-            alert("Sign up successfully!");
-            navigation.navigate('LoginPage');
+            console.log(result)
+            if (response.status == 200){
+                alert("Create food successfully!");
+                setModalVisible(false);
+                navigation.navigate("HomepageShopOwner", {...route.params})
             } else if (response.status == 401){
-            alert(response.data);
+                alert(response.data);
             }
         })
         .catch((err) =>{
-        alert(err);
+            alert(err);
         })
     }
 
@@ -63,15 +67,16 @@ export default function AddFood({ modalVisible, setModalVisible }) {
                                 <Text style={styles.modalText}>Food's Name</Text>
                                 <TextInput
                                 style={styles.textInput}
-                                placeholderTextColor='#61481C'></TextInput>
+                                placeholderTextColor='#61481C' onChangeText={text => setInputData({...inputData, name: text})}></TextInput>
                                 <Text style={styles.modalText}>Price</Text>
                                 <TextInput
                                 style={styles.textInput}
-                                placeholderTextColor='#61481C'></TextInput>
+                                placeholderTextColor='#61481C' onChangeText={text => setInputData({...inputData, price: text})}></TextInput>
                                 <Text style={styles.modalText}>Description</Text>
                                 <TextInput
                                 style={styles.descriptionInput}
                                 placeholderTextColor='#61481C'
+                                onChangeText={text => setInputData({...inputData, description: text})}
                                 inputMode='text'
                                 multiline={true} 
                                 />
@@ -79,7 +84,7 @@ export default function AddFood({ modalVisible, setModalVisible }) {
                             </Stack>
                             <Stack direction='row' spacing={15} style={styles.buttonForm}>
                                 <Button title="Add"  style={{marginRight:10}}
-                                    onPress={() => setModalVisible(!modalVisible)}/>
+                                    onPress={() => handleAddFood()}/>
                                 <Button title="Cancel" color="#C51605" style={{marginLeft:10}}
                                     onPress={() => setModalVisible(!modalVisible)}/>
                             </Stack>

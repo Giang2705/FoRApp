@@ -1,5 +1,5 @@
 import { Stack, Text, IconButton, Box, Flex, Button  } from '@react-native-material/core';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
 import styles from './style';
 import MIcon from "react-native-vector-icons/MaterialCommunityIcons";
@@ -7,18 +7,47 @@ import { useTheme } from '@react-navigation/native';
 import FIcon from 'react-native-vector-icons/Foundation';
 import Icon from 'react-native-vector-icons/Ionicons';
 import AddFood from './addFood';
+import axios from 'axios';
+import { RefreshControl } from 'react-native-gesture-handler';
 
-
-export default function HomepageShopOwner({navigation}) {
+export default function HomepageShopOwner({navigation, route}) {
     const {colors} = useTheme()
-    const data = [{image: require("../../assets/pork.jpeg"), name: "Rice with Pork", price: 35, hours: "8:30 AM - 4 PM"},
-                    {image: require("../../assets/curry.jpg"), name: "Chicken Curry", price: 55, hours: "8:30 AM - 4 PM"}]
-
-    const dataInformation = [{name: "Sorrento", openHours: "9 AM", closedHours: "4 PM"}]
     const [modalVisible, setModalVisible] = useState(false)
     const handleAddFoodPress = () => {
         setModalVisible(true);
       };
+    const {restaurant} = route.params
+    const [food, setFood] = useState([])
+    const [res, setRes] = useState()
+
+
+    const getAllFood = async () => {
+        const url = `http://127.0.0.1:3000/api/foods/${restaurant}`
+        await axios.get(url).then((response) => {
+            const result = response.data;
+            setFood(result)
+        })
+        .catch((err) =>{
+          alert(err);
+        })
+    }
+
+    const getRes = async () => {
+        const url = `http://127.0.0.1:3000/api/restaurants/${restaurant}`
+        await axios.get(url).then((response) => {
+            const result = response.data;
+            console.log(result)
+            setRes(result)
+        })
+        .catch((err) =>{
+          alert(err);
+        })
+    }
+
+    useEffect(() => {
+        getAllFood()
+        getRes()
+    }, res, []);
 
     return (
         <View>
@@ -26,7 +55,7 @@ export default function HomepageShopOwner({navigation}) {
                 <Image source={require("../../assets/sorrento-restaurant-1-1024x682.jpg")}
                 style={styles.backgroundImage} />
                 <Text style={styles.header}>Sorrento</Text>
-                <TouchableOpacity style={styles.logoBackground} onPress={() => navigation.navigate("HomepageShopOwner")}>
+                <TouchableOpacity style={styles.logoBackground} onPress={() => navigation.navigate("HomepageShopOwners", {...route.params})}>
                     <Image source={require("../../assets/logo.png")} style={styles.logoButton}></Image>
                 </TouchableOpacity>
                 <Text style={styles.header}>Sorrento</Text>
@@ -35,7 +64,7 @@ export default function HomepageShopOwner({navigation}) {
                             backgroundColor="white"
                             borderRadius={15}
                             style={styles.userButton}
-                            onPress={() => navigation.navigate("Setting")}/>
+                            onPress={() => navigation.navigate("Setting", {...route.params})}/>
             </View>
         
             <View>
@@ -44,10 +73,9 @@ export default function HomepageShopOwner({navigation}) {
                 style={styles.section}>General Information</Text>
                 <IconButton icon={props => <MIcon name="pencil" size={25} {...props} />} 
                             style={styles.addButton}
-                            onPress={navigation.navigate("")}
+                            // onPress={navigation.navigate("")}
                             color="#61481C"
                 />
-                {dataInformation.map((item,index) =>(
                     <Box elevation={4}
                     backgroundColor="white"
                     margin={15}
@@ -78,20 +106,19 @@ export default function HomepageShopOwner({navigation}) {
                                 <Text style={{
                                     fontSize: 13,
                                     color: "#61481C",
-                                }}>{item.name}</Text>
+                                }}>res.name</Text>
                                 <Text style={{
                                     fontSize: 13,
                                     color: "#61481C",
-                                }}>{item.openHours}</Text>
+                                }}>9 AM</Text>
                                 <Text style={{
                                     fontSize: 13,
                                     color: "#61481C",
-                                }}>{item.closedHours}</Text>
+                                }}>4 PM</Text>
                             </Stack>
 
                         </Flex>
                     </Box>
-                ))}
             </View>
             <View>
                 <Text marginTop={15}
@@ -101,7 +128,7 @@ export default function HomepageShopOwner({navigation}) {
                             style={styles.addButton}
                             onPress={handleAddFoodPress}
                             color="#61481C"/>
-                {data.map((item, index) => (
+                {food.map((item, index) => (
                     <Box elevation={4}
                     backgroundColor="white"
                     margin={15}
@@ -110,7 +137,7 @@ export default function HomepageShopOwner({navigation}) {
                         <Flex items="center"
                             direction='row'
                             w="100%">
-                            <Image source={item.image} style={styles.foodImage}/>
+                            <Image source={require("../../assets/curry.jpg")} style={styles.foodImage}/>
                             <Stack spacing={5}>
                                 <Text style={{
                                     fontSize: 15,
@@ -125,7 +152,7 @@ export default function HomepageShopOwner({navigation}) {
                                 <Text style={{
                                     fontSize: 12,
                                     color: "#C51605",
-                                }}>{item.hours}</Text>
+                                }}>8:30 AM - 4 PM</Text>
                             </Stack>
                             <Stack direction='column'spacing={15}>
                                 <Button title="edit" color="#D9D9D9" style={styles.buttonInCard}/>
@@ -134,10 +161,10 @@ export default function HomepageShopOwner({navigation}) {
                         </Flex>
                     </Box>
                 ))}
-            <AddFood modalVisible={modalVisible} setModalVisible={setModalVisible} />
+            <AddFood modalVisible={modalVisible} setModalVisible={setModalVisible} route={route}/>
 
             </View>
-            <Stack style={styles.bottomContainer} >
+            {/* <Stack style={styles.bottomContainer} >
                 <IconButton icon={props => <FIcon name="home" {...props} size={30}/>}
                             margin={8}
                             color="#C51606"
@@ -163,7 +190,7 @@ export default function HomepageShopOwner({navigation}) {
                             color="#AAACAE"
                             margin={8}
                             onPress={()=>navigation.navigate("")}/>
-            </Stack>
+            </Stack> */}
         </View>
     );
 }

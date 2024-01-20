@@ -34,11 +34,11 @@ const foodControllers = {
     }, 
     getAllFoodInRes: async(req, res) => {
         try {
-        const restaurantId = req.params.restaurantId;
-        const foods = await Foods.find({ restaurant: restaurantId }).populate('restaurant');
-        res.status(200).json(foods);
+          const restaurantId = req.params.restaurantId;
+          const foods = await Foods.find({ restaurant: restaurantId }).populate('restaurant');
+          res.status(200).json(foods);
         } catch (err) {
-        res.status(500).json(err);
+          res.status(500).json(err);
         }
     }, 
     getAllFood: async(req, res) => {

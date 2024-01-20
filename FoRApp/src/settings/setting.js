@@ -8,7 +8,7 @@ import axios from "axios";
 
 export default function Setting({navigation, route})  {
     const colors = useTheme()
-    const {email, name, credit} = route.params;
+    const {email, name, credit, userType} = route.params;
 
     const handleLogout = async () => {
         // Perform login logic
@@ -37,7 +37,7 @@ export default function Setting({navigation, route})  {
             marginLeft = {20}
             spacing={20}>
                 <View>
-                    <TouchableOpacity style={styles.logoBackground} onPress={() => navigation.navigate("HomepageCustomer", {...route.params})}>
+                    <TouchableOpacity style={styles.logoBackground} onPress={() => {userType == "customer" ? navigation.navigate("HomepageCustomer", {...route.params}) : userType == "shopOwner" ? navigation.navigate("HomepageShopOwner", {...route.params}) : userType == "staff" ? navigation.navigate("HomepageStaff", {...route.params}) : navigation.navigate("Dashboard", {...route.params})}}>
                         <Image source={require("../../assets/logo.png")} style={styles.logoButton}></Image>
                     </TouchableOpacity>
                     <IconButton icon={props => <Icon name="person" {...props} size={25} />} 

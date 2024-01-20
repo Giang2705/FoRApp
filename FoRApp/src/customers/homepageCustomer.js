@@ -29,7 +29,7 @@ export default function HomepageCustomer({navigation, route}) {
                 spacing={20}
             >
                 <View>
-                    <TouchableOpacity style={styles.logoBackground} onPress={() => navigation.navigate("")}>
+                    <TouchableOpacity style={styles.logoBackground} onPress={() => navigation.navigate("HomepageCustomer", {...route.params})}>
                         <Image source={require("../../assets/logo.png")} style={styles.logoButton}></Image>
                     </TouchableOpacity>
                     <IconButton icon={props => <Icon name="person" {...props} size={25} />} 

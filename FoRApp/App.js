@@ -80,7 +80,7 @@ const AppInner = () => {
 
   return (
     <NavigationContainer theme={theme} onReady={onLayoutRootView}>
-      <StackNavigator.Navigator initialRouteName='Dashbroad'
+      <StackNavigator.Navigator initialRouteName='NotificationShopowner'
         >
 
         <StackNavigator.Screen name="LoginPage" component={LoginPage} options={{headerShown: false}}/>

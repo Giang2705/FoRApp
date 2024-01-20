@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import {StyleSheet, Text, View, Image, TouchableOpacity, TextInput} from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
+import KeyboardAvoidingWrapper from "../utils/KeyboardAvoiding";
+import axios from "axios";
 
 export default function SignupPage({ navigation }) {
   const [inputData, setInputData] = useState({
@@ -12,8 +14,22 @@ export default function SignupPage({ navigation }) {
   });
   const [err, errMessage] = useState(null);
 
-  const signupBtnPress = () => {
-    //Sign up logic
+  const signupBtnPress = async () => {
+    // Perform login logic
+    const url = "http://localhost:3000/api/auth/register/customer"
+
+    await axios.post(url, inputData).then((response) => {
+        const result = response.data;
+        if (response.status == 201){
+          alert("Sign up successfully!");
+          navigation.navigate('LoginPage');
+        } else if (response.status == 401){
+          alert(response.data);
+        }
+    })
+    .catch((err) =>{
+      alert(err);
+    })
   };
 
   const loginBtnPress = () => {
@@ -22,7 +38,8 @@ export default function SignupPage({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingWrapper>
+<View style={styles.container}>
       <View style={styles.main}>
         <Image
             source={require("../../assets/logo.png")}
@@ -77,6 +94,7 @@ export default function SignupPage({ navigation }) {
 
       </View>
     </View>
+    </KeyboardAvoidingWrapper>
   );
 }
 

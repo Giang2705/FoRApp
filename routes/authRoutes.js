@@ -11,5 +11,6 @@ router.post("/register/staff", authControllers.registerStaff);
 // Existing login and logout routes
 router.post("/login", authControllers.login);
 router.post("/logout", authControllers.logout);
+router.post("/comparePassword", authControllers.comparePassword);
 
 module.exports = router;

@@ -32,10 +32,10 @@ const userSchema = new mongoose.Schema({
     type: Array,
     default: [],
   },
-  onGoingOrder: {
+  orders: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Order",
-  }
+  }]
 });
 
 

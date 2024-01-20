@@ -11,11 +11,11 @@ const orderControllers = {
             const savedOrder = await newOrder.save();
             if (req.body.user) {
               const user = Users.findById(req.body.user);
-              await user.updateOne({ $push: { onGoingOrder: savedOrder._id } });
+              await user.updateOne({ $push: { orders: savedOrder._id } });
             }
             if (req.body.shopOwner) {
               const shopOwner = Users.findById(req.body.shopOwner);
-              await shopOwner.updateOne({ $push: { onGoingOrder: savedOrder._id } });
+              await shopOwner.updateOne({ $push: { orders: savedOrder._id } });
             }
             res.status(200).json(savedOrder);
         } catch (err) {

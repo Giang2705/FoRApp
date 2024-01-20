@@ -7,9 +7,33 @@ import { useTheme } from '@react-native-material/core';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from "react-native-vector-icons/Ionicons"
 import { Box, Flex } from '@react-native-material/core';
+import axios from 'axios';
 
-const UpdatePassword = ({navigation}) => {
+const UpdatePassword = ({navigation, route}) => {
     const colors = useTheme()
+    const {email} = route.params;
+    const [inputData, setInputData] = useState({email: email, oldPassword: "oldPassord", newPassword: "newPassword"});
+    const [conPassword, setConPasswor] = useState();
+
+    const handleChangePass = async () => {
+        // Perform login logic
+        const url = "http://localhost:3000/api/users/changePassword"
+
+        if (inputData.newPassword == conPassword) {
+            await axios.put(url, inputData).then((response) => {
+                if (response.status == 200){
+                    alert("Change password successfully! Please log in again");
+                    navigation.navigate('LoginPage');
+                }
+            })
+            .catch(err =>{
+                alert("Wrong old password. Please try again!");
+            })
+        } else {
+            alert("Wrong confimed password. Please try again!");
+        }
+    }
+
     return (
         <View>
             <Stack
@@ -67,18 +91,21 @@ const UpdatePassword = ({navigation}) => {
                         <TextInput secureTextEntry={true} placeholderTextColor='#61481C'
                         placeholder='Current password'
                         style={styles.passwordInput}
+                        onChangeText={text => setInputData({...inputData, oldPassword: text})}
                         />
                         <Text style={styles.passwordTitle}>New Password</Text>
                         <TextInput secureTextEntry={true} placeholderTextColor='#61481C'
                         placeholder='New password'
                         style={styles.passwordInput}
+                        onChangeText={text => setInputData({...inputData, newPassword: text})}
                         />
                         <Text style={styles.passwordTitle}>Confirm New Password</Text>
                         <TextInput secureTextEntry={true} placeholderTextColor='#61481C'
                         placeholder='Confirm new password'
                         style={styles.passwordInput}
+                        onChangeText={text => setConPasswor(text)}
                         />
-                        <TouchableOpacity onPress={() => navigation.goBack()}>
+                        <TouchableOpacity onPress={() => handleChangePass()}>
                             <Box 
                             style={{
                                 backgroundColor: "#C51605",

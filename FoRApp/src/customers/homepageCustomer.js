@@ -8,7 +8,7 @@ import { Avatar, Box, Stack, Text, Flex, IconButton } from "@react-native-materi
 import FIcon from 'react-native-vector-icons/Foundation'; 
 import Icon from 'react-native-vector-icons/Ionicons'; 
 
-export default function HomepageCustomer({navigation}) {
+export default function HomepageCustomer({navigation, route}) {
     const {colors} = useTheme();
     
     const dataRestaurant = [{image: require("../../assets/restaurant1.jpg"),name: "Sorrento", location: "Building 10 - Floor 2"},
@@ -37,7 +37,7 @@ export default function HomepageCustomer({navigation}) {
                                 backgroundColor="white"
                                 borderRadius={15}
                                 style={styles.userButton}
-                                onPress={() => navigation.navigate("Setting")}/>
+                                onPress={() => navigation.navigate("Setting", {...route.params})}/>
                 </View>
                 <ScrollView>
                     <Text style={styles.header}>Restaurant</Text>

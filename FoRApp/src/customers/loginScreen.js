@@ -1,16 +1,45 @@
 import React, { useState } from "react";
 import {StyleSheet, Text, View, Image, TouchableOpacity, TextInput} from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
+import KeyboardAvoidingWrapper from "../utils/KeyboardAvoiding";
+import axios from "axios"
 
 export default function LoginPage({ navigation }) {
   const [inputData, setInputData] = useState({
     email: "",
     password: ""
   });
-  
-  const handleLogin = () => {
+
+  // const [user, setUser] = useState({
+  //   _id: "",
+  //   name: "",
+  //   email: "",
+  //   password: "",
+  //   credit: 0,
+  //   cart: [],
+  //   orders: [],
+  // });
+
+  const handleLogin = async () => {
     // Perform login logic
-    
+    const url = "http://localhost:3000/api/auth/login"
+
+    await axios.post(url, inputData).then((response) => {
+        const result = response.data;
+
+        if (response.status == 200 && response.data.userType == "customer"){
+          console.log(response.data)
+          // setUser(result._id, result.name, result.email, result.password, result.credit, result.cart, result.orders)
+          navigation.navigate('HomepageCustomer', {...result});
+        } else if (response.status == 200 && response.data.userType == "shopOwner"){
+          navigation.navigate('HomepageShopOwner');
+        } else if (response.status == 401){
+          alert(response.data);
+        }
+    })
+    .catch((err) =>{
+      alert(err);
+    })
   };
 
   const handleSignup = () => {
@@ -20,6 +49,7 @@ export default function LoginPage({ navigation }) {
 
 
   return (
+    <KeyboardAvoidingWrapper>
     <View style={styles.container}>
       <View style={styles.main}>
         <Image
@@ -59,6 +89,7 @@ export default function LoginPage({ navigation }) {
 
       </View>
     </View>
+    </KeyboardAvoidingWrapper>
   );
 }
 

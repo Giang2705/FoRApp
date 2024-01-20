@@ -4,9 +4,28 @@ import {useTheme} from '@react-navigation/native';
 import { View, TouchableOpacity, Button, Image } from 'react-native';
 import Icon from "react-native-vector-icons/Ionicons";
 import styles from './styles';
+import axios from "axios";
 
-export default function Setting({navigation})  {
+export default function Setting({navigation, route})  {
     const colors = useTheme()
+    const {email, name, credit} = route.params;
+
+    const handleLogout = async () => {
+        // Perform login logic
+        const url = "http://localhost:3000/api/auth/logout"
+
+        await axios.post(url).then((response) => {
+            if (response.status == 200){
+                alert("Logged out!");
+                navigation.navigate('LoginPage');
+            } else if (response.status == 401){
+                alert(response.data);
+            }
+        })
+        .catch((err) =>{
+            alert(err);
+        })
+    }
     return (
         <View>
             <Stack
@@ -18,7 +37,7 @@ export default function Setting({navigation})  {
             marginLeft = {20}
             spacing={20}>
                 <View>
-                    <TouchableOpacity style={styles.logoBackground} onPress={() => navigation.navigate("HomepageCustomer")}>
+                    <TouchableOpacity style={styles.logoBackground} onPress={() => navigation.navigate("HomepageCustomer", {...route.params})}>
                         <Image source={require("../../assets/logo.png")} style={styles.logoButton}></Image>
                     </TouchableOpacity>
                     <IconButton icon={props => <Icon name="person" {...props} size={25} />} 
@@ -47,9 +66,9 @@ export default function Setting({navigation})  {
                                 paddingTop={20}
                                 >
                                 <Stack spacing={5}>
-                                    <Text style={styles.userName}>May</Text>
-                                    <Text style={styles.userInfo}>s3812345@rmit.edu.vn</Text>
-                                    <Text style={styles.userInfo}>Credit points: 23 points</Text>
+                                    <Text style={styles.userName}>{name || "May"}</Text>
+                                    <Text style={styles.userInfo}>{email || "s3812345@rmit.edu.vn"}</Text>
+                                    <Text style={styles.userInfo}>{"Credit points: " + (credit.toString() || 23) + " points"}</Text>
                                 </Stack>
                             </Flex>
                         </Flex>
@@ -68,7 +87,7 @@ export default function Setting({navigation})  {
                             <Text style={styles.settingText}>Add More Points</Text>
                         </Flex>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate("UpdatePassword")}>
+                    <TouchableOpacity onPress={() => navigation.navigate("UpdatePassword", {...route.params})}>
                         <Flex direction='row' marginLeft={7}>
                             <Icon name="lock-closed-outline" size={30} marginRight={10} color="#61481C"/>
                             <Text style={styles.settingText}>Change Password</Text>
@@ -76,7 +95,7 @@ export default function Setting({navigation})  {
                     </TouchableOpacity>
                 </Stack>
                 <Stack>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={handleLogout}> 
                         <Box backgroundColor="#C51605" style={styles.logoutButton}>
                             <Text style={styles.logoutText} color='white'>LOG OUT</Text>
                         </Box>

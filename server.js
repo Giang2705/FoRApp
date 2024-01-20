@@ -9,7 +9,7 @@ const path = require('path')
 const app = express()
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors())
+app.use(cors({origin: true, credentials: true}))
 app.use(fileUpload({
     useTempFiles: true,
 }));
@@ -20,7 +20,7 @@ app.use("/api/auth", require("./routes/authRoutes"))
 app.use("/api/foods", require("./routes/foodRoutes"))
 app.use("/api/restaurants", require("./routes/restaurantRoutes"))
 app.use("/api/orders", require("./routes/orderRoutes"))
-
+app.use("/api/users", require("./routes/userRoutes"))
 
 // Connect to mongodb
 const connectDatabase = async () => {

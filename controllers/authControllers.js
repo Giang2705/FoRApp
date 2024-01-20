@@ -53,12 +53,7 @@ register: async (req, res) => {
         userType, // Add this line
       });
   
-      console.log("JWT Secret:", process.env.JWT_SECRET);
-      const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, {
-        expiresIn: "1d",
-      });
-  
-      setJwtCookie(res, token);
+      const token = jwt.sign({_id: newUser._id}, process.env.JWT_SECRET)
   
       res.status(201).json({
         _id: newUser._id,
@@ -86,25 +81,17 @@ login: async (req, res) => {
           return res.status(401).json({ message: "Invalid email or password" });
         }
   
-        const jwtCookie = req.cookies["jwt-cookie"];
-  
-        if (jwtCookie) {
-          return res
-            .status(409)
-            .json({ message: "An user is already authenticated" });
-        }
-  
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-          expiresIn: "1d",
-        });
-  
-        setJwtCookie(res, token);
+        const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET)
   
         res.status(200).json({
           _id: user._id,
           name: user.name,
           email: user.email,
           userType: user.userType,
+          password: user.password,
+          credit: user.credit,
+          cart: user.cart,
+          orders: user.orders,
         });
       } else {
         return res.status(401).json({ message: "Invalid email or password" });
@@ -122,6 +109,27 @@ logout: async (req, res) => {
       });
   
       res.status(200).json({ message: "User logged out." });
+    } catch (error) {
+      handleServerError(res, error);
+    }
+  },
+
+  comparePassword: async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      if (!email || !password) {
+        return res.status(400).json({ message: "Incomplete data." });
+      }
+
+      const user = await User.findOne({ email });
+
+      if (user) {
+        const passwordMatch = await bcrypt.compare(password, user.password);
+
+        if (!passwordMatch) {
+          return res.status(401).json({ message: "Invalid password" });
+        }
+      }
     } catch (error) {
       handleServerError(res, error);
     }

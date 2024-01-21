@@ -4,12 +4,6 @@ import { TableView, Section, Cell } from 'react-native-tableview-simple';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from "react-native";
 import axios from 'axios';
 
-// const data = [
-//     { name: 'John Doe',phone: '974897',email: 'john@example.com', role: 'User', status: 'Active' },
-//     { name: 'John Doe',phone: '974897',email: 'john@example.com', role: 'User', status: 'Active' },
-//     { name: 'John Doe',phone: '974897',email: 'john@example.com', role: 'User', status: 'Active' },
-//   ];
-
 export default function Dashbroad({ navigation, route }) {
     const [allUser, setAllUser] = useState([]);
 

@@ -8,8 +8,9 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from "react-native-vector-icons/Ionicons"
 import { Box, Flex } from '@react-native-material/core';
 
-const ViewFood = ({navigation}) => {
+const ViewFood = ({navigation, route, item}) => {
     const [count, setCount] = useState(1);
+    const {name} = item.params;
 
     const handleIncrement = () => {
         setCount(count +1)
@@ -33,7 +34,7 @@ const ViewFood = ({navigation}) => {
       marginLeft = {20}
       spacing={20}>
         <View>
-            <TouchableOpacity style={styles.logoBackground} onPress={() => navigation.navigate("HomepageCustomer")}>
+            <TouchableOpacity style={styles.logoBackground} onPress={() => navigation.navigate("HomepageCustomer", {...route.params})}>
                 <Image source={require("../../assets/logo.png")} style={styles.logoButton}></Image>
             </TouchableOpacity>
             <IconButton icon={props => <Icon name="person" {...props} size={25} />} 
@@ -41,7 +42,7 @@ const ViewFood = ({navigation}) => {
                         backgroundColor="white"
                         borderRadius={15}
                         style={styles.userButton}
-                        onPress={() => navigation.navigate("Setting")}/>
+                        onPress={() => navigation.navigate("Setting", {...route.params})}/>
         </View>
         <Box backgroundColor="transparent"
             w="25%"
@@ -67,7 +68,7 @@ const ViewFood = ({navigation}) => {
             style={{
                 margin: 30,
             }}>
-                <Text style={styles.foodTitle}>Beef hamburger</Text>
+                <Text style={styles.foodTitle}>{name}</Text>
                 <Text style={styles.foodInfo}>Not for vegan consumers</Text>
             </Stack>
             <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} >

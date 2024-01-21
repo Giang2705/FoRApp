@@ -1,5 +1,5 @@
 import { Stack, Text, IconButton, Box, Flex, Button  } from '@react-native-material/core';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
 import styles from './style';
 import MIcon from "react-native-vector-icons/MaterialCommunityIcons";
@@ -47,7 +47,7 @@ export default function HomepageShopOwner({navigation, route}) {
     useEffect(() => {
         getAllFood()
         getRes()
-    }, res, []);
+    }, getAllFood, getRes, []);
 
     return (
         <View>
@@ -55,7 +55,7 @@ export default function HomepageShopOwner({navigation, route}) {
                 <Image source={require("../../assets/sorrento-restaurant-1-1024x682.jpg")}
                 style={styles.backgroundImage} />
                 <Text style={styles.header}>Sorrento</Text>
-                <TouchableOpacity style={styles.logoBackground} onPress={() => navigation.navigate("HomepageShopOwners", {...route.params})}>
+                <TouchableOpacity style={styles.logoBackground} onPress={() => navigation.navigate("HomepageShopOwner", {...route.params})}>
                     <Image source={require("../../assets/logo.png")} style={styles.logoButton}></Image>
                 </TouchableOpacity>
                 <Text style={styles.header}>Sorrento</Text>
@@ -106,7 +106,7 @@ export default function HomepageShopOwner({navigation, route}) {
                                 <Text style={{
                                     fontSize: 13,
                                     color: "#61481C",
-                                }}>res.name</Text>
+                                }}>{res.name}</Text>
                                 <Text style={{
                                     fontSize: 13,
                                     color: "#61481C",

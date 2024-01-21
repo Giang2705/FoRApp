@@ -26,6 +26,7 @@ import SearchPage from './src/customers/searchPage';
 import ChatBoxView from './src/customers/chatBoxView';
 import Cart from './src/orderfood/cart';
 import PlaceOrder from './src/orderfood/placeOrder';
+// import KengryChatBOT from './src/Kengry/chatBot';
 
 //Staff
 import HomepageStaffs from './src/staffs/homepageStaffs';
@@ -104,6 +105,7 @@ const AppInner = () => {
         <StackNavigator.Screen name="PlaceOrder" component={PlaceOrder} options={{headerShown: false}}/> 
         <StackNavigator.Screen name="Setting" component={Setting} options={{ headerShown: false }}/>
         <StackNavigator.Screen name="TopupCredit" component={TopupCredit} options={{ headerShown: false}}/>
+        {/* <StackNavigator.Screen name="KengryChatBot" component={KengryChatBOT} options={{ headerShown: false}}/> */}
 
         {/* Staff */}
         <StackNavigator.Screen name="HomepageStaff" component={HomepageStaffs} options={{ headerShown: false}}/>

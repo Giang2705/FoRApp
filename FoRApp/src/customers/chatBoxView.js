@@ -13,7 +13,7 @@ const colors = {
     button: '#C51606',
   };
 
-export default function ChatBoxView({ navigation }) {
+export default function ChatBoxView({ navigation, route }) {
 
     return ( 
         <View style={styles.container}>
@@ -22,7 +22,7 @@ export default function ChatBoxView({ navigation }) {
                     <View style={styles.rightGroup}>
                         <IconButton icon={props => <Icon name="arrow-back" {...props} size={30} />} 
                             style={styles.back} color='#61481C'
-                            onPress={()=>navigation.navigate("MessageCustomer")} />
+                            onPress={()=>navigation.navigate("MessageCustomer", {...route.params})} />
                         <Image source={require("../../assets/restaurant1.jpg")} style= {styles.userImage}/>
                         <Text style={styles.username}>Sorrento</Text>
                     </View>

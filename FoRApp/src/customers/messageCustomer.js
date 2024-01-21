@@ -3,6 +3,8 @@ import { View, StyleSheet, ScrollView, Text, TouchableOpacity, Image, TextCompon
 import { IconButton } from "@react-native-material/core";
 import Icon from 'react-native-vector-icons/Ionicons';
 import OIcon from "react-native-vector-icons/Octicons";
+import FIcon from 'react-native-vector-icons/Foundation'; 
+
 
 const data = [
     { image: require("../../assets/sorrento.jpg"), name: 'John WWW', text: '974897' },
@@ -14,7 +16,7 @@ const colors = {
     button: '#C51606',
   };
 
-export default function MessageCustomer({ navigation }) {
+export default function MessageCustomer({ navigation, route }) {
 
     const openedChatBox = () => {
         navigation.navigate('ChatBoxView');
@@ -42,30 +44,31 @@ export default function MessageCustomer({ navigation }) {
             </View>    
             <View style={styles.bottomContainer}>
                 <View style={styles.bottomNav}>
-                    <IconButton icon={props => <OIcon name="home" {...props} size={30}/>}
+                <IconButton icon={props => <FIcon name="home" {...props} size={30}/>}
                                 margin={8}
                                 color="#AAACAE"
-                                onPress={()=> navigation.navigate()} />
-                    <IconButton icon={props => <Icon name="chatbox" {...props} size={30}/>}
+                                onPress={()=> navigation.navigate("HomepageCustomer", {...route.params})} />
+                    <IconButton icon={props => <Icon name="chatbox-outline" {...props} size={30}/>}
                                 margin={8}
                                 color="#C51606"
-                                onPress={()=> navigation.navigate()}/>
+                                onPress={()=> navigation.navigate("ChatBoxView", {...route.params})}/>
                     <IconButton icon={props => <Icon name="search" {...props} size={40}/>}
                         backgroundColor={colors.button}
                         padding={34}
                         color="white"
                         borderRadius={40}
+                        // position="absolute"
                         marginBottom={10}
-                        onPress={() =>navigation.navigate("SearchPage")}
+                        onPress={() =>navigation.navigate("SearchPage", {...route.params})}
                         />
                     <IconButton icon={props => <Icon name="notifications-outline" {...props} size={30}/>}
                                 color='#AAACAE'
                                 margin={8}
-                                onPress={()=>navigation.navigate()}/>
+                                onPress={()=>navigation.navigate("NotificationCustomer", {...route.params})}/>
                     <IconButton icon={props => <Icon name="cart-outline"{...props} size={33}/>} 
                                 color="#AAACAE"
                                 margin={8}
-                                onPress={()=>navigation.navigate("Cart")}/>
+                                onPress={()=>navigation.navigate("Cart", {...route.params})}/>
                 </View>
             </View>
         </View>

@@ -8,8 +8,13 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from "react-native-vector-icons/Ionicons";
 import OIcon from "react-native-vector-icons/Octicons";
 import { Box, Flex } from '@react-native-material/core';
+import FIcon from 'react-native-vector-icons/Foundation'; 
 
-const Cart = ({navigation}) => {
+const colors = {
+    button: '#C51606',
+  };
+
+const Cart = ({navigation, route}) => {
     const data = [{image: require("../../assets/restaurant1.jpg"), name: "Sorento", itemsNum: 2, total: 40},
                     {image: require("../../assets/restaurant2.jpeg"), name: "Nine", itemsNum: 4, total: 100}]
     return (
@@ -72,32 +77,31 @@ const Cart = ({navigation}) => {
             </Stack>
             <View style={styles.bottomContainer}>
                 <View style={styles.bottomNav}>
-                    <IconButton icon={props => <OIcon name="home" {...props} size={28}/>}
+                <IconButton icon={props => <FIcon name="home" {...props} size={30}/>}
                                 margin={8}
                                 color="#AAACAE"
-                                onPress={()=> navigation.navigate("HomepageCustomer")} />
+                                onPress={()=> navigation.navigate("HomepageCustomer", {...route.params})} />
                     <IconButton icon={props => <Icon name="chatbox-outline" {...props} size={30}/>}
                                 margin={8}
                                 color="#AAACAE"
-                                onPress={()=> navigation.navigate()}/>
+                                onPress={()=> navigation.navigate("ChatBoxView", {...route.params})}/>
                     <IconButton icon={props => <Icon name="search" {...props} size={40}/>}
-                        // backgroundColor={colors.button}
-                        backgroundColor="#C51605"
+                        backgroundColor={colors.button}
                         padding={34}
                         color="white"
                         borderRadius={40}
                         // position="absolute"
                         marginBottom={10}
-                        onPress={() =>navigation.goBack()}
+                        onPress={() =>navigation.navigate("SearchPage", {...route.params})}
                         />
                     <IconButton icon={props => <Icon name="notifications-outline" {...props} size={30}/>}
-                                color='#AAACAE'
+                                color='#C51606'
                                 margin={8}
-                                onPress={()=>navigation.navigate()}/>
-                    <IconButton icon={props => <Icon name="cart"{...props} size={33}/>} 
-                                color="#C51605"
+                                onPress={()=>navigation.navigate("NotificationCustomer", {...route.params})}/>
+                    <IconButton icon={props => <Icon name="cart-outline"{...props} size={33}/>} 
+                                color="#AAACAE"
                                 margin={8}
-                                onPress={()=>navigation.navigate("Cart")}/>
+                                onPress={()=>navigation.navigate("Cart", {...route.params})}/>
                 </View>
             </View>
         </View>

@@ -46,9 +46,9 @@ export default function HomepageCustomer({navigation, route}) {
     } 
     
     useEffect(() => {
-        getAllFood()
         getAllRes()
-    }, res, food);
+        getAllFood()
+    }, getAllRes, getAllFood, []);
                     
     return ( 
         <View>
@@ -76,7 +76,7 @@ export default function HomepageCustomer({navigation, route}) {
                     <Text style={styles.header}>Restaurant</Text>
                     <Stack w="100%" spacing={20} >
                         <ScrollView horizontal={true}>
-                            {res.map((item, index) => (
+                            {dataRestaurant.map((item, index) => (
                                 <TouchableOpacity onPress={() => navigation.navigate("ViewRestaurant")}>
                                     <Stack elevation={3}
                                         key={index}
@@ -90,11 +90,11 @@ export default function HomepageCustomer({navigation, route}) {
                                         spacing={5}
                                     >
                                         {/* nếu không có hình thì để cái này */}
-                                        <IconButton 
+                                        {/* <IconButton 
                                             icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
                                             imageStyle={{borderRadius: 10}} 
-                                        /> 
-                                        {/* <Image source={item.image} style = {styles.imageRestaurant}/> */}
+                                        />  */}
+                                        <Image source={item.image} style = {styles.imageRestaurant}/>
                                         <View w="58%">
                                             <Text style={styles.textTitle}>{item.name}</Text>
                                             <Text style={styles.text}>item.location</Text>
@@ -131,8 +131,8 @@ export default function HomepageCustomer({navigation, route}) {
                     </Stack>
                     <Text style={styles.header} marginTop={20}>What's New Today?</Text>
                     <Stack w="100%" spacing={15} >
-                        {food.map((item, index)=> (
-                            <TouchableOpacity onPress={() => navigation.navigate("ViewFood")}>
+                        {dataFood.map((item, index)=> (
+                            <TouchableOpacity onPress={() => navigation.navigate("ViewFood", {...route.params}, {...item})}>
                                 <Box elevation={3}
                                 backgroundColor="white"
                                 style={styles.cardContainer}
@@ -146,11 +146,11 @@ export default function HomepageCustomer({navigation, route}) {
                                     padding={9}
                                     >
                                         {/* nếu không có hình thì để cái này */}
-                                        <IconButton 
+                                        {/* <IconButton 
                                             icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
                                             imageStyle={{borderRadius: 10}} 
-                                        /> 
-                                        {/* <Image source={item.image} style={styles.imageFood}/> */}
+                                        />  */}
+                                        <Image source={item.image} style={styles.imageFood}/>
                                         <Stack spacing={5} w="58%" marginLeft={10}>
                                             <Text style={styles.textTitle}>{item.name}</Text>
                                             <Text style={styles.text} >{item.restaurant}</Text>
@@ -168,11 +168,11 @@ export default function HomepageCustomer({navigation, route}) {
                     <IconButton icon={props => <FIcon name="home" {...props} size={30}/>}
                                 margin={8}
                                 color="#C51606"
-                                onPress={()=> navigation.navigate()} />
+                                onPress={()=> navigation.navigate("HomepageCustomer", {...route.params})} />
                     <IconButton icon={props => <Icon name="chatbox-outline" {...props} size={30}/>}
                                 margin={8}
                                 color="#AAACAE"
-                                onPress={()=> navigation.navigate()}/>
+                                onPress={()=> navigation.navigate("ChatBoxView", {...route.params})}/>
                     <IconButton icon={props => <Icon name="search" {...props} size={40}/>}
                         backgroundColor={colors.button}
                         padding={34}
@@ -180,16 +180,16 @@ export default function HomepageCustomer({navigation, route}) {
                         borderRadius={40}
                         // position="absolute"
                         marginBottom={10}
-                        onPress={() =>navigation.navigate("SearchPage")}
+                        onPress={() =>navigation.navigate("SearchPage", {...route.params})}
                         />
                     <IconButton icon={props => <Icon name="notifications-outline" {...props} size={30}/>}
                                 color='#AAACAE'
                                 margin={8}
-                                onPress={()=>navigation.navigate()}/>
+                                onPress={()=>navigation.navigate("NotificationCustomer", {...route.params})}/>
                     <IconButton icon={props => <Icon name="cart-outline"{...props} size={33}/>} 
                                 color="#AAACAE"
                                 margin={8}
-                                onPress={()=>navigation.navigate("Cart")}/>
+                                onPress={()=>navigation.navigate("Cart", {...route.params})}/>
                 </View>
             </View>
         </View>

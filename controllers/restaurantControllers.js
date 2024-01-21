@@ -60,6 +60,7 @@ const restaurantControllers = {
     deleteRestaurant: async(req, res) => {
         try {
             await Foods.deleteMany({restaurant: req.params.id});
+            await Users.findOneAndDelete({restaurant: req.params.id})
             await Restaurants.findByIdAndDelete(req.params.id);
             res.json({ msg: "Restaurant deleted" });
         } catch (err) {

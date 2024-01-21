@@ -18,9 +18,6 @@ export default function Dashbroad({ navigation, route }) {
     const logingOut = () => {
         navigation.navigate('LoginPage'); // Just for testing
     };
-    const movingCustomerList = () => {
-        navigation.navigate('Dashbroad');
-    };
 
     const addingRestaurant = () => {
         setModalVisible(true);
@@ -36,17 +33,6 @@ export default function Dashbroad({ navigation, route }) {
           alert(err);
         })
     }, [])
-
-    // const getAllUser = useCallback (async () => {
-    //     const url = "http://127.0.0.1:3000/api/users/"
-    //     await axios.get(url).then((response) => {
-    //         const result = response.data;
-    //         setUser(result)
-    //     })
-    //     .catch((err) =>{
-    //       alert(err);
-    //     })
-    // }, [])
     
     useEffect(() => {
         getAllRes()
@@ -60,7 +46,7 @@ export default function Dashbroad({ navigation, route }) {
                 <Image 
                     source={require("../../assets/sorrento.jpg")}
                     style={styles.logoImage} />
-                <TouchableOpacity style={styles.customerList} onPress={movingCustomerList}>
+                <TouchableOpacity style={styles.customerList} onPress={() => {navigation.navigate('Dashbroad', {...route.params})}}>
                     <Text style={[styles.listText, styles.listTextInCustomerList]}>Customer List</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.restaurantList}>
@@ -201,7 +187,7 @@ const styles = StyleSheet.create({
         paddingHorizontal:50,
     },
     cellText: {
-        fontSize: 18,
+        fontSize: 14,
     },
     addBtn: {
         backgroundColor: 'gray',

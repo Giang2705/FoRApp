@@ -4,20 +4,37 @@ import { TableView, Section, Cell } from 'react-native-tableview-simple';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from "react-native";
 import axios from 'axios';
 
-const data = [
-    { name: 'John Doe',phone: '974897',email: 'john@example.com', role: 'User', status: 'Active' },
-    { name: 'John Doe',phone: '974897',email: 'john@example.com', role: 'User', status: 'Active' },
-    { name: 'John Doe',phone: '974897',email: 'john@example.com', role: 'User', status: 'Active' },
-  ];
+// const data = [
+//     { name: 'John Doe',phone: '974897',email: 'john@example.com', role: 'User', status: 'Active' },
+//     { name: 'John Doe',phone: '974897',email: 'john@example.com', role: 'User', status: 'Active' },
+//     { name: 'John Doe',phone: '974897',email: 'john@example.com', role: 'User', status: 'Active' },
+//   ];
 
 export default function Dashbroad({ navigation, route }) {
+    const [allUser, setAllUser] = useState([]);
+
     const movingBack = () => {
         navigation.navigate('LoginPage'); 
     };
     const movingRestaurantList = () => {
         navigation.navigate('RestaurantList');
     };
-    
+
+    const getAllUser = useCallback (async () => {
+        const url = "http://127.0.0.1:3000/api/users/"
+        await axios.get(url).then((response) => {
+            const result = response.data;
+            setAllUser(result)
+        })
+        .catch((err) =>{
+          alert(err);
+        })
+    }, [])
+
+    useEffect(() => {
+        getAllUser()
+    }, [getAllUser]);
+
     return (
         <View style={styles.container}>
             <View style={styles.adminBar}>
@@ -53,16 +70,13 @@ export default function Dashbroad({ navigation, route }) {
                                     <Text style={styles.cellText}>Role</Text>
                                 </View>
                                 <View style={styles.tableCell}>
-                                    <Text style={styles.cellText}>Status</Text>
-                                </View>
-                                <View style={styles.tableCell}>
                                     {/* <TouchableOpacity style={styles.addBtn} onPress={addingCustom}> */}
                                         <Text style={styles.addText} numberOfLines={1}></Text>
                                     {/* </TouchableOpacity> */}
                                 </View>
                             </View>
 
-                            {data.map((item, index) => (
+                            {allUser.map((item, index) => (
                                 <View key={index} style={styles.tableRow}>                                
                                     <View style={styles.tableCell}>
                                         <Text style={styles.cellText} numberOfLines={1}>{item.name}</Text>
@@ -71,13 +85,10 @@ export default function Dashbroad({ navigation, route }) {
                                         <Text style={styles.cellText} numberOfLines={1}>{item.email}</Text>
                                     </View>
                                     <View style={styles.tableCell}>
-                                        <Text style={styles.cellText} numberOfLines={1}>{item.phone}</Text>
+                                        <Text style={styles.cellText} numberOfLines={1}>{item.phoneNumber}</Text>
                                     </View>
                                     <View style={styles.tableCell}>
-                                        <Text style={styles.cellText} numberOfLines={1}>{item.role}</Text>
-                                    </View>
-                                    <View style={styles.tableCell}>
-                                        <Text style={styles.cellText} numberOfLines={1}>{item.status}</Text>
+                                        <Text style={styles.cellText} numberOfLines={1}>{item.userType}</Text>
                                     </View>
                                     <View style={[styles.tableCell, styles.btnTableCell]}>
                                         <TouchableOpacity style={styles.deleteBtn} onPress={''}>
@@ -169,7 +180,7 @@ const styles = StyleSheet.create({
         paddingHorizontal:50,
     },
     cellText: {
-        fontSize: 18,
+        fontSize: 14,
     },
     addBtn: {
         backgroundColor: 'gray',

@@ -21,6 +21,7 @@ export default function AddRestaurant({navigation, route, modalVisible, setModal
             const result = response.data;
             if (response.status == 200){
                 alert("Create restaurant successfully!");
+                setModalVisible(false)
                 navigation.navigate('RestaurantList', {...route.params});
             } else if (response.status == 400){
                 alert(response.data);

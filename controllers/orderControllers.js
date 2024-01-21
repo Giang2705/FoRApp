@@ -59,8 +59,12 @@ const orderControllers = {
     deleteOrder: async(req, res) => {
         try {
             await Users.updateMany(
-                { onGoingBooking: req.params.id },
-                { $pull: { foods: req.params.id } }
+                { orders: req.params.id },
+                { $pull: { orders: req.params.id } }
+            )
+            await Restaurants.updateMany(
+              { orders: req.params.id },
+              { $pull: { orders: req.params.id } }
             )
             await Orders.findByIdAndDelete(req.params.id);
             res.json({ msg: "Order deleted" });

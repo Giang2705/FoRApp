@@ -26,13 +26,14 @@ export default function LoginPage({ navigation }) {
 
     await axios.post(url, inputData).then((response) => {
         const result = response.data;
-        console.log(result)
         if (response.status == 200 && response.data.userType == "customer"){
           console.log(response.data)
           // setUser(result._id, result.name, result.email, result.password, result.credit, result.cart, result.orders)
           navigation.navigate('HomepageCustomer', {...result});
         } else if (response.status == 200 && response.data.userType == "shopOwner"){
           navigation.navigate('HomepageShopOwner', {...result});
+        } else if (response.status == 200 && response.data.userType == "admin"){
+          navigation.navigate('Dashbroad', {...result});
         } else if (response.status == 401){
           alert(response.data);
         }

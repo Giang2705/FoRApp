@@ -1,6 +1,8 @@
 import React from 'react';
+import { useEffect, useCallback, useState } from 'react';
 import { TableView, Section, Cell } from 'react-native-tableview-simple';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from "react-native";
+import axios from 'axios';
 
 const data = [
     { name: 'John Doe',phone: '974897',email: 'john@example.com', role: 'User', status: 'Active' },
@@ -8,7 +10,7 @@ const data = [
     { name: 'John Doe',phone: '974897',email: 'john@example.com', role: 'User', status: 'Active' },
   ];
 
-export default function Dashbroad({ navigation }) {
+export default function Dashbroad({ navigation, route }) {
     const movingBack = () => {
         navigation.navigate('LoginPage'); 
     };
@@ -140,7 +142,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     logoutBtn: {
-        marginTop: 550,
+        marginTop: 50,
     },
     clContent: {
         fontSize: 30,

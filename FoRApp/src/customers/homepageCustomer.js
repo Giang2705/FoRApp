@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useState, useEffect } from 'react';
 import {  Image, View, ScrollView, TouchableOpacity } from 'react-native';
 import { useTheme } from '@react-navigation/native';
@@ -19,10 +19,10 @@ export default function HomepageCustomer({navigation, route}) {
     const dataFood = [{image: require("../../assets/chicken-pesto.jpg"), name: "Chicken Pesto", restaurant: "Sorrento", hours: "Opening Hours: 10 AM - 4 PM"},
                     {image: require("../../assets/fish-burrito.webp"), name: "Fish Burrito", restaurant: "La Cantina", hours: "Opening Hours: 10 AM - 3 PM"}]
              
-    const [food, setFood] = useState();
-    const [res, setRes] = useState();
+    const [food, setFood] = useState([]);
+    const [res, setRes] = useState([]);
 
-    const getAllFood = async () => {
+    const getAllFood = useCallback(async () => {
         const url = "http://localhost:3000/api/foods/"
         await axios.get(url).then((response) => {
             const result = response.data;
@@ -31,24 +31,25 @@ export default function HomepageCustomer({navigation, route}) {
         .catch((err) =>{
           alert(err);
         })
-    }                
+    }, [])
                 
-    const getAllRes = async () => {
+    const getAllRes = useCallback (async () => {
         const url = "http://localhost:3000/api/restaurants/"
         await axios.get(url).then((response) => {
             const result = response.data;
-            console.log(result)
             setRes(result)
         })
         .catch((err) =>{
           alert(err);
         })
-    } 
+    }, [])
     
     useEffect(() => {
         getAllRes()
         getAllFood()
-    }, getAllRes, getAllFood, []);
+        console.log(res)
+        console.log(food)
+    }, [getAllRes], [getAllFood]);
                     
     return ( 
         <View>
@@ -76,7 +77,7 @@ export default function HomepageCustomer({navigation, route}) {
                     <Text style={styles.header}>Restaurant</Text>
                     <Stack w="100%" spacing={20} >
                         <ScrollView horizontal={true}>
-                            {dataRestaurant.map((item, index) => (
+                            {res.map((item, index) => (
                                 <TouchableOpacity onPress={() => navigation.navigate("ViewRestaurant")}>
                                     <Stack elevation={3}
                                         key={index}
@@ -90,11 +91,11 @@ export default function HomepageCustomer({navigation, route}) {
                                         spacing={5}
                                     >
                                         {/* nếu không có hình thì để cái này */}
-                                        {/* <IconButton 
+                                        <IconButton 
                                             icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
                                             imageStyle={{borderRadius: 10}} 
-                                        />  */}
-                                        <Image source={item.image} style = {styles.imageRestaurant}/>
+                                        /> 
+                                        {/* <Image source={item.image} style = {styles.imageRestaurant}/> */}
                                         <View w="58%">
                                             <Text style={styles.textTitle}>{item.name}</Text>
                                             <Text style={styles.text}>item.location</Text>
@@ -131,8 +132,8 @@ export default function HomepageCustomer({navigation, route}) {
                     </Stack>
                     <Text style={styles.header} marginTop={20}>What's New Today?</Text>
                     <Stack w="100%" spacing={15} >
-                        {dataFood.map((item, index)=> (
-                            <TouchableOpacity onPress={() => navigation.navigate("ViewFood", {...route.params}, {...item})}>
+                        {food.map((item, index)=> (
+                            <TouchableOpacity onPress={() => navigation.navigate("ViewFood", {...route.params})}>
                                 <Box elevation={3}
                                 backgroundColor="white"
                                 style={styles.cardContainer}
@@ -146,14 +147,14 @@ export default function HomepageCustomer({navigation, route}) {
                                     padding={9}
                                     >
                                         {/* nếu không có hình thì để cái này */}
-                                        {/* <IconButton 
+                                        <IconButton 
                                             icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
                                             imageStyle={{borderRadius: 10}} 
-                                        />  */}
-                                        <Image source={item.image} style={styles.imageFood}/>
+                                        /> 
+                                        {/* <Image source={item.image} style={styles.imageFood}/> */}
                                         <Stack spacing={5} w="58%" marginLeft={10}>
                                             <Text style={styles.textTitle}>{item.name}</Text>
-                                            <Text style={styles.text} >{item.restaurant}</Text>
+                                            <Text style={styles.text} >{item.restaurant}</Text>        
                                             <Text style={styles.textHours}>item.hours</Text>
                                         </Stack>
                                     </Flex>

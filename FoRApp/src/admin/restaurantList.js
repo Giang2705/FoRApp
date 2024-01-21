@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { TableView, Section, Cell } from 'react-native-tableview-simple';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from "react-native";
 import AddRestaurant from './addRestaurant';
+import axios from 'axios';
 
 const data = [
     { name: 'John Doe',phone: '974897',email: 'john@example.com', role: 'User', status: 'Active' },
@@ -9,21 +10,49 @@ const data = [
     { name: 'John Doe',phone: '974897',email: 'john@example.com', role: 'User', status: 'Active' },
   ];
 
-export default function Dashbroad({ navigation }) {
+export default function Dashbroad({ navigation, route }) {
+    const [modalVisible, setModalVisible] = useState(false)
+    const [res, setRes] = useState([])
+    const [user, setUser] = useState()
+
     const logingOut = () => {
         navigation.navigate('LoginPage'); // Just for testing
     };
     const movingCustomerList = () => {
         navigation.navigate('Dashbroad');
     };
-    // const addingRestaurant = () => {
-    //     navigation.navigate('AddRestaurant');
-    // };
 
-    const [modalVisible, setModalVisible] = useState(false)
     const addingRestaurant = () => {
         setModalVisible(true);
     };
+
+    const getAllRes = useCallback (async () => {
+        const url = "http://127.0.0.1:3000/api/restaurants/"
+        await axios.get(url).then((response) => {
+            const result = response.data;
+            setRes(result)
+        })
+        .catch((err) =>{
+          alert(err);
+        })
+    }, [])
+
+    // const getAllUser = useCallback (async () => {
+    //     const url = "http://127.0.0.1:3000/api/users/"
+    //     await axios.get(url).then((response) => {
+    //         const result = response.data;
+    //         setUser(result)
+    //     })
+    //     .catch((err) =>{
+    //       alert(err);
+    //     })
+    // }, [])
+    
+    useEffect(() => {
+        getAllRes()
+        // getAllUser()
+    }, [getAllRes]);
+
     
     return (
         <View style={styles.container}>
@@ -57,10 +86,7 @@ export default function Dashbroad({ navigation }) {
                                     <Text style={styles.cellText}>Phone</Text>
                                 </View>
                                 <View style={styles.tableCell}>
-                                    <Text style={styles.cellText}>Role</Text>
-                                </View>
-                                <View style={styles.tableCell}>
-                                    <Text style={styles.cellText}>Current Working</Text>
+                                    <Text style={styles.cellText}>Discription</Text>
                                 </View>
                                 <View style={styles.tableCell}>
                                     <TouchableOpacity style={styles.addBtn} onPress={addingRestaurant}>
@@ -68,22 +94,21 @@ export default function Dashbroad({ navigation }) {
                                     </TouchableOpacity>
                                 </View>
                             </View>
-                            {data.map((item, index) => (
+                            {res.map((item, index) => (
                                 <View key={index} style={styles.tableRow}>                                
                                     <View style={styles.tableCell}>
                                         <Text style={styles.cellText} numberOfLines={1}>{item.name}</Text>
                                     </View>
+
                                     <View style={styles.tableCell}>
-                                        <Text style={styles.cellText} numberOfLines={1}>{item.email}</Text>
+                                        <Text style={styles.cellText} numberOfLines={1}>{item.description}</Text>
                                     </View>
                                     <View style={styles.tableCell}>
-                                        <Text style={styles.cellText} numberOfLines={1}>{item.phone}</Text>
+                                        <Text style={styles.cellText} numberOfLines={1}>email</Text>
                                     </View>
+                                    
                                     <View style={styles.tableCell}>
-                                        <Text style={styles.cellText} numberOfLines={1}>{item.role}</Text>
-                                    </View>
-                                    <View style={styles.tableCell}>
-                                        <Text style={styles.cellText} numberOfLines={1}>{item.status}</Text>
+                                        <Text style={styles.cellText} numberOfLines={1}>phone number</Text>
                                     </View>
                                     <View style={[styles.tableCell, styles.btnTableCell]}>
                                         <TouchableOpacity style={styles.deleteBtn} onPress={''}>
@@ -94,7 +119,7 @@ export default function Dashbroad({ navigation }) {
                             ))}
                         </Section>
                     </TableView>
-                <AddRestaurant modalVisible={modalVisible} setModalVisible={setModalVisible} />
+                <AddRestaurant navigation={navigation} route={route} modalVisible={modalVisible} setModalVisible={setModalVisible} />
                 </View>
             </View>
         </View>
@@ -149,7 +174,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     logoutBtn: {
-        marginTop: 550,
+        marginTop: 50,
     },
     rlContent: {
         fontSize: 30,

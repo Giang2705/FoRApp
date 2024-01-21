@@ -8,7 +8,7 @@ const restaurantControllers = {
         try {
             const { name, description, shopOwnerEmail, shopOwnerName, shopOwnerPassword, shopOwnerPhoneNumber } =
               req.body;
-            // if (!images) return res.status(400).json({ msg: "No image upload" });
+
               const url = "http://localhost:3000/api/auth/register/shopOwner"
               const inputData = {
                 email: shopOwnerEmail,
@@ -16,18 +16,21 @@ const restaurantControllers = {
                 password: shopOwnerPassword,
                 phoneNumber: shopOwnerPhoneNumber
               }
+
               await axios.post(url, inputData).then(async (response) => {
+                console.log(response.data)
                   const newRestaurant = new Restaurants({
                     name: name.toLowerCase(),
                     description,
-                    shopOwner: response.data._id,
+                    shopOwner: response.data.newUser._id,
                   });    
                 const restaurant = await Restaurants.findOne({name});
+
                 if (restaurant)
                   return res.status(400).json({ msg: "This restaurant already exists" });
     
-                await Users.findByIdAndUpdate(response.data._id, {$push : {restaurant: newRestaurant}})
                 await newRestaurant.save();
+                await Users.findByIdAndUpdate(response.data.newUser._id, {$push : {restaurant: newRestaurant}})
                 
                 res.json({ msg: "Restaurant created" });
               })

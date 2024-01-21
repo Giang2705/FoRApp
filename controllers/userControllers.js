@@ -23,10 +23,10 @@ const userControllers = {
             res.status(500).json(err);
         }
     }, 
-    getAnOrder: async(req, res) => {
+    getUser: async(req, res) => {
         try {
-            const order = await Orders.findById(req.params.id).populate('user', 'shopOwner');
-            res.status(200).json(order);
+            const user = await Users.findById(req.params.id);
+            res.status(200).json(user);
         } catch (err) {
             res.status(500).json(err);
         }
@@ -49,10 +49,10 @@ const userControllers = {
         res.status(500).json(err);
         }
     }, 
-    getAllOrders: async(req, res) => {
+    getAllUsers: async(req, res) => {
       try {
-        const orders = await Orders.find();
-        res.status(200).json(orders);
+        const users = await Users.find();
+        res.status(200).json(users);
       } catch (err) {
         res.status(500).json(err);
       }

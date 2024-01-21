@@ -5,7 +5,7 @@ import Voice from '@react-native-community/voice'
 import { IconButton } from "@react-native-material/core";
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const KengryChatBOT = () => {
+const KengryChatBOT = ({navigation, route}) => {
     const [messagesData, setMessagesData] = useState([]);
     const [userPrompt, setUserPrompt] = useState('');
 

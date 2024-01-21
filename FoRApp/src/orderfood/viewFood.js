@@ -8,9 +8,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from "react-native-vector-icons/Ionicons"
 import { Box, Flex } from '@react-native-material/core';
 
-const ViewFood = ({navigation, route, item}) => {
+const ViewFood = ({navigation, route}) => {
     const [count, setCount] = useState(1);
-    const {name} = item.params;
 
     const handleIncrement = () => {
         setCount(count +1)
@@ -68,7 +67,7 @@ const ViewFood = ({navigation, route, item}) => {
             style={{
                 margin: 30,
             }}>
-                <Text style={styles.foodTitle}>{name}</Text>
+                <Text style={styles.foodTitle}>name</Text>
                 <Text style={styles.foodInfo}>Not for vegan consumers</Text>
             </Stack>
             <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} >

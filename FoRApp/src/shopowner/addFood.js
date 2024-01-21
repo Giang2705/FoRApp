@@ -28,7 +28,7 @@ export default function AddFood({ navigation, modalVisible, setModalVisible, rou
                 alert("Create food successfully!");
                 setModalVisible(false);
                 navigation.navigate("HomepageShopOwner", {...route.params})
-            } else if (response.status == 401){
+            } else if (response.status == 400){
                 alert(response.data);
             }
         })

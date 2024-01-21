@@ -18,10 +18,10 @@ export default function HomepageShopOwner({navigation, route}) {
       };
     const {restaurant} = route.params
     const [food, setFood] = useState([])
-    const [res, setRes] = useState()
+    const [res, setRes] = useState([])
 
 
-    const getAllFood = async () => {
+    const getAllFood = useCallback (async () => {
         const url = `http://127.0.0.1:3000/api/foods/${restaurant}`
         await axios.get(url).then((response) => {
             const result = response.data;
@@ -30,9 +30,9 @@ export default function HomepageShopOwner({navigation, route}) {
         .catch((err) =>{
           alert(err);
         })
-    }
+    },[])
 
-    const getRes = async () => {
+    const getRes = useCallback (async () => {
         const url = `http://127.0.0.1:3000/api/restaurants/${restaurant}`
         await axios.get(url).then((response) => {
             const result = response.data;
@@ -42,12 +42,12 @@ export default function HomepageShopOwner({navigation, route}) {
         .catch((err) =>{
           alert(err);
         })
-    }
+    }, [])
 
     useEffect(() => {
         getAllFood()
         getRes()
-    }, getAllFood, getRes, []);
+    }, [getAllFood], [getRes]);
 
     return (
         <View>
@@ -161,7 +161,7 @@ export default function HomepageShopOwner({navigation, route}) {
                         </Flex>
                     </Box>
                 ))}
-            <AddFood modalVisible={modalVisible} setModalVisible={setModalVisible} route={route}/>
+            <AddFood navigation={navigation} modalVisible={modalVisible} setModalVisible={setModalVisible} route={route}/>
 
             </View>
             {/* <Stack style={styles.bottomContainer} >

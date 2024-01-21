@@ -1,18 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, TextInput, TouchableNativeFeedback, Keyboard, Modal, Alert,} from "react-native";
+import axios from 'axios';
 
-export default function AddRestaurant({ modalVisible, setModalVisible }) {
+export default function AddRestaurant({navigation, route, modalVisible, setModalVisible }) {
     
-    const [restaurantEmail, setRestaurantEmail] = useState('');
-    const [resPhoneNum, setResPhoneNum] = useState('');
-    const [restaurantName, setRestaurantName] = useState('');
-    const [restaurantRole, setRestaurantRole] = useState('');
+    const [inputData, setInputData] = useState({
+        name: "", 
+        description: "",
+        shopOwnerEmail: "", 
+        shopOwnerName: "", 
+        shopOwnerPassword: "", 
+        shopOwnerPhoneNumber: ""
+    });
 
-    const adding = () => {
-        navigation.navigate('RestaurantList');
+    const adding = async () => {
+        // Perform login logic
+        const url = "http://localhost:3000/api/restaurants/create"
+
+        await axios.post(url, inputData).then((response) => {
+            const result = response.data;
+            if (response.status == 200){
+                alert("Create restaurant successfully!");
+                navigation.navigate('RestaurantList', {...route.params});
+            } else if (response.status == 400){
+                alert(response.data);
+            }
+        })
+        .catch((err) =>{
+        alert(err);
+        })
     };
+
     const canceling = () => {
-        navigation.navigate('RestaurantList');
+        setModalVisible(false);    
     };
 
     useEffect(() => {
@@ -38,39 +58,55 @@ export default function AddRestaurant({ modalVisible, setModalVisible }) {
                                 <TextInput
                                     style={styles.input}
                                     placeholder="Name"
-                                    onChangeText={text => setRestaurantName(text)}
-                                    value={restaurantName}/>
+                                    onChangeText={text => setInputData({...inputData, name: text})}
+                                    />
+                            </View>
+                            <View style={styles.frameInput}>
+                                <Text style={styles.textView}>Description</Text>
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder="Description"
+                                    onChangeText={text => setInputData({...inputData, description: text})}
+                                    />
+                            </View>
+                            <View style={styles.frameInput}>
+                                <Text style={styles.textView}>Restaurant owner name</Text>
+                                <TextInput
+                                    style={styles.input}
+                                    placeholder="Restaurant owner name"
+                                    onChangeText={text => setInputData({...inputData, shopOwnerName: text})}
+                                    />
                             </View>
                             <View style={styles.frameInput}>
                                 <Text style={styles.textView}>Email</Text>
                                 <TextInput
                                     style={styles.input}
                                     placeholder="restaurant@rmit.edu.vn"
-                                    onChangeText={text => setRestaurantEmail(text)}
-                                    value={restaurantEmail}/>
+                                    onChangeText={text => setInputData({...inputData, shopOwnerEmail: text})}
+                                    />
                             </View>
                             <View style={styles.frameInput}>
                                 <Text style={styles.textView}>Phone Number</Text>
                                 <TextInput
                                     style={styles.input}
                                     placeholder="Phone Number"
-                                    onChangeText={text => setResPhoneNum(text)}
-                                    value={resPhoneNum}/>
+                                    onChangeText={text => setInputData({...inputData, shopOwnerPhoneNumber: text})}
+                                    />
                             </View>
                             <View style={styles.frameInput}>
-                                <Text style={styles.textView}>Role</Text>
+                                <Text style={styles.textView}>Password</Text>
                                 <TextInput
                                     style={styles.input}
-                                    placeholder="Role"
-                                    onChangeText={text => setRestaurantRole(text)}
-                                    value={restaurantRole}/>
+                                    placeholder="Password"
+                                    onChangeText={text => setInputData({...inputData, shopOwnerPassword: text})}
+                                    />
                             </View>
                         </View>
                         <View style={styles.containerBtns}>
-                                <TouchableOpacity style={styles.cancelBtn} onPress={adding}>
+                                <TouchableOpacity style={styles.cancelBtn} onPress={canceling}>
                                     <Text style={styles.cancalText}>Cancel</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={styles.addBtn} onPress={canceling}>
+                                <TouchableOpacity style={styles.addBtn} onPress={adding}>
                                     <Text style={styles.addText}>Add</Text>
                                 </TouchableOpacity>
                         </View>
@@ -90,7 +126,7 @@ const styles = StyleSheet.create({
     },
     boxForm:{
         alignItems: "center",
-        marginTop: 100,
+        margin: 10,
         padding: 40,
         width: 'auto',
         height: 'auto',

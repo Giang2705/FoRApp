@@ -91,11 +91,11 @@ export default function HomepageCustomer({navigation, route}) {
                                         spacing={5}
                                     >
                                         {/* nếu không có hình thì để cái này */}
-                                        <IconButton 
+                                        {/* <IconButton 
                                             icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
                                             imageStyle={{borderRadius: 10}} 
-                                        /> 
-                                        {/* <Image source={item.image} style = {styles.imageRestaurant}/> */}
+                                        />  */}
+                                        <Image source={require("../../assets/restaurant1.jpg")} style = {styles.imageRestaurant}/>
                                         <View w="58%">
                                             <Text style={styles.textTitle}>{item.name}</Text>
                                             <Text style={styles.text}>item.location</Text>
@@ -147,11 +147,11 @@ export default function HomepageCustomer({navigation, route}) {
                                     padding={9}
                                     >
                                         {/* nếu không có hình thì để cái này */}
-                                        <IconButton 
+                                        {/* <IconButton 
                                             icon= {props => <SIcon name="picture" size={25} color={colors.button} />}
                                             imageStyle={{borderRadius: 10}} 
-                                        /> 
-                                        {/* <Image source={item.image} style={styles.imageFood}/> */}
+                                        />  */}
+                                        <Image source={require("../../assets/pork.jpeg")} style={styles.imageFood}/>
                                         <Stack spacing={5} w="58%" marginLeft={10}>
                                             <Text style={styles.textTitle}>{item.name}</Text>
                                             <Text style={styles.text} >{item.restaurant}</Text>        

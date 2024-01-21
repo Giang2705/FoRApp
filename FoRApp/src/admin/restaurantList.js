@@ -4,16 +4,9 @@ import {StyleSheet, Text, View, TouchableOpacity, Image} from "react-native";
 import AddRestaurant from './addRestaurant';
 import axios from 'axios';
 
-const data = [
-    { name: 'John Doe',phone: '974897',email: 'john@example.com', role: 'User', status: 'Active' },
-    { name: 'John Doe',phone: '974897',email: 'john@example.com', role: 'User', status: 'Active' },
-    { name: 'John Doe',phone: '974897',email: 'john@example.com', role: 'User', status: 'Active' },
-  ];
-
 export default function Dashbroad({ navigation, route }) {
     const [modalVisible, setModalVisible] = useState(false)
     const [res, setRes] = useState([])
-    const [user, setUser] = useState()
 
     const logingOut = () => {
         navigation.navigate('LoginPage'); // Just for testing
@@ -22,6 +15,16 @@ export default function Dashbroad({ navigation, route }) {
     const addingRestaurant = () => {
         setModalVisible(true);
     };
+
+    const deleteRes = useCallback (async (id) => {
+        const url = `http://127.0.0.1:3000/api/restaurants/${id}`
+        await axios.delete(url).then((response) => {
+            alert("Delete restaurant successfully!")
+        })
+        .catch((err) =>{
+          alert(err);
+        })
+    }, [])
 
     const getAllRes = useCallback (async () => {
         const url = "http://127.0.0.1:3000/api/restaurants/"
@@ -36,7 +39,6 @@ export default function Dashbroad({ navigation, route }) {
     
     useEffect(() => {
         getAllRes()
-        // getAllUser()
     }, [getAllRes]);
 
     
@@ -66,13 +68,13 @@ export default function Dashbroad({ navigation, route }) {
                                     <Text style={styles.cellText}>Name</Text>
                                 </View>
                                 <View style={styles.tableCell}>
+                                    <Text style={styles.cellText}>Description</Text>
+                                </View>
+                                <View style={styles.tableCell}>
                                     <Text style={styles.cellText}>Email</Text>
                                 </View>
                                 <View style={styles.tableCell}>
-                                    <Text style={styles.cellText}>Phone</Text>
-                                </View>
-                                <View style={styles.tableCell}>
-                                    <Text style={styles.cellText}>Discription</Text>
+                                    <Text style={styles.cellText}>Phone number</Text>
                                 </View>
                                 <View style={styles.tableCell}>
                                     <TouchableOpacity style={styles.addBtn} onPress={addingRestaurant}>
@@ -97,7 +99,7 @@ export default function Dashbroad({ navigation, route }) {
                                         <Text style={styles.cellText} numberOfLines={1}>phone number</Text>
                                     </View>
                                     <View style={[styles.tableCell, styles.btnTableCell]}>
-                                        <TouchableOpacity style={styles.deleteBtn} onPress={''}>
+                                        <TouchableOpacity style={styles.deleteBtn} onPress={() => deleteRes(item._id)}>
                                             <Text style={styles.deleteText} numberOfLines={1}>Delete</Text>
                                         </TouchableOpacity>
                                     </View>

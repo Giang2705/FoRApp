@@ -81,7 +81,7 @@ export default function Setting({navigation, route})  {
                                 <Text style={styles.settingText}>Update Profile</Text>
                         </Flex>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate("TopupCredit")}>
+                    <TouchableOpacity onPress={() => navigation.navigate("TopupCredit", {...route.params})}>
                         <Flex direction='row' marginLeft={7}>
                             <Icon name="card-outline" color="#61481C" size={30} marginRight={10}/>
                             <Text style={styles.settingText}>Add More Points</Text>

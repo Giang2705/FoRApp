@@ -44,6 +44,16 @@ export default function HomepageShopOwner({navigation, route}) {
         })
     }, [])
 
+    const deleteFood = useCallback (async (id) => {
+        const url = `http://127.0.0.1:3000/api/foods/${id}`
+        await axios.delete(url).then((response) => {
+            alert("Delete food successfully!")
+        })
+        .catch((err) =>{
+          alert(err);
+        })
+    }, [])
+
     useEffect(() => {
         getAllFood()
         getRes()
@@ -156,7 +166,7 @@ export default function HomepageShopOwner({navigation, route}) {
                             </Stack>
                             <Stack direction='column'spacing={15}>
                                 <Button title="edit" color="#D9D9D9" style={styles.buttonInCard}/>
-                                <Button title="delete" color="#C51605" style={styles.buttonInCard}/>
+                                <Button title="delete" color="#C51605" style={styles.buttonInCard} onPress={() => deleteFood(item.id)}/>
                             </Stack>
                         </Flex>
                     </Box>

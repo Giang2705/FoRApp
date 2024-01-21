@@ -7,9 +7,10 @@ import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from "react-native-vector-icons/Ionicons"
 import { Box, Flex } from '@react-native-material/core';
 
-const TopupCredit = ({navigation}) => {
+const TopupCredit = ({navigation, route}) => {
     const colors = useTheme()
     const [count, setCount] = useState(1)
+    const {email, name, credit, userType} = route.params;
     
     const handleIncrement = () => {
         setCount(count+1)
@@ -32,7 +33,7 @@ const TopupCredit = ({navigation}) => {
             marginLeft = {20}
             spacing={20}>
                 <View>
-                    <TouchableOpacity style={styles.logoBackground} onPress={() => navigation.navigate("HomepageCustomer")}>
+                    <TouchableOpacity style={styles.logoBackground} onPress={() => navigation.navigate("HomepageCustomer", {...route.params})}>
                         <Image source={require("../../assets/logo.png")} style={styles.logoButton}></Image>
                     </TouchableOpacity>
                     <IconButton icon={props => <Icon name="person" {...props} size={25} />} 
@@ -61,7 +62,7 @@ const TopupCredit = ({navigation}) => {
                         color: "#61481C",
                         alignSelf: "center",
                         fontSize: 14
-                    }}>Credit points: 23 points</Text>
+                    }}>Credit points: {credit} points</Text>
                 </Stack>
                 <Box backgroundColor="white"
                     h="100%"
